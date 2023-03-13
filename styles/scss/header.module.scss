@@ -1,0 +1,59 @@
+//TODO in the end move necessary styles to general
+@import "variables.module.scss";
+
+.app {
+  &-header {
+    display: flex;
+    padding: 0 3em 0 6.25em;
+  }
+
+  &-navigation {
+    display: inherit;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    &__logo {
+      display: block;
+
+      &-name,
+      &-position {
+        display: block;
+        text-align: start;
+      }
+
+      &-name {
+        font-size: 1.438em;
+        line-height: 1.938em;
+      }
+
+      &-position {
+        font-size: .875em;
+        line-height: 1.188em;
+      }
+    }
+
+    &__list{
+      display: inherit;
+    }
+
+    &__item {
+      &-link {
+        display: block;
+        font-size: 1em;
+        line-height: 1.375em;
+        color: $primary-brown;
+        padding: 1.375em 1.188em;
+
+        &:hover {
+          border: .5px solid $primary-brown;
+          border-top: 0;
+        }
+      }
+    }
+
+    &__phone {
+      color: $primary-brown;
+    }
+  }
+}

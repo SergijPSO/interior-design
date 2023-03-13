@@ -1,0 +1,93 @@
+//TODO in the end move necessary styles to general
+@import "variables.module.scss";
+
+.app {
+  &-footer {
+    border: .063em solid yellow;
+    padding: 89px 0 116px;
+
+
+    &__wrapper {
+
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 856px;
+      margin: 0 auto;
+    }
+
+    &__messengers {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 15em;
+
+      &__number {
+        margin-top: .7em;
+        color: $primary-brown;
+      }
+    }
+
+    &__messengers-list {
+     display: flex;
+     justify-content: space-between;
+     align-items: baseline;
+
+     &__icon {
+      &--phone,
+      &--telegram,
+      &--viber {
+        margin-right: 14px;
+      }
+
+      &--phone {  
+        width: 1.625em;
+        height: 3.125em;
+      }
+      
+      &--telegram {
+        width: 2.063em;
+        height: 2em;
+      }
+
+      &--viber {
+        width: 2em;
+        height: 2em;
+      }
+
+     }
+    }
+
+    &__email{
+      display: flex;
+      align-items: center;
+
+      &__icon {
+        width: 2.75em;
+        height: 1.875em;
+        margin-right: .5em;
+      }
+
+      &__link {
+        color: $primary-brown;
+        font-size: 1em;
+      }
+    }
+
+    &__instagram {
+      display: flex;
+      align-items: center;
+
+      &__icon {
+        width: 2.063em;
+        height: 2.063em; 
+        margin-right: .5em;
+      }
+
+      &__link {
+        color: $primary-brown;
+        font-size: 1em;
+      }
+    }
+  }
+}
