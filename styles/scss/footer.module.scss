@@ -6,11 +6,11 @@
     border: .063em solid yellow;
     padding: 89px 0 116px;
 
-
     &__wrapper {
-
       display: flex;
       justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
       width: 100%;
       max-width: 856px;
       margin: 0 auto;
@@ -23,7 +23,7 @@
       max-width: 15em;
 
       &__number {
-        margin-top: .7em;
+        margin-top: .8em;
         color: $primary-brown;
       }
     }
@@ -58,9 +58,10 @@
      }
     }
 
-    &__email{
+    &__email {
       display: flex;
       align-items: center;
+      margin-bottom: 7px;
 
       &__icon {
         width: 2.75em;
@@ -77,6 +78,7 @@
     &__instagram {
       display: flex;
       align-items: center;
+      margin-bottom: 7px;
 
       &__icon {
         width: 2.063em;

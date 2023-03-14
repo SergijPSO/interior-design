@@ -12,6 +12,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    flex-wrap: wrap;
 
     &__logo {
       display: block;
@@ -35,6 +36,7 @@
 
     &__list{
       display: inherit;
+      flex-wrap: wrap;
     }
 
     &__item {
