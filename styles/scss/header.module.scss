@@ -37,6 +37,7 @@
     &__list{
       display: inherit;
       flex-wrap: wrap;
+      justify-content: space-between;
     }
 
     &__item {

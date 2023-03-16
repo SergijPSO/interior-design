@@ -4,8 +4,10 @@ const Footer = () => {
   return(
     <footer className={footer['app-footer']}>
       <div className={footer['app-footer__wrapper']}>
+        
         <div className={footer['app-footer__messengers']}>
           <div className={footer['app-footer__messengers-list']}>
+
             <span className={footer['app-footer__messengers-list__item']}>
               <svg className={footer['app-footer__messengers-list__icon--phone']}>
                 <use xlinkHref={'./assets/sprite.svg#phone'}></use>
@@ -55,6 +57,7 @@ const Footer = () => {
           </a>
 
         </div>
+
       </div>
     </footer>
   )
