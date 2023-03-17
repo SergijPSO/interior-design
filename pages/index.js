@@ -1,6 +1,3 @@
-import { Inter } from 'next/font/google';
-import variables from '@/styles/scss/variables.module.scss';
-
 import Layout from '../components/Layout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -19,16 +16,16 @@ const Home = () => {
 
     if (typeof window !== 'undefined') {
       window.addEventListener('resize', updateWidth);
-      return () => {
-        window.removeEventListener('resize', updateWidth);
-      };
+        return () => {
+          window.removeEventListener('resize', updateWidth);
+        };
     }
   }, []);
 
   return (
     <Layout pageTitle='Interior design'>
       <div className='app-wrapper'> 
-        {screenWidth <= 1024 ? <HeaderMobile/> : <Header />}
+        { screenWidth < 1024 ? <HeaderMobile/> : <Header/> }
         <Main/>
         <Footer/>
       </div>

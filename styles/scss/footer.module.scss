@@ -3,7 +3,6 @@
 
 .app {
   &-footer {
-    border: .063em solid yellow;
     padding: 89px 0 116px;
 
     &__wrapper {
@@ -21,6 +20,7 @@
       justify-content: space-between;
       align-items: center;
       max-width: 15em;
+      min-width: 240px;
 
       &__number {
         margin-top: .8em;
@@ -32,7 +32,6 @@
      display: flex;
      justify-content: space-between;
      align-items: baseline;
-
      &__icon {
       &--phone,
       &--telegram,
@@ -62,6 +61,7 @@
       display: flex;
       align-items: center;
       margin-bottom: 7px;
+      // flex-basis: 29%;
 
       &__icon {
         width: 2.75em;
@@ -79,6 +79,7 @@
       display: flex;
       align-items: center;
       margin-bottom: 7px;
+      // flex-basis: 29%;
 
       &__icon {
         width: 2.063em;
@@ -89,6 +90,25 @@
       &__link {
         color: $primary-brown;
         font-size: 1em;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 992px) {
+  .app {
+    &-footer {
+      padding: 20px 0;
+    
+      &__wrapper {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+      }
+      &__messengers,
+      &__email,
+      &__instagram {
+        max-width: unset;
       }
     }
   }

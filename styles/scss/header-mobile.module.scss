@@ -7,7 +7,7 @@
     overflow: hidden;
 
     &-header {
-      padding: 0 2em;
+      padding: 1em 2em;
       position: relative;
       display: flex;
       justify-content: space-between;
@@ -54,7 +54,8 @@
       flex-direction: column;
       position: absolute;
       width: 100%;
-      top: -100%;
+      max-width: 1176px;
+      top: -140%;
       transition: all .3s ease-out;
     
       &__item {
@@ -70,7 +71,6 @@
       &--active {
         display: flex;
         flex-direction: column;
-        position: absolute;
         width: 100%;
         top: 2.875em;
         transition: all .3s ease-in;
