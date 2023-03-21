@@ -7,7 +7,7 @@
     overflow: hidden;
 
     &-header {
-      padding: 1em 2em;
+      padding: 1rem 2rem;
       position: relative;
       display: flex;
       justify-content: space-between;
@@ -28,22 +28,22 @@
       }
 
       &__burger {
-        padding: .25em;
+        padding: .25rem;
         width: 100%;
-        max-width: 2em;
-        max-height: 2em;
+        max-width: 2rem;
+        max-height: 2rem;
         box-sizing: border-box;
-        border: .063em solid #271F18;
-        border-radius: .25em;
+        border: .063rem solid #271F18;
+        border-radius: .25rem;
 
         &-item {
           display: block;
-          height: .25em;
+          height: .25rem;
           background-color: $primary-brown;
-          border-radius: .375em;
+          border-radius: .375rem;
 
           &:nth-child(2) {
-            margin: .25em 0;
+            margin: .25rem 0;
           }
         }
       }
@@ -59,20 +59,20 @@
       transition: all .3s ease-out;
     
       &__item {
-        padding: 2em 0;
+        padding: 2rem 0;
         width: 100%;
         color: $primary-brown;
         text-align: center;
         font-weight: 500;
         background-color: $primary-beige;
-        border-bottom: .063em solid $primary-brown;
+        border-bottom: .063rem solid $primary-brown;
       }
 
       &--active {
         display: flex;
         flex-direction: column;
         width: 100%;
-        top: 2.875em;
+        top: 2.875rem;
         transition: all .3s ease-in;
 
         .app__mobile-navigation__item {

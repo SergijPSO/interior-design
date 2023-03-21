@@ -4,21 +4,22 @@ import Footer from '../components/Footer';
 import Main from '../components/Main';
 import HeaderMobile from '@/components/HeaderMobile';
 
-import {useLayoutEffect, useState} from 'react';
+import {useState, useEffect} from 'react';
 
 const Home = () => {
   const [screenWidth, setScreenWidth] = useState(0);
 
-  useLayoutEffect(() => {
-    function updateWidth() {
-      setScreenWidth(window.innerWidth);
-    }
+  function updateWidth() {
+    setScreenWidth(window.innerWidth);
+  }
 
+  useEffect(() => {
+   
     if (typeof window !== 'undefined') {
-      window.addEventListener('resize', updateWidth);
-        return () => {
-          window.removeEventListener('resize', updateWidth);
-        };
+    window.addEventListener('resize', updateWidth);
+      return () => {
+        window.removeEventListener('resize', updateWidth);
+      };
     }
   }, []);
 

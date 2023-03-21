@@ -1,26 +1,17 @@
 @import './variables.module.scss';
 @import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=Manrope:wght@200;300;400;500;600;700&display=swap');
-//Common reset begginning
-* {
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  list-style: none;
-  font-family: 'Manrope', sans-serif;
-}
-//Common reset begginning
 
 //Global styles begins
 body {
   margin: 0 auto;
   width: 100%;
-  max-width: 90em;
+  max-width: 90rem;
   background-color: $primary-beige;
 }
 //Global styles ends
 
 .app-wrapper {
   margin: 0 auto;
-  max-width: 1176px;
+  max-width: 73.5rem;
   width: 100%;
 }

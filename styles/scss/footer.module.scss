@@ -3,7 +3,7 @@
 
 .app {
   &-footer {
-    padding: 89px 0 116px;
+    padding: 5.563rem 0 7.25rem;
 
     &__wrapper {
       display: flex;
@@ -11,7 +11,7 @@
       align-items: flex-end;
       flex-wrap: wrap;
       width: 100%;
-      max-width: 856px;
+      max-width: 53.5rem;
       margin: 0 auto;
     }
 
@@ -19,11 +19,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 15em;
-      min-width: 240px;
+      max-width: 15rem;
+      min-width: 15rem;
 
       &__number {
-        margin-top: .8em;
+        margin-top: .8rem;
         color: $primary-brown;
       }
     }
@@ -36,22 +36,22 @@
       &--phone,
       &--telegram,
       &--viber {
-        margin-right: 14px;
+        margin-right: .875rem;
       }
 
       &--phone {  
-        width: 1.625em;
-        height: 3.125em;
+        width: 1.62rem;
+        height: 3.125rem;
       }
       
       &--telegram {
-        width: 2.063em;
-        height: 2em;
+        width: 2.063rem;
+        height: 2rem;
       }
 
       &--viber {
-        width: 2em;
-        height: 2em;
+        width: 2rem;
+        height: 2rem;
       }
 
      }
@@ -61,49 +61,47 @@
       display: flex;
       align-items: center;
       margin-bottom: 7px;
-      // flex-basis: 29%;
 
       &__icon {
-        width: 2.75em;
-        height: 1.875em;
-        margin-right: .5em;
+        width: 2.75rem;
+        height: 1.875rem;
+        margin-right: .5rem;
       }
 
       &__link {
         color: $primary-brown;
-        font-size: 1em;
+        font-size: 1rem;
       }
     }
 
     &__instagram {
       display: flex;
       align-items: center;
-      margin-bottom: 7px;
-      // flex-basis: 29%;
+      margin-bottom: .438rem;
 
       &__icon {
-        width: 2.063em;
-        height: 2.063em; 
-        margin-right: .5em;
+        width: 2.063rem;
+        height: 2.063rem; 
+        margin-right: .5rem;
       }
 
       &__link {
         color: $primary-brown;
-        font-size: 1em;
+        font-size: 1rem;
       }
     }
   }
 }
 
-@media all and (max-width: 992px) {
+@media all and (max-width: 62rem) {
   .app {
     &-footer {
-      padding: 20px 0;
+      padding: 1.25rem 0;
     
       &__wrapper {
         flex-direction: column;
         align-items: center;
-        row-gap: 20px;
+        row-gap: 1.25rem;
       }
       &__messengers,
       &__email,
