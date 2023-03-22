@@ -1,0 +1,13 @@
+.app {
+  &__projects {
+    &__item {
+      width: 100%;
+      flex-basis: 49.9%;
+      flex-grow: 9999;
+
+      &-image {
+        width: 100%;
+      }
+    }
+  }
+}

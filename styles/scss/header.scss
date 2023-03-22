@@ -2,12 +2,13 @@
 @import "variables.module.scss";
 
 .app {
-  &-header {
+  &__header {
     display: flex;
     padding: 0 3rem 0 6.25rem;
+    margin: 0 8.25rem;
   }
 
-  &-navigation {
+  &__navigation {
     display: inherit;
     align-items: center;
     justify-content: space-between;

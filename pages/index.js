@@ -14,7 +14,6 @@ const Home = () => {
   }
 
   useEffect(() => {
-   
     if (typeof window !== 'undefined') {
     window.addEventListener('resize', updateWidth);
       return () => {
@@ -25,7 +24,7 @@ const Home = () => {
 
   return (
     <Layout pageTitle='Interior design'>
-      <div className='app-wrapper'> 
+      <div className='app__wrapper'> 
         { screenWidth < 1024 ? <HeaderMobile/> : <Header/> }
         <Main/>
         <Footer/>

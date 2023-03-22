@@ -2,7 +2,7 @@
 @import "variables.module.scss";
 
 .app {
-  &-footer {
+  &__footer {
     padding: 5.563rem 0 7.25rem;
 
     &__wrapper {
@@ -95,7 +95,7 @@
 
 @media all and (max-width: 62rem) {
   .app {
-    &-footer {
+    &__footer {
       padding: 1.25rem 0;
     
       &__wrapper {
@@ -103,6 +103,7 @@
         align-items: center;
         row-gap: 1.25rem;
       }
+      
       &__messengers,
       &__email,
       &__instagram {
