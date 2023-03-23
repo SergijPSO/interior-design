@@ -2,7 +2,6 @@ import { useState } from 'react';
 // import headerMobile from '../styles/scss/header-mobile.module.scss';
 
 const HeaderMobile = () => {
-
   const [isActive, setActive] = useState(false)
 
   const navToggle = () => {

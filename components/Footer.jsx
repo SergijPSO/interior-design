@@ -1,7 +1,7 @@
 
 const Footer = () => {
   return(
-    <footer className={['app__footer']}>
+    <footer className={'app__footer'}>
       <div className={['app__footer__wrapper']}>
         
         <div className={['app__footer__messengers']}>

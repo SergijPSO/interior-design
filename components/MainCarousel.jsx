@@ -10,10 +10,17 @@ const MainCarousel = () => {
     > 
       <div className='app__main-carousel__item'>
           <img className='app__main-carousel__item-image'src="assets/images/main-carousel/slide-1.png" />
+          <a href="https://t.me/+380978159804" className="app__main-carousel__item-message">
+            <svg height="1024" width="973.125" className={'app__main-carousel__item-message__icon'}>
+              <use xlinkHref={'./assets/sprite.svg#telegram'}></use>
+            </svg>
+          </a>
       </div>
       <div className='app__main-carousel__item'>
           <img className='app__main-carousel__item-image' src="assets/images/main-carousel/slide-2.png" />
+          <div className="app__main-carousel__item-message"></div>
       </div>
+     
     </Carousel>
   )
 
