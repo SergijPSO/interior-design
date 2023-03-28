@@ -1,5 +1,5 @@
-// import header from '../styles/scss/header.module.scss';
-
+import Link from 'next/link';
+ 
 const Header = () => {
   return(
     <header className="app__header">
@@ -7,23 +7,23 @@ const Header = () => {
 
         <div className="app__navigation__logo">
           <span className="app__navigation__logo-name">Аріна Козловська</span>
-          <span className="app__navigation__logo-position">дизайнер</span>
+          <span className="app__navigation__logo-position">Дизайнер</span>
         </div>
       
-        <ul className="app__navigation__list">
+          <ul className="app__navigation__list">
             <li className="app__navigation__item">
-              <a className="app__navigation__item-link" href="#">ПРОЄКТИ</a>
+              <Link className="app__navigation__item-link" href="#projects" scroll={false}>ПРОЄКТИ</Link>
             </li>
             <li className="app__navigation__item">
-              <a className="app__navigation__item-link" href="#">ПОСЛУГИ</a>
+              <Link className="app__navigation__item-link" href="#services" scroll={false}>ПОСЛУГИ</Link>
             </li>
             <li className="app__navigation__item">
-              <a className="app__navigation__item-link" href="#">ПРО МЕНЕ</a>
+              <Link className="app__navigation__item-link" href="#about" scroll={false}>ПРО МЕНЕ</Link>
             </li>
             <li className="app__navigation__item">
-              <a className="app__navigation__item-link" href="#">КОНТАКТИ</a>
+              <Link className="app__navigation__item-link" href="#contacts" scroll={false}>ПРО МЕНЕ</Link>
             </li>
-        </ul>
+          </ul>
 
         <a className="app__navigation__phone" href="tel:+380978159804">097 815 98 04</a>
       </nav>

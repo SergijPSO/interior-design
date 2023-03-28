@@ -2,18 +2,17 @@
 const Footer = () => {
   return(
     <footer className="app__footer">
-      <div className="app__footer__wrapper">
+      <div className="app__footer__wrapper" id="contacts">
         
         <div className="app__footer__messengers">
+          
           <div className="app__footer__messengers-list">
-
             <span className="app__footer__messengers-list__item">
               <a href="tel:+380978159804" className="app__footer__messengers-list__item__link">
                 <svg className="app__footer__messengers-list__icon app__footer__messengers-list__icon--phone">
                   <use xlinkHref="./assets/sprite.svg#phone"></use>
                 </svg>
               </a>
-            
             </span>
 
             <span className="app__footer__messengers-list__item">
@@ -23,7 +22,6 @@ const Footer = () => {
                 </svg>
               </a>
             </span>
-            
 
             <span className="app__footer__messengers-list__item">
               <a href="viber://chat?number=+380978159804" className="app__footer__messengers-list__item__link">
@@ -32,13 +30,11 @@ const Footer = () => {
                 </svg>
               </a>
             </span>
-            
           </div> 
 
           <a href="tel:+380978159804" className="app__footer__messengers__number">
             097 815 98 04
           </a>
-
         </div>
 
         <div className="app__footer__email">

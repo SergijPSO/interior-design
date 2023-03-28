@@ -42,16 +42,19 @@
     }
 
     &__item {
+      box-sizing: border-box;
       &-link {
+        padding: 1.795rem 1.188rem;
         display: block;
         font-size: 1rem;
+        font-weight: 300;
         line-height: 1.375rem;
         color: $primary-brown;
-        padding: 1.375rem 1.188rem;
+        border: .031rem solid transparent;
+        border-top: 0;
 
-        &:hover {
-          border: .031rem solid $primary-brown;
-          border-top: 0;
+        &:hover  {
+          border-color: $primary-brown;;
         }
       }
     }

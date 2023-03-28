@@ -2,7 +2,7 @@ import TechniaclCarousel from "./TechniaclCarousel";
 
 const Services = () => {
   return (
-    <div className="app__services">
+    <div className="app__services" id="services">
 
       <h2 className="app__services__title">
         ПОСЛУГИ:

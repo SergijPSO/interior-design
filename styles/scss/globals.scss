@@ -18,6 +18,10 @@ body {
   background-color: $primary-beige;
 }
 
+// ::-webkit-scrollbar {
+//     display: none;
+// }
+
 .app {
   &__section {
     // padding: 0 8.25rem;

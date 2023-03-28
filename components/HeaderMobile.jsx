@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import headerMobile from '../styles/scss/header-mobile.module.scss';
+import Link from 'next/link';
 
 const HeaderMobile = () => {
   const [isActive, setActive] = useState(false)
@@ -25,10 +25,10 @@ const HeaderMobile = () => {
       </header>
     
       <nav className={isActive ? "app__mobile-navigation--active" : "app__mobile-navigation"}>
-        <a className="app__mobile-navigation__item" href="#">ПРОЄКТИ</a>
-        <a className="app__mobile-navigation__item" href="#">ПОСЛУГИ</a>
-        <a className="app__mobile-navigation__item" href="#">ПРО МЕНЕ</a>
-        <a className="app__mobile-navigation__item" href="#">КОНТАКТИ</a>
+        <Link className="app__mobile-navigation__item" href="#projects" scroll={false}>ПРОЄКТИ</Link>
+        <Link className="app__mobile-navigation__item" href="#services" scroll={false}>ПОСЛУГИ</Link>
+        <Link className="app__mobile-navigation__item" href="#about" scroll={false}>ПРО МЕНЕ</Link>
+        <Link className="app__mobile-navigation__item" href="#contacts">КОНТАКТИ</Link>
         <a className="app__mobile-navigation__item" href="tel:+380978159804">097 815 98 04</a>
       </nav>
 

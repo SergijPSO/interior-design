@@ -3,8 +3,10 @@
 
 .app {
   &__mobile {
+    position: fixed;
     width: 100%;
     overflow: hidden;
+    z-index: 9;
 
     &-header {
       padding: 1rem 2rem;
@@ -50,9 +52,9 @@
     }
 
     &-navigation {
+      position: absolute;
       display: flex;
       flex-direction: column;
-      position: absolute;
       width: 100%;
       max-width: 73.5rem;
       top: -140%;
@@ -71,9 +73,12 @@
       &--active {
         display: flex;
         flex-direction: column;
+        height: 100vh;
         width: 100%;
         top: 2.875rem;
-        transition: all .3s ease-in;
+        transition: all .1s ease-in;
+        backdrop-filter: blur(1rem);
+        background-color: rgba(0, 0, 0, 0.54);
 
         .app__mobile-navigation__item {
           display: block;

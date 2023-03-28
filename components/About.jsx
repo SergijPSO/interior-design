@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="app__about">
+    <div className="app__about" id="about">
       <h2 className="app__about__title">
         ПРО МЕНЕ:
       </h2>
