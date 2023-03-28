@@ -3,24 +3,25 @@
 .app {
   &__main {
     &-carousel {
+      padding-bottom: .625rem;
       &__item {
         position: relative;
         &-message {
-          padding: 7px 22px 3px;
+          padding: .438rem 1.375rem .188rem;
           position: absolute;
           display: block;
-          right: 20px;
-          bottom: 20px;
-          border-radius: 22px;
+          right: 1.25rem;
+          bottom: 201.25rem;
+          border-radius: 1.375rem;
           background-color: $primary-gray;
           z-index: 2;
           cursor: pointer;
           svg {
-            width: 18px;
+            width: 1.125rem;
           }
           &__icon {
-            width: 22px;
-            height: 22px;
+            width: 1.375rem;
+            height: 1.375rem;
           }
         }
       }

@@ -1,14 +1,14 @@
-@import './variables.module.scss';
 @import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=Manrope:wght@200;300;400;500;600;700&display=swap');
+@import './variables.module.scss';
 @import './header.scss';
 @import './header-mobile.scss';
 @import './projects.scss';
 @import './projects-item.scss';
 @import './footer.scss';
 @import './main-carousel.scss';
+@import './technical-carousel.scss';
 @import './about.scss';
 @import './services.scss';
-
 
 //Global styles begins
 body {
@@ -20,7 +20,7 @@ body {
 
 .app {
   &__section {
-    padding: 0 8.25rem;
+    // padding: 0 8.25rem;
     &--swampy {
       background-color: $primary-swampy;
     }
@@ -30,9 +30,13 @@ body {
   }
 
   &__wrapper {
+    position: relative;
     margin: 0 auto;
     // max-width: 73.5rem;
     // width: 100%;
   }
 }
 //Global styles ends
+
+
+

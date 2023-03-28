@@ -6,17 +6,21 @@ import Services from './Services';
 
 const Main = () => {
   return(
-    <main className='app__content'>
-      <ProjectsSection>
+    <main className="app__content">
+      
+      <ProjectsSection modifier={"--common"}>
         <MainCarousel />
         <Projects />
       </ProjectsSection>
-      <ProjectsSection modifier={'--swampy'}>
+
+      <ProjectsSection modifier={"--swampy"}>
         <Services />
       </ProjectsSection>
-      <ProjectsSection modifier={'--sandy'}>
+
+      <ProjectsSection modifier={"--sandy"}>
         <About />
       </ProjectsSection>
+
     </main>
   )
 }

@@ -1,30 +1,48 @@
 .app {
   &__about {
-    padding: 46px 0 162px;
+    padding: 7.688rem 0 10.125rem;
 
     &__title {
       text-align: center;
       font-weight: 400;
-      font-size: 21px;
-      line-height: 29px;
+      font-size: 1.313rem;
+      line-height: 1.813rem;
     }
 
     &__person {
-      padding-top: 45px;
-      display: flex;
+      padding: 2.813rem 1.25rem 0;
       margin: 0 auto;
-      max-width: 962px;
-      gap: 50px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 60.125rem;
+      gap: 4%;
+
+      &-photo {
+        display: flex;
+        flex-basis: 48%;
+        flex-shrink: 1;
+        min-width: 20rem;
+        justify-content: center;
+        &__img {
+          width: 100%;
+        }
+      }
       
       &-info {
+        padding-top: 3.25rem;
+        flex-basis: 48%;
+        flex-grow: 2;
+        min-width: 20rem;
+        justify-content: center;
         align-self: self-end;
-        margin-bottom: -80px;;
+        margin-bottom: -5rem;
         &__text {
-          font-size: 15px;
-          line-height: 18px;
+          font-size: .938rem;
+          line-height: 1.125rem;
           text-align: left;
           &:last-child {
-            padding-top: 20px;
+            padding-top: 1.25rem;
           }
         }
       }

@@ -60,7 +60,7 @@
     &__email {
       display: flex;
       align-items: center;
-      margin-bottom: 7px;
+      margin-bottom: .438rem;
 
       &__icon {
         width: 2.75rem;
@@ -69,6 +69,8 @@
       }
 
       &__link {
+        display: flex;
+        align-items: center;
         color: $primary-brown;
         font-size: 1rem;
       }
@@ -86,6 +88,8 @@
       }
 
       &__link {
+        display: flex;
+        align-items: center;;
         color: $primary-brown;
         font-size: 1rem;
       }
