@@ -21,7 +21,7 @@ const Header = () => {
               <Link className="app__navigation__item-link" href="#about" scroll={false}>ПРО МЕНЕ</Link>
             </li>
             <li className="app__navigation__item">
-              <Link className="app__navigation__item-link" href="#contacts" scroll={false}>ПРО МЕНЕ</Link>
+              <Link className="app__navigation__item-link" href="#contacts" scroll={false}>КОНТАКТИ</Link>
             </li>
           </ul>
 

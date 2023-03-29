@@ -7,7 +7,6 @@ import Services from './Services';
 const Main = () => {
   return(
     <main className="app__content">
-      
       <ProjectsSection modifier={"--common"}>
         <MainCarousel />
         <Projects />

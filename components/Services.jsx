@@ -1,9 +1,10 @@
-import TechniaclCarousel from "./TechniaclCarousel";
+import ArrowedCarousel from "./ArrowedCarousel";
+import ArrowedCarouselItem from "./ArrowedCarouselItem";
 
 const Services = () => {
   return (
+    
     <div className="app__services" id="services">
-
       <h2 className="app__services__title">
         ПОСЛУГИ:
       </h2>
@@ -74,8 +75,20 @@ const Services = () => {
         </div>
 
       </div>
-      <TechniaclCarousel/>
+      <ArrowedCarousel
+        class={"app__arrowed-carousel"}
+        status={false}
+        thumbs={false}
+      >
+          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
+          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
+          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
+          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
+          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
+      </ArrowedCarousel>
+
     </div>
+    
   )
 }
 
