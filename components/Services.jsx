@@ -80,15 +80,13 @@ const Services = () => {
         status={false}
         thumbs={false}
       >
-          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
-          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
-          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
-          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
-          <ArrowedCarouselItem imagUrl="technical-carousel/scheme.png"/>
+        <ArrowedCarouselItem imagUrl="arrowed-carousel/scheme.png"/>
+        <ArrowedCarouselItem imagUrl="arrowed-carousel/scheme.png"/>
+        <ArrowedCarouselItem imagUrl="arrowed-carousel/scheme.png"/>
+        <ArrowedCarouselItem imagUrl="arrowed-carousel/scheme.png"/>
+        <ArrowedCarouselItem imagUrl="arrowed-carousel/scheme.png"/>
       </ArrowedCarousel>
-
     </div>
-    
   )
 }
 

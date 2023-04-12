@@ -7,7 +7,10 @@ const ArrowedCarousel = (props) => {
       <Carousel 
         className={`${props.class}`}
         showStatus={props.status}
-        showThumbs={props.thumbs}
+        // showThumbs={props.thumbs}
+        thumbsWidth={props.thumbsWidth}
+        showThumbs={true}
+        showIndicators={props.bullets}
       >
         {props.children}
       </Carousel>

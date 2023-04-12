@@ -6,7 +6,10 @@ const MainCarousel = () => {
     <Carousel className="app__main-carousel"
       showArrows={false}
       showStatus={false}
-      showThumbs={false}  
+      showThumbs={false}
+      autoPlay={true}
+      // thumbWidth={200}
+      // width={'100%'}  
     > 
       <div className="app__main-carousel__item">
           <img className="app__main-carousel__item-image" src="assets/images/main-carousel/slide-1.png" />

@@ -15,6 +15,12 @@ const Home = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      setScreenWidth(window.innerWidth)
+    }
+  }, []);
+ 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
     window.addEventListener('resize', updateWidth);
       return () => {
         window.removeEventListener('resize', updateWidth);
@@ -33,4 +39,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default Home;  
