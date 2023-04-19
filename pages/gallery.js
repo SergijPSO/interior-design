@@ -1,12 +1,10 @@
+import GalleryCollection from "@/components/GalleryCollection";
 import Layout from "@/components/Layout";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Main from "@/components/Main";
 import HeaderMobile from "@/components/HeaderMobile";
-
 import { useState, useEffect } from "react";
 
-const Home = () => {
+const Gallery = () => {
   const [screenWidth, setScreenWidth] = useState(0);
 
   function updateWidth() {
@@ -32,11 +30,10 @@ const Home = () => {
     <Layout pageTitle='Interior design'>
       <div className='app__wrapper'>
         {screenWidth <= 1024 ? <HeaderMobile /> : <Header />}
-        <Main />
-        <Footer />
+        <GalleryCollection />
       </div>
     </Layout>
   );
 };
 
-export default Home;
+export default Gallery;

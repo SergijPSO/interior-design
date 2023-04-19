@@ -1,0 +1,33 @@
+.app {
+  &__collection {
+    padding: 0 4.688rem;
+    margin: 0 auto;
+
+    &-tabs {
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      width: 92%;
+
+      &__item {
+        display: block;
+        padding: 20px;
+        width: 50%;
+        background: none;
+        outline: none;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 100%;
+        border: 1px solid transparent;
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+          border-color: $primary-brown;
+        }
+      }
+    }
+  }
+}

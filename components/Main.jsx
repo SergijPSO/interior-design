@@ -1,12 +1,12 @@
-import ProjectsSection from '../components/ProjectsSection';
-import MainCarousel from '../components/MainCarousel';
-import Projects from '../components/Projects';
-import About from './About';
-import Services from './Services';
+import ProjectsSection from "../components/ProjectsSection";
+import MainCarousel from "../components/MainCarousel";
+import Projects from "../components/Projects";
+import About from "./About";
+import Services from "./Services";
 
 const Main = () => {
-  return(
-    <main className="app__content">
+  return (
+    <main className='app__content'>
       <ProjectsSection modifier={"--common"}>
         <MainCarousel />
         <Projects />
@@ -19,9 +19,8 @@ const Main = () => {
       <ProjectsSection modifier={"--sandy"}>
         <About />
       </ProjectsSection>
-
     </main>
-  )
-}
+  );
+};
 
 export default Main;

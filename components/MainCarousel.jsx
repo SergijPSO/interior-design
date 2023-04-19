@@ -8,11 +8,9 @@ const MainCarousel = () => {
       showStatus={false}
       showThumbs={false}
       autoPlay={true}
-      // thumbWidth={200}
-      // width={'100%'}  
     > 
       <div className="app__main-carousel__item">
-          <img className="app__main-carousel__item-image" src="assets/images/main-carousel/slide-1.png" />
+          <img className="app__main-carousel__item-image" src="assets/images/main-carousel/slide-1.png" alt="slide1" />
           <a href="https://t.me/+380978159804" className="app__main-carousel__item-message">
             <svg height="1024" width="973.125" className="app__main-carousel__item-message__icon">
               <use xlinkHref="./assets/sprite.svg#telegram"></use>

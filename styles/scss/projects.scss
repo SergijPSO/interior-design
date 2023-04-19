@@ -3,6 +3,8 @@
 
 .app {
   &__projects {
+    scroll-margin: 4.5rem;
+
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

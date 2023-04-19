@@ -8,6 +8,10 @@ const HeaderMobile = () => {
     setActive(!isActive)
   }
 
+  const closeNav = () => {
+    setActive(false)
+  }
+
   return(
     <div className="app__mobile">
 
@@ -25,11 +29,12 @@ const HeaderMobile = () => {
       </header>
     
       <nav className={isActive ? "app__mobile-navigation--active" : "app__mobile-navigation"}>
-        <Link className="app__mobile-navigation__item" href="#projects" scroll={false}>ПРОЄКТИ</Link>
-        <Link className="app__mobile-navigation__item" href="#services" scroll={false}>ПОСЛУГИ</Link>
-        <Link className="app__mobile-navigation__item" href="#about" scroll={false}>ПРО МЕНЕ</Link>
-        <Link className="app__mobile-navigation__item" href="#contacts">КОНТАКТИ</Link>
-        <a className="app__mobile-navigation__item" href="tel:+380978159804">097 815 98 04</a>
+        <Link className="app__mobile-navigation__item" href="/" scroll={false} onClick={closeNav}>ГОЛОВНА</Link>
+        <Link className="app__mobile-navigation__item" href="#projects" scroll={false} onClick={closeNav}>ПРОЄКТИ</Link>
+        <Link className="app__mobile-navigation__item" href="#services" scroll={false} onClick={closeNav}>ПОСЛУГИ</Link>
+        <Link className="app__mobile-navigation__item" href="#about" scroll={false} onClick={closeNav}>ПРО МЕНЕ</Link>
+        <Link className="app__mobile-navigation__item" href="#contacts" onClick={closeNav}>КОНТАКТИ</Link>
+        <a className="app__mobile-navigation__item" href="tel:+380978159804" onClick={closeNav}>097 815 98 04</a>
       </nav>
 
     </div>

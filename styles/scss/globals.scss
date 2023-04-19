@@ -9,8 +9,7 @@
 @import './arrowed-carousel.scss';
 @import './about.scss';
 @import './services.scss';
-@import './popup.scss';
-@import './gallery.scss';
+@import './gallery-tabs.scss';
 
 //Global styles begins
 body {
@@ -23,6 +22,7 @@ body {
     &--swampy {
       background-color: $primary-swampy;
     }
+
     &--sandy {
       background-color: $primary-sandy;
     }
@@ -33,4 +33,5 @@ body {
     margin: 0 auto;
   }
 }
+
 //Global styles ends

@@ -1,0 +1,130 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "visualisation": [
+        "assets/images/designs/project1/realization/1.png",
+        "assets/images/designs/project1/realization/1.png",
+        "assets/images/designs/project1/realization/1.png",
+        "assets/images/designs/project1/realization/1.png",
+        "assets/images/designs/project1/realization/1.png",
+        "assets/images/designs/project1/realization/1.png"
+      ],
+      "realization": [
+        "/assets/images/designs/project1/visualisation/2.jpeg",
+        "/assets/images/designs/project1/visualisation/2.jpeg",
+        "/assets/images/designs/project1/visualisation/2.jpeg",
+        "/assets/images/designs/project1/visualisation/2.jpeg",
+        "/assets/images/designs/project1/visualisation/2.jpeg",
+        "/assets/images/designs/project1/visualisation/2.jpeg"
+      ],
+      "description": "Двох кімнатна кватрира",
+      "area": "72 кв.м."
+    },
+    {
+      "id": 2,
+      "visualisation": [
+        "assets/images/designs/project2/realization/3.jpeg",
+        "assets/images/designs/project2/realization/3.jpeg",
+        "assets/images/designs/project2/realization/3.jpeg",
+        "assets/images/designs/project2/realization/3.jpeg",
+        "assets/images/designs/project2/realization/3.jpeg",
+        "assets/images/designs/project2/realization/3.jpeg"
+      ],
+      "realization": [
+        "assets/images/designs/project2/visualisation/4.jpeg",
+        "assets/images/designs/project2/visualisation/4.jpeg",
+        "assets/images/designs/project2/visualisation/4.jpeg",
+        "assets/images/designs/project2/visualisation/4.jpeg",
+        "assets/images/designs/project2/visualisation/4.jpeg",
+        "assets/images/designs/project2/visualisation/4.jpeg"
+      ],
+      "description": "Будинок Пасіки-Зубрицькі",
+      "area": "234 кв.м."
+    },
+    {
+      "id": 3,
+      "visualisation": [
+        "assets/images/designs/project3/realization/5.jpeg",
+        "assets/images/designs/project3/realization/5.jpeg",
+        "assets/images/designs/project3/realization/5.jpeg",
+        "assets/images/designs/project3/realization/5.jpeg",
+        "assets/images/designs/project3/realization/5.jpeg",
+        "assets/images/designs/project3/realization/5.jpeg"
+      ],
+      "realization": [
+        "assets/images/designs/project3/visualisation/6.jpeg",
+        "assets/images/designs/project3/visualisation/6.jpeg",
+        "assets/images/designs/project3/visualisation/6.jpeg",
+        "assets/images/designs/project3/visualisation/6.jpeg",
+        "assets/images/designs/project3/visualisation/6.jpeg",
+        "assets/images/designs/project3/visualisation/6.jpeg"
+      ],
+      "description": "Будинок Пасіки-Зубрицькі",
+      "area": "104 кв.м."
+    },
+    {
+      "id": 4,
+      "visualisation": [
+        "assets/images/designs/project4/realization/7.jpeg",
+        "assets/images/designs/project4/realization/7.jpeg",
+        "assets/images/designs/project4/realization/7.jpeg",
+        "assets/images/designs/project4/realization/7.jpeg",
+        "assets/images/designs/project4/realization/7.jpeg",
+        "assets/images/designs/project4/realization/7.jpeg"
+      ],
+      "realization": [
+        "assets/images/designs/project4/visualisation/8.jpeg",
+        "assets/images/designs/project4/visualisation/8.jpeg",
+        "assets/images/designs/project4/visualisation/8.jpeg",
+        "assets/images/designs/project4/visualisation/8.jpeg",
+        "assets/images/designs/project4/visualisation/8.jpeg",
+        "assets/images/designs/project4/visualisation/8.jpeg"
+      ],
+      "description": "Три кімнатна квартира",
+      "area": "82 кв.м."
+    },
+    {
+      "id": 5,
+      "visualisation": [
+        "/assets/images/designs/project5/realization/9.jpeg",
+        "/assets/images/designs/project5/realization/9.jpeg",
+        "/assets/images/designs/project5/realization/9.jpeg",
+        "/assets/images/designs/project5/realization/9.jpeg",
+        "/assets/images/designs/project5/realization/9.jpeg",
+        "/assets/images/designs/project5/realization/9.jpeg"
+      ],
+      "realization": [
+        "/assets/images/designs/project5/visualisation/10.jpeg",
+        "/assets/images/designs/project5/visualisation/10.jpeg",
+        "/assets/images/designs/project5/visualisation/10.jpeg",
+        "/assets/images/designs/project5/visualisation/10.jpeg",
+        "/assets/images/designs/project5/visualisation/10.jpeg",
+        "/assets/images/designs/project5/visualisation/10.jpeg"
+      ],
+      "description": "Одно кімнатна квартира",
+      "area": "52 кв.м."
+    },
+    {
+      "id": 6,
+      "visualisation": [
+        "/assets/images/designs/project6/realization/11.jpeg",
+        "/assets/images/designs/project6/realization/11.jpeg",
+        "/assets/images/designs/project6/realization/11.jpeg",
+        "/assets/images/designs/project6/realization/11.jpeg",
+        "/assets/images/designs/project6/realization/11.jpeg",
+        "/assets/images/designs/project6/realization/11.jpeg"
+      ],
+      "realization": [
+        "/assets/images/designs/project6/visualisation/12.jpeg",
+        "/assets/images/designs/project6/visualisation/12.jpeg",
+        "/assets/images/designs/project6/visualisation/12.jpeg",
+        "/assets/images/designs/project6/visualisation/12.jpeg",
+        "/assets/images/designs/project6/visualisation/12.jpeg",
+        "/assets/images/designs/project6/visualisation/12.jpeg"
+      ],
+      "description": "Одно кімнатна квартира",
+      "area": "52 кв.м."
+    }
+  ]
+}

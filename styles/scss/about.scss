@@ -1,6 +1,7 @@
 .app {
   &__about {
     padding: 7.688rem 0 10.125rem;
+    scroll-margin: -3.2rem;
 
     &__title {
       text-align: center;
@@ -24,11 +25,12 @@
         flex-shrink: 1;
         min-width: 20rem;
         justify-content: center;
+
         &__img {
           width: 100%;
         }
       }
-      
+
       &-info {
         padding-top: 3.25rem;
         flex-basis: 48%;
@@ -37,10 +39,12 @@
         justify-content: center;
         align-self: self-end;
         margin-bottom: -5rem;
+
         &__text {
           font-size: .938rem;
           line-height: 1.125rem;
           text-align: left;
+
           &:last-child {
             padding-top: 1.25rem;
           }

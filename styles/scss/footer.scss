@@ -29,32 +29,34 @@
     }
 
     &__messengers-list {
-     display: flex;
-     justify-content: space-between;
-     align-items: baseline;
-     &__icon {
-      &--phone,
-      &--telegram,
-      &--viber {
-        margin-right: .875rem;
-      }
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
 
-      &--phone {  
-        width: 1.62rem;
-        height: 3.125rem;
-      }
-      
-      &--telegram {
-        width: 2.063rem;
-        height: 2rem;
-      }
+      &__icon {
 
-      &--viber {
-        width: 2rem;
-        height: 2rem;
-      }
+        &--phone,
+        &--telegram,
+        &--viber {
+          margin-right: .875rem;
+        }
 
-     }
+        &--phone {
+          width: 1.62rem;
+          height: 3.125rem;
+        }
+
+        &--telegram {
+          width: 2.063rem;
+          height: 2rem;
+        }
+
+        &--viber {
+          width: 2rem;
+          height: 2rem;
+        }
+
+      }
     }
 
     &__email {
@@ -83,13 +85,14 @@
 
       &__icon {
         width: 2.063rem;
-        height: 2.063rem; 
+        height: 2.063rem;
         margin-right: .5rem;
       }
 
       &__link {
         display: flex;
-        align-items: center;;
+        align-items: center;
+        ;
         color: $primary-brown;
         font-size: 1rem;
       }
@@ -101,13 +104,13 @@
   .app {
     &__footer {
       padding: 1.25rem 0;
-    
+
       &__wrapper {
         flex-direction: column;
         align-items: center;
         row-gap: 1.25rem;
       }
-      
+
       &__messengers,
       &__email,
       &__instagram {

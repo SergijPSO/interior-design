@@ -1,16 +1,26 @@
 import ProjectsItem from "./ProjectsItem";
+import designs from "../pages/api/designs" assert { type: "JSON" };
 
 const Projects = () => {
-  return(
-    <div className="app__projects" id="projects">
-      <ProjectsItem image={"project2.png"} object={"Дво кімнатна кватрира"} meters={"72 кв.м."}/>
-      <ProjectsItem image={"project2.png"} object={"Будинок Пасіки-Зубрицькі"} meters={"2500 кв.м."}/>
-      <ProjectsItem image={"project2.png"} object={"Будинок Пасіки-Зубрицькі"} meters={"100 кв.м."}/>
-      <ProjectsItem image={"project2.png"} object={"Будинок Пасіки-Зубрицькі"} meters={"70 кв.м."}/>
-      <ProjectsItem image={"project2.png"} object={"Будинок Пасіки-Зубрицькі"} meters={"64 кв.м."}/>
-      <ProjectsItem image={"project2.png"} object={"Будинок Пасіки-Зубрицькі"} meters={"20 кв.м."}/>
+  const projectItems = [];
+
+  for (let i = 0; i < designs.projects.length; i++) {
+    const project = designs.projects[i];
+    projectItems.push(
+      <ProjectsItem
+        key={project.id}
+        imageUrl={project.visualisation[0]}
+        object={project.description}
+        meters={project.area}
+      />
+    );
+  }
+
+  return (
+    <div className='app__projects' id='projects'>
+      {projectItems}
     </div>
-  )
-}
+  );
+};
 
 export default Projects;

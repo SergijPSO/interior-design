@@ -3,7 +3,9 @@
 
 .app {
   &__mobile {
-    position: fixed;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
     width: 100%;
     overflow: hidden;
     z-index: 9;
@@ -16,13 +18,14 @@
       align-items: center;
       height: 100%;
       z-index: 1;
-      background-color: $primary-sandy;
+      background-color: $primary-white;
+      border-bottom: 1px solid rgba(39, 31, 24, .4);
 
-      &__logo {
-        &-name {  
+      border-oppa &__logo {
+        &-name {
           font-weight: 600;
         }
-  
+
         &-name,
         &-position {
           display: block;
@@ -35,7 +38,7 @@
         max-width: 2rem;
         max-height: 2rem;
         box-sizing: border-box;
-        border: .063rem solid #271F18;
+        border: .063rem solid $primary-brown;
         border-radius: .25rem;
 
         &-item {
@@ -46,6 +49,13 @@
 
           &:nth-child(2) {
             margin: .25rem 0;
+          }
+
+          &:hover,
+          &:focus,
+          &:active {
+            border-bottom: 0;
+            border-bottom: none;
           }
         }
       }
@@ -59,9 +69,9 @@
       max-width: 73.5rem;
       top: -140%;
       transition: all .3s ease-out;
-    
+
       &__item {
-        padding: 2rem 0;
+        padding: .8rem 0;
         width: 100%;
         color: $primary-brown;
         text-align: center;
@@ -72,13 +82,14 @@
 
       &--active {
         display: flex;
+        position: fixed;
         flex-direction: column;
         height: 100vh;
         width: 100%;
-        top: 2.875rem;
+        top: 3.875rem;
         transition: all .1s ease-in;
         backdrop-filter: blur(1rem);
-        background-color: rgba(0, 0, 0, 0.54);
+        background-color: rgba(39, 31, 24, .5);
 
         .app__mobile-navigation__item {
           display: block;

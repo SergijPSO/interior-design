@@ -1,8 +1,8 @@
 .app {
   &__services {
-    padding: 2.375rem 1.25rem 0;
+    padding: 2.375rem 4.688rem 0;
     margin: 0 auto;
-    max-width: 68rem;
+    scroll-margin: 2rem;
 
     &__title {
       text-align: center;
@@ -16,13 +16,15 @@
     &__info {
       display: flex;
       justify-content: center;
-      gap: 1.125rem;
       flex-wrap: wrap;
+      margin-bottom: 60px;
+      gap: 1.125rem;
       
       &-steps { 
         color: $primary-white;
         flex-basis: 49%;
-        flex-grow: 9999;
+        flex-grow: 9;
+        
         &__label {
           display: block;
           border: .063rem solid $primary-white;
@@ -36,9 +38,10 @@
         &__text {
           display: flex;
           padding-top: 2.75rem;
-          font-size: .938rem;
-          line-height: 1.125rem;
+          font-size: 1.188rem;
+          line-height: 1.625rem;
         }
+        
         &__number {
           display: block;
           padding-right: 1.625rem;
@@ -58,8 +61,8 @@
           justify-content: flex-end;
 
           &-image {
-            width: 100%;
-            max-width: 26.375rem;
+            width: 75%;
+            // max-width: 26.375rem;
           }
         }
         
