@@ -1,0 +1,86 @@
+@import "variables.module.scss";
+
+.app {
+  &__projects {
+    &__item {
+      position: relative;
+      width: 100%;
+      flex-basis: 49.9%;
+      flex-grow: 9999;
+
+      &:hover {
+        .app__projects__item__overlay  {
+          visibility: visible;
+          cursor: pointer;
+        }
+      }
+
+      &-image {
+        width: 100%;
+        height: 100%;
+      }
+
+      &__overlay { 
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: $transparent-swampy;
+        
+        &-inner {
+          position: relative;
+          width: 95%;
+          height: 92%; 
+          box-sizing: border-box;
+          border: .063rem solid $primary-white;
+        }
+
+        &-info {
+          padding: .625rem 1.25rem .625rem 2.5rem;
+          position: absolute;
+          display: block;
+          min-width: 15.188rem;
+          box-sizing: border-box;
+          bottom: 0;
+          border: .063rem solid $primary-white;
+          border-left: 0;
+          border-bottom: 0;
+          text-align: right;
+
+          &__object,
+          &__meters {
+            display: block;
+            color: $primary-white;
+            font-size: .938rem;
+          }
+
+          &__object {
+            font-weight: 300;
+          }
+
+          &__meters {
+            font-weight: 500;
+          }
+
+        }
+      }
+      
+    }
+  }
+}
+
+@media all and (max-width: 61.5rem) {
+  .app {
+    &__projects {
+      &__item {
+        padding: .625rem 1.25rem;
+      }
+    }
+  }
+}

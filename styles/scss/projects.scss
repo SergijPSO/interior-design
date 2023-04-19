@@ -1,0 +1,15 @@
+//TODO in the end move necessary styles to general
+@import "variables.module.scss";
+
+.app {
+  &__projects {
+    scroll-margin: 4.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: .125rem;
+    row-gap: .063rem;
+  }
+}

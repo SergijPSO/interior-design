@@ -1,0 +1,66 @@
+//TODO in the end move necessary styles to general
+@import "variables.module.scss";
+
+.app {
+  &__header {
+    display: flex;
+    padding: 0 3rem 0 6.25rem;
+    margin: 0 8.25rem;
+  }
+
+  &__navigation {
+    display: inherit;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+
+    &__logo {
+      display: block;
+
+      &-name,
+      &-position {
+        display: block;
+        text-align: start;
+      }
+
+      &-name {
+        font-size: 1.438rem;
+        line-height: 1.938rem;
+      }
+
+      &-position {
+        font-size: .875rem;
+        line-height: 1.188rem;
+      }
+    }
+
+    &__list {
+      display: inherit;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &__item {
+      box-sizing: border-box;
+      &-link {
+        padding: 1.795rem 1.188rem;
+        display: block;
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.375rem;
+        color: $primary-brown;
+        border: .031rem solid transparent;
+        border-top: 0;
+
+        &:hover  {
+          border-color: $primary-brown;;
+        }
+      }
+    }
+
+    &__phone {
+      color: $primary-brown;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.app {
+  &__arrowed-carousel {
+    margin: 0 auto -4.75rem;
+
+    &--dark {
+      margin: 0 auto;
+
+      .carousel {
+        &.carousel-slider {
+          button.control-arrow {
+            &.control-next {
+              background: url("/assets/images/arrowed-carousel/arrow-right-dark.png") no-repeat;
+            }
+
+            &.control-prev {
+              background: url("/assets/images/arrowed-carousel/arrow-left-dark.png") no-repeat;
+            }
+
+            &.control-prev,
+            &.control-next {
+              background-position: center center;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    .carousel {
+      &.carousel-slider {
+        .slider-wrapper {
+          &.axis-horizontal {
+            width: 92%;
+          }
+        }
+
+        .control-arrow {
+          &:before {
+            border: none;
+          }
+
+          &.control-next {
+            background: url("/assets/images/arrowed-carousel/arrow-right.png") no-repeat;
+          }
+
+          &.control-prev {
+            background: url("/assets/images/arrowed-carousel/arrow-left.png") no-repeat;
+          }
+
+          &.control-prev,
+          &.control-next {
+            background-position: center center;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
