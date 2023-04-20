@@ -19,9 +19,13 @@
       height: 100%;
       z-index: 1;
       background-color: $primary-white;
-      border-bottom: 1px solid rgba(39, 31, 24, .4);
+      border-bottom: .063rem solid rgba(39, 31, 24, .4);
 
-      border-oppa &__logo {
+      &__logo {
+        &-link {
+          color: $primary-brown;
+        }
+
         &-name {
           font-weight: 600;
         }
@@ -86,7 +90,6 @@
         flex-direction: column;
         height: 100vh;
         width: 100%;
-        top: 3.875rem;
         transition: all .1s ease-in;
         backdrop-filter: blur(1rem);
         background-color: rgba(39, 31, 24, .5);

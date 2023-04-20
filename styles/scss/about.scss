@@ -17,13 +17,12 @@
       justify-content: center;
       flex-wrap: wrap;
       max-width: 60.125rem;
-      gap: 4%;
+      gap: 1.875rem;
 
       &-photo {
         display: flex;
         flex-basis: 48%;
-        flex-shrink: 1;
-        min-width: 20rem;
+        flex-grow: 1;
         justify-content: center;
 
         &__img {
@@ -35,7 +34,6 @@
         padding-top: 3.25rem;
         flex-basis: 48%;
         flex-grow: 2;
-        min-width: 20rem;
         justify-content: center;
         align-self: self-end;
         margin-bottom: -5rem;
@@ -48,6 +46,24 @@
           &:last-child {
             padding-top: 1.25rem;
           }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 63.938rem) {
+  .app {
+    &__about {
+      padding: 7.688rem .625rem 10.125rem;
+
+      &__person {
+        padding: 2.813rem 0 0;
+
+        &-photo,
+        &-info {
+          min-width: unset;
+          width: 100%;
         }
       }
     }

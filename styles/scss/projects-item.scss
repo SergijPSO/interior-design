@@ -31,6 +31,7 @@
         height: 100%;
         top: 0;
         left: 0;
+        backdrop-filter: blur(.25rem);
         background-color: $transparent-swampy;
         
         &-inner {

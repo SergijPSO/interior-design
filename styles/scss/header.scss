@@ -1,11 +1,9 @@
-//TODO in the end move necessary styles to general
 @import "variables.module.scss";
 
 .app {
   &__header {
     display: flex;
-    padding: 0 3rem 0 6.25rem;
-    margin: 0 8.25rem;
+    padding: 0 4.375rem;
   }
 
   &__navigation {
@@ -17,6 +15,11 @@
 
     &__logo {
       display: block;
+      width: 100%;
+      max-width: 11.938rem;
+      &-link {
+        color: $primary-brown;
+      }
 
       &-name,
       &-position {
@@ -44,7 +47,7 @@
     &__item {
       box-sizing: border-box;
       &-link {
-        padding: 1.795rem 1.188rem;
+        padding: 1.795rem 1rem;
         display: block;
         font-size: 1rem;
         font-weight: 300;

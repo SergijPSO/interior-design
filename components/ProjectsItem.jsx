@@ -5,6 +5,7 @@ const ProjectsItem = (props) => {
     <div className={"app__projects__item"}>
       <Link href='/gallery'>
         <img
+          alt='preview image'
           className={"app__projects__item-image"}
           src={`${props.imageUrl}`}
         />

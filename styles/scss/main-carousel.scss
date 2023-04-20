@@ -28,3 +28,12 @@
     }
   }
 }
+
+.slide {
+  .app__main-carousel__item {
+    &-image {
+      height: 100%;
+      max-height: 50rem;
+    }
+  }
+}
