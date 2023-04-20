@@ -7,7 +7,7 @@ import useScreenWidth from "../hooks/useScreenWidth.js";
 
 const Home = () => {
   
-  const screenWidth = useScreenWidth;
+  const screenWidth = useScreenWidth();
 
   return (
     <Layout pageTitle='Interior design'>
