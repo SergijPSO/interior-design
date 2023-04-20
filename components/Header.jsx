@@ -5,10 +5,11 @@ const Header = () => {
     <header className='app__header'>
       <nav className='app__navigation'>
         <div className='app__navigation__logo'>
-          <span className='app__navigation__logo-name'>Аріна Козловська</span>
-          <span className='app__navigation__logo-position'>Дизайнер</span>
+          <Link className='app__navigation__logo-link' href='/'>
+            <span className='app__navigation__logo-name'>Аріна Козловська</span>
+            <span className='app__navigation__logo-position'>Дизайнер</span>
+          </Link>
         </div>
-
         <ul className='app__navigation__list'>
           <li className='app__navigation__item'>
             <Link
@@ -22,7 +23,7 @@ const Header = () => {
           <li className='app__navigation__item'>
             <Link
               className='app__navigation__item-link'
-              href='#projects'
+              href='/#projects'
               scroll={false}
             >
               ПРОЄКТИ
@@ -31,7 +32,7 @@ const Header = () => {
           <li className='app__navigation__item'>
             <Link
               className='app__navigation__item-link'
-              href='#services'
+              href='/#services'
               scroll={false}
             >
               ПОСЛУГИ
@@ -40,7 +41,7 @@ const Header = () => {
           <li className='app__navigation__item'>
             <Link
               className='app__navigation__item-link'
-              href='#about'
+              href='/#about'
               scroll={false}
             >
               ПРО МЕНЕ
@@ -49,14 +50,13 @@ const Header = () => {
           <li className='app__navigation__item'>
             <Link
               className='app__navigation__item-link'
-              href='#contacts'
+              href='/#contacts'
               scroll={false}
             >
               КОНТАКТИ
             </Link>
           </li>
         </ul>
-
         <a className='app__navigation__phone' href='tel:+380978159804'>
           097 815 98 04
         </a>

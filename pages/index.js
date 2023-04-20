@@ -3,30 +3,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Main from "@/components/Main";
 import HeaderMobile from "@/components/HeaderMobile";
-
-import { useState, useEffect } from "react";
+import useScreenWidth from "../hooks/useScreenWidth.js";
 
 const Home = () => {
-  const [screenWidth, setScreenWidth] = useState(0);
-
-  function updateWidth() {
-    setScreenWidth(window.innerWidth);
-  }
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setScreenWidth(window.innerWidth);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", updateWidth);
-      return () => {
-        window.removeEventListener("resize", updateWidth);
-      };
-    }
-  }, []);
+  
+  const screenWidth = useScreenWidth;
 
   return (
     <Layout pageTitle='Interior design'>

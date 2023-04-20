@@ -1,12 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
 import { Tab } from "@headlessui/react";
-import ArrowedCarousel from "./ArrowedCarousel";
-import ArrowedCarouselItem from "./ArrowedCarouselItem";
 import designs from "@/pages/api/designs" assert { type: "JSON" };
 import { Carousel } from "react-responsive-carousel";
+import ArrowedCarousel from "./ArrowedCarousel";
+
+import useScreenWidth from "../hooks/useScreenWidth.js";
 
 const GalleryTabs = () => {
-  console.log(designs);
+  const screenWidth = useScreenWidth();
+
   return (
     <Tab.Group>
       <Tab.List>
@@ -21,10 +22,12 @@ const GalleryTabs = () => {
           <Tab.Panel>
             <Carousel
               className='app__arrowed-carousel app__arrowed-carousel--dark app__collection-tabs__realization'
-              showArrows={true}
+              showArrows={screenWidth >= 1024}
               showStatus={false}
-              showThumbs={true}
+              showThumbs={screenWidth >= 1024}
               thumbWidth={200}
+              showIndicators={screenWidth <= 1024}
+              dynamicHeight={false}
             >
               {designs.projects[0].realization.map((item, index) => (
                 <div
@@ -32,6 +35,7 @@ const GalleryTabs = () => {
                   className='app__collection-tabs__realization-item'
                 >
                   <img
+                    alt='slide image'
                     className='app__collection-tabs__realization-image'
                     src={item}
                   />
@@ -43,11 +47,12 @@ const GalleryTabs = () => {
           <Tab.Panel>
             <Carousel
               className='app__arrowed-carousel app__arrowed-carousel--dark app__collection-tabs__visualisation'
-              showArrows={true}
+              showArrows={screenWidth >= 1024}
               showStatus={false}
-              showThumbs={true}
+              showThumbs={screenWidth >= 1024}
               thumbWidth={200}
-              showIndicators={false}
+              showIndicators={screenWidth <= 1024}
+              dynamicHeight={false}
             >
               {designs.projects[0].visualisation.map((item, index) => (
                 <div
@@ -55,6 +60,7 @@ const GalleryTabs = () => {
                   className='app__collection-tabs__visualisation-item'
                 >
                   <img
+                    alt='slide image'
                     className='app__collection-tabs__visualisation-image'
                     src={item}
                   />

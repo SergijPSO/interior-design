@@ -2,7 +2,13 @@
   &__services {
     padding: 2.375rem 4.688rem 0;
     margin: 0 auto;
-    scroll-margin: 2rem;
+
+    .app__arrowed-carousel__wrapper {
+      .app__arrowed-carousel__item-image {
+        height: 100%;
+        max-height: 51.25rem;
+      }
+    } 
 
     &__title {
       text-align: center;
@@ -17,8 +23,10 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 60px;
+      margin-bottom: 3.75rem;
       gap: 1.125rem;
+
+   
       
       &-steps { 
         color: $primary-white;
@@ -55,14 +63,12 @@
         flex-basis: 49%;
         flex-grow: 9999;
         flex-direction: column;
-        justify-content: space-between;
         &__styles {
           display: flex;
           justify-content: flex-end;
 
           &-image {
             width: 75%;
-            // max-width: 26.375rem;
           }
         }
         
@@ -78,6 +84,14 @@
         }
       }
     }
+  }
+}
 
+@media all and (max-width: 63.938rem) {
+  .app {
+    &__services {
+      scroll-margin: 2rem;
+      padding: 2.375rem .625rem 0;
+    }
   }
 }
