@@ -7,11 +7,11 @@
       &__item {
         position: relative;
         &-message {
-          padding: .438rem 1.375rem .188rem;
-          position: absolute;
           display: block;
-          right: 1.25rem;
-          bottom: 201.25rem;
+          position: absolute;
+          bottom: 1.438rem;
+          right: 1.438rem;
+          padding: .438rem 1.375rem .188rem;
           border-radius: 1.375rem;
           background-color: $primary-gray;
           z-index: 2;

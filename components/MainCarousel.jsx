@@ -21,8 +21,6 @@ const MainCarousel = () => {
           className='app__main-carousel__item-message'
         >
           <svg
-            height='1024'
-            width='973.125'
             className='app__main-carousel__item-message__icon'
           >
             <use xlinkHref='./assets/sprite.svg#telegram'></use>
@@ -40,8 +38,6 @@ const MainCarousel = () => {
           className='app__main-carousel__item-message'
         >
           <svg
-            height='1024'
-            width='973.125'
             className='app__main-carousel__item-message__icon'
           >
             <use xlinkHref='./assets/sprite.svg#telegram'></use>
