@@ -100,11 +100,12 @@ const Services = () => {
         arrows={screenWidth >= 1024}
         bullets={screenWidth <= 1024}
       >
-        <ArrowedCarouselItem imagUrl='arrowed-carousel/scheme.png' />
-        <ArrowedCarouselItem imagUrl='arrowed-carousel/scheme.png' />
-        <ArrowedCarouselItem imagUrl='arrowed-carousel/scheme.png' />
-        <ArrowedCarouselItem imagUrl='arrowed-carousel/scheme.png' />
-        <ArrowedCarouselItem imagUrl='arrowed-carousel/scheme.png' />
+        <ArrowedCarouselItem imagUrl='services/01.jpg' />
+        <ArrowedCarouselItem imagUrl='services/02.jpg' />
+        <ArrowedCarouselItem imagUrl='services/03.jpg' />
+        <ArrowedCarouselItem imagUrl='services/04.jpg' />
+        <ArrowedCarouselItem imagUrl='services/05.jpg' />
+
       </ArrowedCarousel>
     </div>
   );

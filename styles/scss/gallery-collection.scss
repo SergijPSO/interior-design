@@ -25,15 +25,20 @@
         border: .063rem solid transparent;
         cursor: pointer;
 
-        &:hover,
-        &:active,
-        &:focus {
+        &[data-headlessui-state="selected"] {
           border-color: $primary-brown;
         }
+
+        // &:hover,
+        // &:active,
+        // &:focus {
+        //   border-color: $primary-brown;
+        // }
       }
     }
 
     .slide {
+
       .app__collection-tabs__realization-image,
       .app__collection-tabs__visualisation-image {
         height: 100%;
@@ -60,6 +65,7 @@
       &-tabs__content {
         .carousel-root.app__arrowed-carousel.app__arrowed-carousel--dark {
           &.app__collection-tabs {
+
             &__realization,
             &__visualisation {
               .carousel.carousel-slider {
