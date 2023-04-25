@@ -7,7 +7,7 @@ const Header = () => {
         <div className='app__navigation__logo'>
           <Link className='app__navigation__logo-link' href='/'>
             <span className='app__navigation__logo-name'>Аріна Козловська</span>
-            <span className='app__navigation__logo-position'>Дизайнер</span>
+            <span className='app__navigation__logo-position'>{`дизайнер інтер'єру`}</span>
           </Link>
         </div>
         <ul className='app__navigation__list'>

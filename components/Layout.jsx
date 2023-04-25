@@ -8,7 +8,7 @@ const Layout = (props) => {
         <title>{props.pageTitle}</title>
         <meta name='design' content='Interior design' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/favicon.jpg' />
       </Head>
       <div>{props.children}</div>
     </div>

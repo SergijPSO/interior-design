@@ -20,7 +20,7 @@ const HeaderMobile = () => {
             <span className='app__mobile-header__logo-name'>
               Аріна Козловська
             </span>
-            <span className='app__mobile-header__logo-position'>дизайнер</span>
+            <span className='app__mobile-header__logo-position'>{`дизайнер інтер'єру`}</span>
           </Link>
         </div>
 
