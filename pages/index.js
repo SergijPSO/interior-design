@@ -10,7 +10,7 @@ const Home = () => {
   const screenWidth = useScreenWidth();
 
   return (
-    <Layout pageTitle='Interior design'>
+    <Layout pageTitle='Аріна Козловська Дизайнер інтерє`ру'>
       <div className='app__wrapper'>
         {screenWidth <= 1024 ? <HeaderMobile /> : <Header />}
         <Main />

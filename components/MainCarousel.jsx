@@ -5,7 +5,7 @@ const MainCarousel = () => {
   return (
     <Carousel
       className='app__main-carousel'
-      showArrows={false}
+      showArrows={true}
       showStatus={false}
       showThumbs={false}
       autoPlay={true}
