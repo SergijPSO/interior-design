@@ -6,7 +6,7 @@ const Layout = (props) => {
     <div>
       <Head>
         <title>{props.pageTitle}</title>
-        <meta name='design' content='Interior design' />
+        <meta name='design' content='Козловська Аріна Дизайнер інтер`єру' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.jpg' />
       </Head>

@@ -27,7 +27,7 @@ const Gallery = () => {
   }, []);
 
   return (
-    <Layout pageTitle='Interior design'>
+    <Layout pageTitle='Козловська Аріна Дизайнер інтер`єру'>
       <div className='app__wrapper'>
         {screenWidth <= 1024 ? <HeaderMobile /> : <Header />}
         <GalleryCollection />
