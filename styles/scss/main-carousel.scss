@@ -6,6 +6,8 @@
       padding-bottom: .625rem;
       &__item {
         position: relative;
+        object-fit: cover;
+        max-height: 52rem;
         &-message {
           display: block;
           position: absolute;
@@ -29,11 +31,7 @@
   }
 }
 
-.slide {
-  .app__main-carousel__item {
-    &-image {
-      height: 100%;
-      max-height: 50rem;
-    }
-  }
+
+.carousel .slider-wrapper.axis-horizontal .slider .slide {
+  max-height: 52rem;
 }

@@ -5,11 +5,22 @@ const MainCarousel = () => {
   return (
     <Carousel
       className='app__main-carousel'
-      showArrows={true}
+      showArrows={false}
       showStatus={false}
       showThumbs={false}
+      showIndicators={true}
       autoPlay={true}
       emulateTouch={true}
+      renderIndicator={(clickHandler, isSelected, index) => {
+        return (
+          <li
+            onClick={clickHandler}
+            className={`ind ${isSelected ? "active" : ""}`}
+            key={index}
+            role="button"
+          />
+        );
+      }}
     >
       <div className='app__main-carousel__item'>
         <img

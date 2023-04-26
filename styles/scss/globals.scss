@@ -34,4 +34,27 @@ body {
   }
 }
 
+//Custom slider indicators
+.ind {
+  width: 14px;
+  height: 14px;
+  list-style: none;
+  border-radius: 50%;
+  border: 1px solid $primary-swampy;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  z-index: 100;
+}
+
+.ind.active {
+  background-color: $primary-swampy;
+  transition: 500ms 200ms;
+}
+
+.ind:not(:last-child) {
+  margin-right: .800rem;
+}
+//Custom slider indicators
+
 //Global styles ends

@@ -35,25 +35,21 @@
         background-color: $transparent-swampy;
         
         &-inner {
-          position: relative;
           width: 95%;
           height: 92%; 
           box-sizing: border-box;
           border: .063rem solid $primary-white;
+          display: flex;
+          align-items: center;
         }
 
         &-info {
-          // padding: .625rem 1.25rem .625rem 2.5rem;
-          padding: .625rem 1.25rem;
-          position: absolute;
+          padding: .625rem .876rem;
           display: block;
-          min-width: 15.188rem;
           box-sizing: border-box;
-          bottom: 0;
           border: .063rem solid $primary-white;
           border-left: 0;
-          border-bottom: 0;
-          // text-align: right;
+          text-align: left;
 
           &__object,
           &__meters {
