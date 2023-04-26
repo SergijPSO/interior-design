@@ -43,7 +43,8 @@
         }
 
         &-info {
-          padding: .625rem 1.25rem .625rem 2.5rem;
+          // padding: .625rem 1.25rem .625rem 2.5rem;
+          padding: .625rem 1.25rem;
           position: absolute;
           display: block;
           min-width: 15.188rem;
@@ -52,7 +53,7 @@
           border: .063rem solid $primary-white;
           border-left: 0;
           border-bottom: 0;
-          text-align: right;
+          // text-align: right;
 
           &__object,
           &__meters {

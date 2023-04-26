@@ -9,6 +9,7 @@ const MainCarousel = () => {
       showStatus={false}
       showThumbs={false}
       autoPlay={true}
+      emulateTouch={true}
     >
       <div className='app__main-carousel__item'>
         <img

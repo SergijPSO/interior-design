@@ -4,6 +4,10 @@
   &__header {
     display: flex;
     padding: 0 4.375rem;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    background-color: $primary-beige;
   }
 
   &__navigation {
@@ -28,7 +32,7 @@
       }
 
       &-name {
-        font-size: 1.438rem;
+        font-size: 1.38rem;
         line-height: 1.938rem;
       }
 
