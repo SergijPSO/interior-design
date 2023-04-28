@@ -57,3 +57,19 @@
     }
   }
 }
+
+@media all and (max-width: 64rem) {
+  .app {
+    &__arrowed-carousel {
+      .carousel {
+        &.carousel-slider {
+          .slider-wrapper {
+            &.axis-horizontal {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

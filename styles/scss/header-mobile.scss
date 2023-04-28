@@ -22,12 +22,18 @@
       border-bottom: .063rem solid rgba(39, 31, 24, .4);
 
       &__logo {
+        text-align: center;
         &-link {
           color: $primary-brown;
         }
-
+        
         &-name {
           font-weight: 600;
+          font-size: 18px;
+        }
+
+        &-position {
+          font-size: 12px;
         }
 
         &-name,

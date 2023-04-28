@@ -9,6 +9,16 @@ const ArrowedCarousel = (props) => {
         showStatus={props.status}
         showArrows={props.arrows}
         showIndicators={props.bullets}
+        renderIndicator={(clickHandler, isSelected, index) => {
+          return (
+            <li
+              onClick={clickHandler}
+              className={`ind ${isSelected ? "active" : ""}`}
+              key={index}
+              role="button"
+            />
+          );
+        }}
       >
         {props.children}
       </Carousel>

@@ -101,6 +101,12 @@
             padding-bottom: 0;
           }
         }
+        &-steps {
+          &__text {
+            font-size: 15px;
+            line-height: 1.4;
+          }
+        }
       }
     }
   }

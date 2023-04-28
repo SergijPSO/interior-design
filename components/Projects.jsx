@@ -9,7 +9,7 @@ const Projects = () => {
     projectItems.push(
       <ProjectsItem
         key={project.id}
-        imageUrl={project.visualisation[0]}
+        imageUrl={project.realization[0]}
         object={project.description}
         meters={project.area}
       />
