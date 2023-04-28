@@ -10,14 +10,26 @@
 @import './about.scss';
 @import './services.scss';
 @import './gallery-collection.scss';
+@import './sticky-contacts.scss';
 
 //Global styles begins
+
+.app__content-mobile__background {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  object-fit: cover;  
+}
+
 body {
   margin: 0 auto;
   background-color: $primary-beige;
 }
 
 .app {
+  &__content {
+    position: relative;
+  }
   &__section {
     &--swampy {
       background-color: $primary-swampy;

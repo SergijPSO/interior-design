@@ -1,0 +1,65 @@
+@import "variables.module.scss";
+
+.app {
+  &__sticky-contacts {
+    border-radius: 1.375rem;
+    overflow: hidden;
+    position: fixed;
+    bottom: 3%;
+    right: 2%;
+    background-color: $transparent-biege;
+    width: 100%;
+    z-index: 10;
+    max-width: 62px;
+    transition: ease .2s;
+    height: 38px;
+    border: 1px solid $primary-brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
+    &:hover {
+      max-width: 274px;
+      transition: ease .2s;
+      .app__sticky-contacts__item {
+        display: block;
+        transition: ease .6s;
+      }
+    }
+
+    &__item {
+      display: none;
+      height: 100%;
+      &:last-child {
+        display: block;
+      }
+      
+      &-link {
+        padding: 0 1.375rem;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        border-radius: 1.375rem;
+        border: 1px solid transparent;
+        border-bottom: 0;
+        border-top: 0;
+
+        &:hover {
+          border: 1px solid $primary-sandy;
+          background-color: $primary-white;
+          border-bottom: 0;
+          border-top: 0;
+        }
+      }
+
+      &-icon {
+        height: 1.375rem;
+        width: 1.375rem;
+        &:last-child {
+          height: 1.8rem;
+        }
+      }
+    }
+  }
+}

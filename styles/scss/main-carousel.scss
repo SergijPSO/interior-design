@@ -27,11 +27,13 @@
           }
         }
       }
+      
     }
   }
 }
 
-
-.carousel .slider-wrapper.axis-horizontal .slider .slide {
-  max-height: 52rem;
+.carousel-root.app__main-carousel {
+  .carousel .slider-wrapper.axis-horizontal .slider .slide {
+    max-height: 52rem;
+  }
 }

@@ -91,7 +91,17 @@
   .app {
     &__services {
       scroll-margin: 3rem;
-      padding: 2.375rem .625rem 0;
+      padding: 2.375rem 1rem 0;
+      &__info {
+        &-visualization {
+          &__styles {
+            display: none;
+          }
+          &__plan {
+            padding-bottom: 0;
+          }
+        }
+      }
     }
   }
 }

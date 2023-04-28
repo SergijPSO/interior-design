@@ -15,7 +15,7 @@ const Footer = () => {
               </a>
             </span>
 
-            <span className='app__footer__messengers-list__item'>
+            {/* <span className='app__footer__messengers-list__item'>
               <a
                 href='https://t.me/+380978159804'
                 className='app__footer__messengers-list__item__link'
@@ -35,7 +35,7 @@ const Footer = () => {
                   <use xlinkHref='./assets/sprite.svg#viber'></use>
                 </svg>
               </a>
-            </span>
+            </span> */}
           </div>
 
           <a

@@ -28,16 +28,6 @@ const MainCarousel = () => {
           src='assets/images/main-carousel/slide-1.png'
           alt='slide1'
         />
-        <a
-          href='https://t.me/+380978159804'
-          className='app__main-carousel__item-message'
-        >
-          <svg
-            className='app__main-carousel__item-message__icon'
-          >
-            <use xlinkHref='./assets/sprite.svg#telegram'></use>
-          </svg>
-        </a>
       </div>
       <div className='app__main-carousel__item'>
         <img
@@ -45,16 +35,6 @@ const MainCarousel = () => {
           className='app__main-carousel__item-image'
           src='assets/images/main-carousel/slide-2.png'
         />
-        <a
-          href='https://t.me/+380978159804'
-          className='app__main-carousel__item-message'
-        >
-          <svg
-            className='app__main-carousel__item-message__icon'
-          >
-            <use xlinkHref='./assets/sprite.svg#telegram'></use>
-          </svg>
-        </a>
       </div>
     </Carousel>
   );
