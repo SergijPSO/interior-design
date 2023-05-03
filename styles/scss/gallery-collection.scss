@@ -42,6 +42,7 @@
 
       &__content {
         .carousel .thumb img {
+          min-width: 95px;
           max-height: 95px;
           object-fit: cover;
           object-position: center center;

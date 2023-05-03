@@ -26,41 +26,37 @@
         display: block;
         transition: ease .4s;
       }
-      .app__sticky-contacts__item-link {
-        z-index: 1;
-      }
     }
 
     &__item {
       display: none;
       height: 100%;
+      position: relative;
+      z-index: 0;
       &:last-child {
-        display: block;
+        display: flex;
+        position: relative;
+        z-index: -10;
       }
-      
+
       &-link {
         padding: 0 1.375rem;
         display: flex;
-        position: relative;
         align-items: center;
         height: 100%;
         border-radius: 1.375rem;
         border: 1px solid transparent;
         border-bottom: 0;
         border-top: 0;
+        position: relative;
         z-index: -1;
 
-        &:hover {
+        &:active {
           border: 1px solid $primary-sandy;
           background-color: $primary-white;
           border-bottom: 0;
           border-top: 0;
         }
-        &:focus {
-          z-index: 10; 
-        }
-
-     
       }
 
       &-icon {

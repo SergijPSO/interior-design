@@ -9,7 +9,7 @@ const MainCarousel = () => {
       showStatus={false}
       showThumbs={false}
       showIndicators={true}
-      autoPlay={true}
+      autoPlay={false}
       emulateTouch={true}
       renderIndicator={(clickHandler, isSelected, index) => {
         return (

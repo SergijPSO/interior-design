@@ -24,7 +24,7 @@ const StickyContacts = () => {
         </a>
       </li>
       <li className="app__sticky-contacts__item">
-        <a href="https://t.me/+380978159804" className="app__sticky-contacts__item-link">
+        <a href="https://t.me/+380978159804"  className="app__sticky-contacts__item-link">
           <svg className="app__sticky-contacts__item-icon">
             <use xlinkHref="../assets/sprite.svg#telegram"></use>
           </svg>

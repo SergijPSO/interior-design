@@ -6,8 +6,13 @@
       padding-bottom: .625rem;
       &__item {
         position: relative;
-        object-fit: cover;
-        max-height: 52rem;
+        height: 100%;
+        &-image {
+          height: 100%;
+     
+          object-fit: cover;
+          object-position: center;
+        }
         &-message {
           display: block;
           position: absolute;
