@@ -27,7 +27,19 @@ const GalleryTabs = () => {
               showThumbs={screenWidth >= 1024}
               thumbWidth={200}
               showIndicators={screenWidth <= 1024}
-              dynamicHeight={false}
+              dynamicHeight={true}
+              emulateTouch={false}
+              swipeable={false}
+              renderIndicator={(clickHandler, isSelected, index) => {
+                return (
+                  <li
+                    onClick={clickHandler}
+                    className={`ind ${isSelected ? "active" : ""}`}
+                    key={index}
+                    role="button"
+                  />
+                );
+              }}
             >
               {designs.projects[0].realization.map((item, index) => (
                 <div
@@ -51,8 +63,20 @@ const GalleryTabs = () => {
               showStatus={false}
               showThumbs={screenWidth >= 1024}
               thumbWidth={200}
+              emulateTouch={false}
               showIndicators={screenWidth <= 1024}
-              dynamicHeight={false}
+              dynamicHeight={true}
+              swipeable={false}
+              renderIndicator={(clickHandler, isSelected, index) => {
+                return (
+                  <li
+                    onClick={clickHandler}
+                    className={`ind ${isSelected ? "active" : ""}`}
+                    key={index}
+                    role="button"
+                  />
+                );
+              }}
             >
               {designs.projects[0].visualisation.map((item, index) => (
                 <div

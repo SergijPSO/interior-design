@@ -64,9 +64,16 @@ body {
   transition: 500ms 200ms;
 }
 
-.ind:not(:last-child) {
-  margin-right: .800rem;
-}
 //Custom slider indicators
+@media all and (max-width: 64rem){
+  .app__section--swampy {
+    margin-top: 2px;
+  }
+  .ind {
+    width: 10px;
+    height: 10px;
+    margin-right: .300rem;
+  }
+}
 
 //Global styles ends
