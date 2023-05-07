@@ -8,7 +8,7 @@
 @import './main-carousel.scss';
 @import './arrowed-carousel.scss';
 @import './about.scss';
-@import './services.scss';
+@import './prices.scss';
 @import './gallery-collection.scss';
 @import './sticky-contacts.scss';
 
@@ -48,11 +48,11 @@ body {
 
 //Custom slider indicators
 .ind {
-  width: 14px;
-  height: 14px;
+  width: .875rem;
+  height: .875rem;
   list-style: none;
   border-radius: 50%;
-  border: 1px solid $primary-swampy;
+  border: .063rem solid $primary-swampy;
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -70,12 +70,12 @@ body {
 //Custom slider indicators
 @media all and (max-width: 64rem){
   .app__section--swampy {
-    margin-top: 2px;
+    margin-top: .125rem;
   }
 
   .ind {
-    width: 8px;
-    height: 8px;
+    width: .5rem;
+    height: .5rem;
     &:not(:last-child) {
       margin-right: .240rem;
     }

@@ -1,12 +1,15 @@
 import { Tab } from "@headlessui/react";
-import designs from "@/pages/api/designs" assert { type: "JSON" };
 import { Carousel } from "react-responsive-carousel";
 import ArrowedCarousel from "./ArrowedCarousel";
-
 import useScreenWidth from "../hooks/useScreenWidth.js";
+import designs from "../public/data/designs.json";
 
-const GalleryTabs = () => {
+const GalleryTabs = ({ project }) => {
   const screenWidth = useScreenWidth();
+
+  if (project !== undefined && project !== null && !project?.id) {
+    return [];
+  }
 
   return (
     <Tab.Group>
@@ -25,34 +28,36 @@ const GalleryTabs = () => {
               showArrows={screenWidth >= 1024}
               showStatus={false}
               showThumbs={screenWidth >= 1024}
-              thumbWidth={200}
+              thumbWidth={114}
               showIndicators={screenWidth <= 1024}
               dynamicHeight={true}
               emulateTouch={false}
-              swipeable={false}
+              swipeable={true}
               renderIndicator={(clickHandler, isSelected, index) => {
                 return (
                   <li
                     onClick={clickHandler}
                     className={`ind ${isSelected ? "active" : ""}`}
                     key={index}
-                    role="button"
+                    role='button'
                   />
                 );
               }}
             >
-              {designs.projects[0].realization.map((item, index) => (
-                <div
-                  key={index}
-                  className='app__collection-tabs__realization-item'
-                >
-                  <img
-                    alt='slide image'
-                    className='app__collection-tabs__realization-image'
-                    src={item}
-                  />
-                </div>
-              ))}
+              {designs?.projects?.[project?.id]?.realization.map(
+                (item,index) => (
+                  <div
+                    key={index}
+                    className='app__collection-tabs__realization-item'
+                  >
+                    <img
+                      alt='slide image'
+                      className='app__collection-tabs__realization-image'
+                      src={item}
+                    />
+                  </div>
+                )
+              )}
             </Carousel>
           </Tab.Panel>
 
@@ -62,7 +67,7 @@ const GalleryTabs = () => {
               showArrows={screenWidth >= 1024}
               showStatus={false}
               showThumbs={screenWidth >= 1024}
-              thumbWidth={200}
+              thumbWidth={114}
               emulateTouch={false}
               showIndicators={screenWidth <= 1024}
               dynamicHeight={true}
@@ -73,23 +78,25 @@ const GalleryTabs = () => {
                     onClick={clickHandler}
                     className={`ind ${isSelected ? "active" : ""}`}
                     key={index}
-                    role="button"
+                    role='button'
                   />
                 );
               }}
             >
-              {designs.projects[0].visualisation.map((item, index) => (
-                <div
-                  key={index}
-                  className='app__collection-tabs__visualisation-item'
-                >
-                  <img
-                    alt='slide image'
-                    className='app__collection-tabs__visualisation-image'
-                    src={item}
-                  />
-                </div>
-              ))}
+              {designs?.projects?.[project?.id]?.visualisation.map(
+                (item, index) => (
+                  <div
+                    key={index}
+                    className='app__collection-tabs__visualisation-item'
+                  >
+                    <img
+                      alt='slide image'
+                      className='app__collection-tabs__visualisation-image'
+                      src={item}
+                    />
+                  </div>
+                )
+              )}
             </Carousel>
           </Tab.Panel>
         </Tab.Panels>

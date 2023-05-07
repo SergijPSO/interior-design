@@ -54,7 +54,7 @@ const HeaderMobile = () => {
         </Link>
         <Link
           className='app__mobile-navigation__item'
-          href='/#services'
+          href='/#prices'
           scroll={false}
           onClick={closeNav}
         >

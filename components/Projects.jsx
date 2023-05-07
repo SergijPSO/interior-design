@@ -1,24 +1,23 @@
 import ProjectsItem from "./ProjectsItem";
-import designs from "../pages/api/designs" assert { type: "JSON" };
+import designs from "../public/data/designs.json";
+import { useRouter } from "next/router";
 
 const Projects = () => {
-  const projectItems = [];
-
-  for (let i = 0; i < designs.projects.length; i++) {
-    const project = designs.projects[i];
-    projectItems.push(
-      <ProjectsItem
-        key={project.id}
-        imageUrl={project.realization[0]}
-        object={project.description}
-        meters={project.area}
-      />
-    );
-  }
+  const router = useRouter();
 
   return (
     <div className='app__projects' id='projects'>
-      {projectItems}
+      {designs.projects.map((project) => (
+        <ProjectsItem
+          key={project.id}
+          imageUrl={project.realization[0]}
+          object={project.description}
+          meters={project.area}
+          onClick={() => {
+            router.push(`/gallery/${project.id}`);
+          }}
+        />
+      ))}
     </div>
   );
 };

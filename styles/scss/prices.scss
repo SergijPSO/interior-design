@@ -1,0 +1,109 @@
+.app {
+  &__prices {
+    padding: 2.375rem 4.688rem 0;
+    margin: 0 auto;
+
+    &__author-supervision {
+      &__description {
+        padding-top: 2.75rem;
+
+        &-text {
+          display: flex;
+          padding-top: 3rem;
+          color: $primary-beige;
+          font-size: 1.188rem;
+          line-height: 1.625rem;
+        }
+
+        &-number {
+          margin-right: 1.625rem;
+        }
+
+        &__label {
+          background-color: $primary-beige;
+          color: $primary-swampy;
+          padding: 0.375rem 0.75rem;
+          font-size: 1.313rem;
+          font-weight: 500;
+        }
+      }
+    }
+
+    &__designs-project {
+      margin-bottom: 1rem;
+    }
+
+    &__technical-project {
+      margin-bottom: 5.6rem;
+    }
+
+    &__designs-project,
+    &__technical-project {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .375rem;
+
+      &__description,
+      &__image-container {
+        width: 100%;
+        max-width: 49.5%;
+      }
+
+      &__image {
+        width: 100%;
+        height: auto;
+      }
+
+      &__description {
+        &-text {
+          display: flex;
+          padding-top: 4rem;
+          color: $primary-beige;
+          font-size: 1.188rem;
+          line-height: 1.625rem;
+        }
+
+        &-number {
+          margin-right: 1.625rem;
+        }
+
+        &__label {
+          background-color: $primary-beige;
+          color: $primary-swampy;
+          padding: 0.375rem 0.75rem;
+          font-size: 1.313rem;
+          font-weight: 500;
+        }
+      }
+    }
+
+    &__title {
+      text-align: center;
+      margin-bottom: 2.75rem;
+      font-weight: 400;
+      font-size: 1.313rem;
+      line-height: 1.813rem;
+      color: $primary-white;
+    }
+  }
+}
+
+@media all and (max-width: 64rem) {
+  .app {
+    &__prices {
+      scroll-margin: 3rem;
+      padding: 2.375rem 1rem 0;
+
+      &__designs-project,
+      &__technical-project {
+
+        &__description,
+        &__image-container {
+          max-width: unset;
+          flex-grow: 2;
+        }
+      }
+    }
+  }
+}

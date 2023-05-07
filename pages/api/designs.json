@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "id": 1,
+      "id": "1",
       "realization": [
         "/assets/images/designs/project1/realization/1.jpg",
         "/assets/images/designs/project1/realization/2.jpg",
@@ -42,7 +42,7 @@
       "area": "66.3кв.м."
     },
     {
-      "id": 2,
+      "id": "2",
       "visualisation": [
         "assets/images/designs/project2/realization/1.jpg",
         "assets/images/designs/project2/realization/1.jpg",
@@ -99,7 +99,7 @@
       "area": "200 кв.м."
     },
     {
-      "id": 3,
+      "id": "3",
       "visualisation": [
         "assets/images/designs/project3/realization/1.jpg",
         "assets/images/designs/project3/realization/2.jpg",
@@ -140,7 +140,7 @@
       "area": "57,8 кв.м."
     },
     {
-      "id": 4,
+      "id": "4",
       "visualisation": [
         "assets/images/designs/project4/realization/1.jpg",
         "assets/images/designs/project4/realization/2.jpg",
@@ -201,7 +201,7 @@
       "area": "147 кв.м."
     },
     {
-      "id": 5,
+      "id": "5",
       "visualisation": [
         "/assets/images/designs/project5/realization/1.jpg",
         "/assets/images/designs/project5/realization/2.jpg",
@@ -231,7 +231,7 @@
       "area": "19 кв.м."
     },
     {
-      "id": 6,
+      "id": "6",
       "visualisation": [
         "/assets/images/designs/project6/realization/1.jpg",
         "/assets/images/designs/project6/realization/2.jpg",

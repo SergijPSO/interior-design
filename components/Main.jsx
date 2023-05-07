@@ -2,7 +2,7 @@ import ProjectsSection from "../components/ProjectsSection";
 import MainCarousel from "../components/MainCarousel";
 import Projects from "../components/Projects";
 import About from "./About";
-import Services from "./Services";
+import Prices from "./Prices";
 import StickyContacts from "./StickyContacts";
 import useScreenWidth from "../hooks/useScreenWidth.js";
 
@@ -15,7 +15,8 @@ const Main = () => {
         {screenWidth <= 1024 ? (
           <div>
             <img
-              src='/assets/images/designs/project6/realization/3.jpg'
+              src='/assets/images/designs/project2/realization/3.jpg'
+              
               alt='mobile background'
               className='app__content-mobile__background'
             />
@@ -27,7 +28,7 @@ const Main = () => {
       </ProjectsSection>
 
       <ProjectsSection modifier={"--swampy"}>
-        <Services />
+        <Prices />
       </ProjectsSection>
 
       <ProjectsSection modifier={"--sandy"}>

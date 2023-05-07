@@ -32,7 +32,7 @@ const Header = () => {
           <li className='app__navigation__item'>
             <Link
               className='app__navigation__item-link'
-              href='/#services'
+              href='/#prices'
               scroll={false}
             >
               ПОСЛУГИ

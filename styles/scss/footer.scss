@@ -3,27 +3,26 @@
 
 .app {
   &__footer {
-    padding: 5.563rem 0 7.25rem;
-
     &__wrapper {
+      padding: 4.25rem 0;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       flex-wrap: wrap;
       width: 100%;
       max-width: 53.5rem;
-      margin: 0 auto;
     }
 
     &__messengers {
       display: flex;
       justify-content: center;
+      flex-direction: column;
       align-items: center;
       max-width: 15rem;
       min-width: 15rem;
 
       &__number {
-        margin-top: .8rem;
         color: $primary-brown;
       }
     }
@@ -34,40 +33,37 @@
       align-items: baseline;
 
       &__icon {
-
         &--phone,
         &--telegram,
         &--viber {
-          margin-right: .875rem;
+          fill: $primary-brown;
         }
 
         &--phone {
-          width: 1.62rem;
-          height: 3.125rem;
+          width:  2.625rem;
+          height: 2.625rem;
         }
 
         &--telegram {
-          width: 2.063rem;
-          height: 2rem;
+          width:  2.625rem;
+          height: 2.625rem;
         }
 
         &--viber {
-          width: 2rem;
-          height: 2rem;
+          width:  2.625rem;
+          height: 2.625rem;
         }
-
       }
     }
 
     &__email {
       display: flex;
       align-items: center;
-      margin-bottom: .438rem;
 
       &__icon {
-        width: 2.75rem;
-        height: 1.875rem;
-        margin-right: .5rem;
+        width: 2.375rem;
+        height: 2.375rem;
+        fill: $primary-brown;
       }
 
       &__link {
@@ -78,33 +74,45 @@
       }
     }
 
+    &__instagram__link,
+    &__email__link {
+      flex-direction: column;
+    }
+
     &__instagram {
+      margin-bottom: .438rem;
       display: flex;
       align-items: center;
-      margin-bottom: .438rem;
 
       &__icon {
-        width: 2.063rem;
-        height: 2.063rem;
-        margin-right: .5rem;
+        fill: $primary-brown;
+        width: 2.625rem;
+        height: 2.625rem;
       }
 
       &__link {
         display: flex;
         align-items: center;
-        ;
         color: $primary-brown;
         font-size: 1rem;
+      }
+    }
+
+    &__copyright {
+      background-color: $primary-brown;
+      text-align: center;
+      &__text {
+        color: $primary-beige;
+        font-size: .813rem;
+        font-weight: 300;
       }
     }
   }
 }
 
-@media all and (max-width: 63.938rem) {
+@media all and (max-width: 64rem) {
   .app {
     &__footer {
-      padding: 1.25rem 0;
-
       &__wrapper {
         flex-direction: column;
         align-items: center;

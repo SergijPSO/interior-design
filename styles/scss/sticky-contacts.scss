@@ -10,17 +10,17 @@
     background-color: $transparent-biege;
     width: 100%;
     z-index: 10;
-    max-width: 62px;
+    max-width: 3.875rem;
     transition: ease .2s;
-    height: 38px;
-    border: 1px solid $primary-brown;
+    height: 2.375rem;
+    border: 1.063rem solid $primary-brown;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
 
     &:hover {
-      max-width: 274px;
+      max-width: 14.875rem;
       transition: ease .2s;
       .app__sticky-contacts__item {
         display: block;
@@ -33,6 +33,7 @@
       height: 100%;
       position: relative;
       z-index: 0;
+
       &:last-child {
         display: flex;
         position: relative;
@@ -40,19 +41,19 @@
       }
 
       &-link {
-        padding: 0 1.375rem;
+        padding: 0 .75rem;
         display: flex;
         align-items: center;
         height: 100%;
         border-radius: 1.375rem;
-        border: 1px solid transparent;
+        border: .063rem solid transparent;
         border-bottom: 0;
         border-top: 0;
         position: relative;
         z-index: -1;
 
-        &:active {
-          border: 1px solid $primary-sandy;
+        &:hover {
+          border: .063rem solid $primary-sandy;
           background-color: $primary-white;
           border-bottom: 0;
           border-top: 0;
@@ -60,11 +61,9 @@
       }
 
       &-icon {
-        height: 1.375rem;
-        width: 1.375rem;
-        &:last-child {
-          height: 1.8rem;
-        }
+        height: 1.8rem;
+        width: 2.1rem;
+        fill: $primary-brown;
       }
     }
   }

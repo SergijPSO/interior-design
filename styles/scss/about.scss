@@ -21,9 +21,9 @@
 
       &-photo {
         display: flex;
+        justify-content: center;
         flex-basis: 48%;
         flex-grow: 1;
-        justify-content: center;
 
         &__img {
           width: 100%;
@@ -31,12 +31,11 @@
       }
 
       &-info {
-        padding-top: 3.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         flex-basis: 48%;
         flex-grow: 2;
-        justify-content: center;
-        align-self: self-end;
-        margin-bottom: -5rem;
 
         &__text {
           font-size: .938rem;
@@ -52,11 +51,10 @@
   }
 }
 
-@media all and (max-width: 63.938rem) {
+@media all and (max-width: 64rem) {
   .app {
     &__about {
       padding: 7.688rem 1rem 10.125rem;
-      // scroll-margin: 4.875rem;
 
       &__person {
         padding: 2.813rem 0 0;
