@@ -97,9 +97,9 @@
 
       &__designs-project,
       &__technical-project {
-
         &__description,
         &__image-container {
+          margin-bottom: 1.375rem;
           max-width: unset;
           flex-grow: 2;
         }
