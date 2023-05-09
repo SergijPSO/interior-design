@@ -11,7 +11,8 @@
       align-items: flex-end;
       flex-wrap: wrap;
       width: 100%;
-      max-width: 53.5rem;
+      // max-width: 53.5rem; uncoment and remove line under when it will be necessary
+      max-width: 30.5rem;
     }
 
     &__messengers {
@@ -47,6 +48,7 @@
         &--telegram {
           width:  2.625rem;
           height: 2.625rem;
+          margin-right: .25rem;
         }
 
         &--viber {
@@ -61,7 +63,7 @@
       align-items: center;
 
       &__icon {
-        width: 2.375rem;
+        width: 2.594rem;
         height: 2.375rem;
         fill: $primary-brown;
       }
@@ -122,6 +124,11 @@
       &__email,
       &__instagram {
         max-width: unset;
+      }
+      &__messengers { 
+        &__number {
+          margin-bottom: 1rem;
+        }
       }
     }
   }

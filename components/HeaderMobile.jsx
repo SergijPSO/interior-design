@@ -58,7 +58,7 @@ const HeaderMobile = () => {
           scroll={false}
           onClick={closeNav}
         >
-          ПОСЛУГИ
+          ВАРТІСТЬ
         </Link>
         <Link
           className='app__mobile-navigation__item'

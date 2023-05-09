@@ -39,7 +39,7 @@ const Footer = () => {
           </div>
 
           <a
-            href='tel:+380978159804'
+            href='tel:+380978159804'  
             className='app__footer__messengers__number'
           >
             097 815 98 04
@@ -58,7 +58,7 @@ const Footer = () => {
           </a>
         </div>
 
-        <div className='app__footer__instagram'>
+        {/* <div className='app__footer__instagram'>
           <a
             className='app__footer__instagram__link'
             href='https://www.instagram.com/arina_kozlovska/'
@@ -69,7 +69,7 @@ const Footer = () => {
             </svg>
             instagram.com/arina_kozlovska
           </a>
-        </div>
+        </div> */}
       </div>
       <div className="app__footer__copyright">
         <span className="app__footer__copyright__text">

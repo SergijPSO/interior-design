@@ -20,7 +20,8 @@
     box-sizing: border-box;
 
     &:hover {
-      max-width: 14.875rem;
+      // max-width: 14.875rem; // uncoment when instagram page will be created
+      max-width: 11.3rem;
       transition: ease .2s;
       .app__sticky-contacts__item {
         display: block;

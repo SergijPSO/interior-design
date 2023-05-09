@@ -1,6 +1,6 @@
 .app {
   &__collection {
-    // padding: 2.3rem 4.688rem;
+    padding: 2.3rem 4.688rem;
     padding: .0 4.688rem 0;
     height: 100%;
     margin: 0 auto;
@@ -13,14 +13,15 @@
       display: flex;
       justify-content: space-between;
       width: 92%;
-      // width: 30%;
-      // justify-content: space-evenly;
-      // margin-bottom: .5rem;
+      width: 30%;
+      justify-content: space-evenly;
+      margin-bottom: .5rem;
+      visibility: hidden; //Temporary hidden, remove when it will be needed
 
       &__item {
         display: block;
-        padding: 1rem;
-        width: 50%;
+        padding: 1rem 0;
+        width: 30%;
         background: none;
         outline: none;
         text-align: center;
@@ -29,14 +30,13 @@
         line-height: 100%;
         border: .063rem solid transparent;
         cursor: pointer; 
-        // border-left: 0;
-        // border-right: 0;
-        // border-top: 0;
-        // border-bottom: .125rem solid transparent;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+        border-bottom: .063rem solid transparent;
 
         &[data-headlessui-state="selected"] {
           border-color: $primary-brown;
-          font-weight: 400;
         }
 
       }

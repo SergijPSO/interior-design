@@ -35,7 +35,7 @@ const Header = () => {
               href='/#prices'
               scroll={false}
             >
-              ПОСЛУГИ
+              ВАРТІСТЬ
             </Link>
           </li>
           <li className='app__navigation__item'>
