@@ -17,7 +17,7 @@ const MainCarousel = () => {
             onClick={clickHandler}
             className={`ind ${isSelected ? "active" : ""}`}
             key={index}
-            role="button"
+            role='button'
           />
         );
       }}
@@ -25,7 +25,7 @@ const MainCarousel = () => {
       <div className='app__main-carousel__item'>
         <img
           className='app__main-carousel__item-image'
-          src='assets/images/main-carousel/01.jpg'
+          src='assets/images/main-carousel/04.jpg'
           alt='slide1'
         />
       </div>
@@ -33,7 +33,7 @@ const MainCarousel = () => {
         <img
           alt='slide image'
           className='app__main-carousel__item-image'
-          src='assets/images/main-carousel/02.jpg'
+          src='assets/images/main-carousel/01.jpg'
         />
       </div>
       <div className='app__main-carousel__item'>
@@ -47,7 +47,7 @@ const MainCarousel = () => {
         <img
           alt='slide image'
           className='app__main-carousel__item-image'
-          src='assets/images/main-carousel/04.jpg'
+          src='assets/images/main-carousel/02.jpg'
         />
       </div>
       <div className='app__main-carousel__item'>
