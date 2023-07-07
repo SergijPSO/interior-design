@@ -6,7 +6,6 @@ import HeaderMobile from "@/components/HeaderMobile";
 import useScreenWidth from "../hooks/useScreenWidth.js";
 
 const Home = () => {
-  
   const screenWidth = useScreenWidth();
 
   return (
