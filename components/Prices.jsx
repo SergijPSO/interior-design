@@ -35,31 +35,32 @@ const Prices = () => {
               <span className='app__prices__designs-project__description-number'>
                 02
               </span>
-              Створення обмірного плану, плану демонтажу перегородок.
+              Створення обмірного плану.
               <br />
               Затвердження плану розташування меблів і обладнання.
               <br />
-              Пропонується декілька варіантів кресленнь для різних кімнат.
+              Пропонується декілька варіантів креслень для різних кімнат.
               <br />
               <br />
-              Після затвердження наступний етап -
-              <br />
-              креслення планів комунікацій.
+              Після затвердження наступний етап - креслення планів комунікацій:
+
             </p>
 
             <p className='app__prices__designs-project__description-text'>
               <span className='app__prices__designs-project__description-number'>
                 03
               </span>
+              План демонтажу / монтажу елементів,
+              <br />
               План електрики - виводи точок освітлення,
               <br />
               розеток, вимикачів, електровиводів.
               <br />
-              План виводів води.
+              План виводів води і сантехніки.
               <br />
               Схема покриття підлоги.
-              <br />
-              План стелі.
+              <br/>
+              План стелі, розміщення кондиціонерів.
             </p>
 
             <p className='app__prices__designs-project__description-text'>
@@ -74,7 +75,7 @@ const Prices = () => {
               <br />
               Дистанційна допомога по підбору матеріалів і меблів.
               <br />
-              Авторський нагляд, підбір і закупівля матеріалів 250$ в місяць.
+              Авторський нагляд, підбір і закупівля матеріалів.
             </p>
           </div>
           <div className='app__prices__designs-project__image-container'>
@@ -116,15 +117,21 @@ const Prices = () => {
               <span className='app__prices__technical-project__description-number'>
                 03
               </span>
+              План демонтажу / монтажу елементів,
+              <br />
               План електрики - виводи точок освітлення,
               <br />
               розеток, вимикачів, електровиводів.
               <br />
-              План виводів води.
+              План виводів води і сантехніки.
               <br />
               Схема покриття підлоги.
-              <br />
-              План стелі.
+              <br/>
+              План стелі, розміщення кондиціонерів.
+              <br/>
+              Розгортки стін у кресленнях.
+              <br/>
+              Видача проєкту у цифровому вигляді.
             </p>
 
             <div className='app__prices__author-supervision__description'>
@@ -164,7 +171,6 @@ const Prices = () => {
         <ArrowedCarouselItem imagUrl='prices/02.jpg' />
         <ArrowedCarouselItem imagUrl='prices/03.jpg' />
         <ArrowedCarouselItem imagUrl='prices/04.jpg' />
-        <ArrowedCarouselItem imagUrl='prices/05.jpg' />
       </ArrowedCarousel>
     </div>
   );

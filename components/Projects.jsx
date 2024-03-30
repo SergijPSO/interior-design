@@ -10,7 +10,7 @@ const Projects = () => {
       {designs.projects.map((project) => (
         <ProjectsItem
           key={project.id}
-          imageUrl={project.realization[0]}
+          imageUrl={project.visualisation[0]}
           object={project.description}
           meters={project.area}
           onClick={() => {
