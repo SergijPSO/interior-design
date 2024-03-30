@@ -15,7 +15,7 @@ const Main = () => {
         {screenWidth <= 1024 ? (
           <div>
             <img
-              src='/assets/images/designs/project2/realization/3.jpg'
+              src='/assets/images/designs/project2/visualisation/3.jpg'
               
               alt='mobile background'
               className='app__content-mobile__background'
