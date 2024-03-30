@@ -167,10 +167,10 @@ const Prices = () => {
         arrows={screenWidth >= 1024}
         bullets={screenWidth <= 1024}
       >
-        <ArrowedCarouselItem imagUrl='prices/01.jpg' />
-        <ArrowedCarouselItem imagUrl='prices/02.jpg' />
-        <ArrowedCarouselItem imagUrl='prices/03.jpg' />
-        <ArrowedCarouselItem imagUrl='prices/04.jpg' />
+        <ArrowedCarouselItem imagUrl='prices/1.jpg' />
+        <ArrowedCarouselItem imagUrl='prices/2.jpg' />
+        <ArrowedCarouselItem imagUrl='prices/3.jpg' />
+        <ArrowedCarouselItem imagUrl='prices/4.jpg' />
       </ArrowedCarousel>
     </div>
   );
