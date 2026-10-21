@@ -6,6 +6,7 @@ import Prices from "./Prices";
 import StickyContacts from "./StickyContacts";
 import useScreenWidth from "../hooks/useScreenWidth.js";
 
+
 const Main = () => {
   const screenWidth = useScreenWidth();
 

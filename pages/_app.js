@@ -1,5 +1,6 @@
 import "@/styles/scss/globals.scss";
 import "@/styles/scss/reset.scss";
+import "../hello";
 
 import Layout from "../components/Layout";
 
