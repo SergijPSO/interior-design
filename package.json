@@ -1,28 +1,13 @@
 {
-  "name": "interior-design",
-  "version": "0.1.0",
-  "private": true,
+  "name": "interior-design-mono",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "export": "next export",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@google/genai": "^2.30.0",
-    "@headlessui/react": "^1.7.14",
-    "eslint": "8.35.0",
-    "eslint-config-next": "13.2.3",
-    "next": "13.2.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-modal": "^3.16.1",
-    "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.9.0",
-    "react-router-hash-link": "^2.4.3"
+    "client": "cd client && npm run dev",
+    "server": "cd server && node index.js",
+    "seed": "cd server && node seed.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
-    "sass": "^1.58.3"
+    "concurrently": "^8.2.2"
   }
 }
