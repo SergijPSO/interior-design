@@ -57,6 +57,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$node_modules$2f40$
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$responsive$2d$carousel__$5b$external$5d$__$28$react$2d$responsive$2d$carousel$2c$__cjs$2c$__$5b$project$5d2f$client$2f$node_modules$2f$react$2d$responsive$2d$carousel$29$__ = __turbopack_context__.i("[externals]/react-responsive-carousel [external] (react-responsive-carousel, cjs, [project]/client/node_modules/react-responsive-carousel)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$components$2f$ArrowedCarousel$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/client/components/ArrowedCarousel.jsx [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$hooks$2f$useScreenWidth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/client/hooks/useScreenWidth.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+;
 ;
 ;
 ;
@@ -64,8 +66,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$hooks$2f$useScreen
 ;
 const GalleryTabs = ({ project })=>{
     const screenWidth = (0, __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$hooks$2f$useScreenWidth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"])();
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        setMounted(true);
+    }, []);
     if (project !== undefined && project !== null && !project?.id) {
-        return [];
+        return null;
+    }
+    if (!mounted) {
+        return null;
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$tabs$2f$tabs$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Tab"].Group, {
         children: [
@@ -78,7 +87,7 @@ const GalleryTabs = ({ project })=>{
                             children: "Візуалізація"
                         }, void 0, false, {
                             fileName: "[project]/client/components/GalleryTabs.jsx",
-                            lineNumber: 17,
+                            lineNumber: 27,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$tabs$2f$tabs$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Tab"], {
@@ -86,18 +95,18 @@ const GalleryTabs = ({ project })=>{
                             children: "Реалізація"
                         }, void 0, false, {
                             fileName: "[project]/client/components/GalleryTabs.jsx",
-                            lineNumber: 18,
+                            lineNumber: 28,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/client/components/GalleryTabs.jsx",
-                    lineNumber: 16,
+                    lineNumber: 26,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/client/components/GalleryTabs.jsx",
-                lineNumber: 15,
+                lineNumber: 25,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -120,7 +129,7 @@ const GalleryTabs = ({ project })=>{
                                         role: "button"
                                     }, index, false, {
                                         fileName: "[project]/client/components/GalleryTabs.jsx",
-                                        lineNumber: 35,
+                                        lineNumber: 45,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0));
                                 },
@@ -132,22 +141,22 @@ const GalleryTabs = ({ project })=>{
                                             src: item
                                         }, void 0, false, {
                                             fileName: "[project]/client/components/GalleryTabs.jsx",
-                                            lineNumber: 50,
+                                            lineNumber: 60,
                                             columnNumber: 21
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, index, false, {
                                         fileName: "[project]/client/components/GalleryTabs.jsx",
-                                        lineNumber: 46,
+                                        lineNumber: 56,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0)))
                             }, void 0, false, {
                                 fileName: "[project]/client/components/GalleryTabs.jsx",
-                                lineNumber: 25,
+                                lineNumber: 35,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/client/components/GalleryTabs.jsx",
-                            lineNumber: 24,
+                            lineNumber: 34,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$tabs$2f$tabs$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Tab"].Panel, {
@@ -166,7 +175,7 @@ const GalleryTabs = ({ project })=>{
                                         role: "button"
                                     }, index, false, {
                                         fileName: "[project]/client/components/GalleryTabs.jsx",
-                                        lineNumber: 72,
+                                        lineNumber: 82,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0));
                                 },
@@ -178,39 +187,39 @@ const GalleryTabs = ({ project })=>{
                                             src: item
                                         }, void 0, false, {
                                             fileName: "[project]/client/components/GalleryTabs.jsx",
-                                            lineNumber: 87,
+                                            lineNumber: 97,
                                             columnNumber: 21
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, index, false, {
                                         fileName: "[project]/client/components/GalleryTabs.jsx",
-                                        lineNumber: 83,
+                                        lineNumber: 93,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0)))
                             }, void 0, false, {
                                 fileName: "[project]/client/components/GalleryTabs.jsx",
-                                lineNumber: 62,
+                                lineNumber: 72,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/client/components/GalleryTabs.jsx",
-                            lineNumber: 61,
+                            lineNumber: 71,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/client/components/GalleryTabs.jsx",
-                    lineNumber: 23,
+                    lineNumber: 33,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/client/components/GalleryTabs.jsx",
-                lineNumber: 22,
+                lineNumber: 32,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/client/components/GalleryTabs.jsx",
-        lineNumber: 14,
+        lineNumber: 24,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -604,6 +613,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$components$2f$Head
 var __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$components$2f$GalleryTabs$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/client/components/GalleryTabs.jsx [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/client/node_modules/next/router.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$hooks$2f$useScreenWidth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/client/hooks/useScreenWidth.js [ssr] (ecmascript)");
+;
 ;
 ;
 ;
@@ -639,55 +650,48 @@ async function getServerSideProps({ params }) {
 }
 const Gallery = ({ selectedProject })=>{
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
-    const [screenWidth, setScreenWidth] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(0);
-    function updateWidth() {
-        setScreenWidth(window.innerWidth);
-    }
+    const screenWidth = (0, __TURBOPACK__imported__module__$5b$project$5d2f$client$2f$hooks$2f$useScreenWidth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"])();
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
-        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
-        ;
-    }, []);
-    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
-        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
-        ;
+        setMounted(true);
     }, []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$components$2f$Layout$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
         pageTitle: "Козловська Аріна Дизайнер інтер`єру",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
             className: "app__wrapper",
             children: [
-                screenWidth <= 1024 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$components$2f$HeaderMobile$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                mounted && (screenWidth <= 1024 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$components$2f$HeaderMobile$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/client/pages/gallery/[id].js",
-                    lineNumber: 60,
-                    columnNumber: 32
+                    lineNumber: 48,
+                    columnNumber: 44
                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$components$2f$Header$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/client/pages/gallery/[id].js",
-                    lineNumber: 60,
-                    columnNumber: 51
-                }, ("TURBOPACK compile-time value", void 0)),
+                    lineNumber: 48,
+                    columnNumber: 63
+                }, ("TURBOPACK compile-time value", void 0))),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
                     className: "app__collection",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$components$2f$GalleryTabs$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                         project: selectedProject
                     }, void 0, false, {
                         fileName: "[project]/client/pages/gallery/[id].js",
-                        lineNumber: 62,
+                        lineNumber: 50,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/client/pages/gallery/[id].js",
-                    lineNumber: 61,
+                    lineNumber: 49,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/client/pages/gallery/[id].js",
-            lineNumber: 59,
+            lineNumber: 47,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/client/pages/gallery/[id].js",
-        lineNumber: 58,
+        lineNumber: 46,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

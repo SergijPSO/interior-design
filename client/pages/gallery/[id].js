@@ -4,6 +4,8 @@ import HeaderMobile from "@/components/HeaderMobile";
 import GalleryTabs from "@/components/GalleryTabs";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import useScreenWidth from "../../hooks/useScreenWidth";
+
 export async function getServerSideProps({ params }) {
   try {
     const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
@@ -33,31 +35,17 @@ export async function getServerSideProps({ params }) {
 
 const Gallery = ({ selectedProject }) => {
   const router = useRouter();
-  const [screenWidth, setScreenWidth] = useState(0);
-
-  function updateWidth() {
-    setScreenWidth(window.innerWidth);
-  }
+  const screenWidth = useScreenWidth();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setScreenWidth(window.innerWidth);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", updateWidth);
-      return () => {
-        window.removeEventListener("resize", updateWidth);
-      };
-    }
+    setMounted(true);
   }, []);
 
   return (
     <Layout pageTitle='Козловська Аріна Дизайнер інтер`єру'>
       <div className='app__wrapper'>
-        {screenWidth <= 1024 ? <HeaderMobile /> : <Header />}
+        {mounted && (screenWidth <= 1024 ? <HeaderMobile /> : <Header />)}
         <section className='app__collection'>
           <GalleryTabs project={selectedProject} />
         </section>
