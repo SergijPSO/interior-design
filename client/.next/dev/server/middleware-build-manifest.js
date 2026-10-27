@@ -30,11 +30,6 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/client_pages__app_0du2_q-cjzmdk._.js",
       "static/chunks/turbopack-client_pages__app_0fpi-ae65vi2d._.js"
     ],
-    "/_error": [
-      "static/chunks/[root-of-the-server]__1yq_z98rgr9q7._.js",
-      "static/chunks/client_pages__error_1vhcvgynmjmi4._.js",
-      "static/chunks/turbopack-client_pages__error_1gcndi9rnpzoh._.js"
-    ],
     "/gallery/[id]": [
       "static/chunks/097k_next_dist_compiled_1142a40hpr27x._.js",
       "static/chunks/097k_next_dist_shared_lib_0zvnolxt72u99._.js",
