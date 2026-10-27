@@ -14,6 +14,11 @@
       "static/chunks/client_styles_scss_0xmjo1b_ys0bd._.css",
       "static/chunks/client_pages__app_0du2_q-cjzmdk._.js",
       "static/chunks/turbopack-client_pages__app_0fpi-ae65vi2d._.js"
+    ],
+    "/_error": [
+      "static/chunks/[root-of-the-server]__1yq_z98rgr9q7._.js",
+      "static/chunks/client_pages__error_1vhcvgynmjmi4._.js",
+      "static/chunks/turbopack-client_pages__error_1gcndi9rnpzoh._.js"
     ]
   },
   "devFiles": [],

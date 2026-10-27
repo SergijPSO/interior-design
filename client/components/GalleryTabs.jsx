@@ -2,12 +2,22 @@ import { Tab } from "@headlessui/react";
 import { Carousel } from "react-responsive-carousel";
 import ArrowedCarousel from "./ArrowedCarousel";
 import useScreenWidth from "../hooks/useScreenWidth.js";
+import { useState, useEffect } from "react";
 
 const GalleryTabs = ({ project }) => {
   const screenWidth = useScreenWidth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   if (project !== undefined && project !== null && !project?.id) {
-    return [];
+    return null;
+  }
+
+  if (!mounted) {
+    return null;
   }
 
   return (
