@@ -1,0 +1,19 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [],
+  "pages": {
+    "/_error": [
+      "static/chunks/2yso_98s0obtb.js",
+      "static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  "ampFirstPages": [],
+  "rootMainFilesTree": {},
+  "pagesChunkGroupBootstrapParams": {
+    "/_error": {"otherChunks":["static/chunks/2yso_98s0obtb.js"],"runtimeModuleIds":[6944,9773]}
+  },
+  "chunkLoadingGlobal": "TURBOPACK"
+}

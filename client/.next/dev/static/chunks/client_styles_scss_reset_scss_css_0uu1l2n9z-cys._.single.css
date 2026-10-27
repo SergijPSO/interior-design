@@ -1,0 +1,15 @@
+/* [project]/client/styles/scss/reset.scss.css [client] (css) */
+* {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-family: Manrope, sans-serif;
+  text-decoration: none;
+  list-style: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+/*# sourceMappingURL=client_styles_scss_reset_scss_css_0uu1l2n9z-cys._.single.css.map*/

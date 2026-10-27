@@ -7,10 +7,11 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch('/data/designs.json')
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+    fetch(`${API_URL}/api/projects`)
       .then(res => res.json())
       .then(data => {
-        console.log('Fetched projects data:', data);
+        console.log('Fetched projects data from MongoDB:', data);
         if (data && Array.isArray(data.projects)) {
           setProjects(data.projects);
         } else if (Array.isArray(data)) {

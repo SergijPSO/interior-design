@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///turbopack:///[project]/client/styles/scss/reset.scss"],"sourcesContent":["//Common reset beggining\n* {\n  padding: 0;\n  margin: 0;\n  text-decoration: none;\n  list-style: none;\n  font-family: 'Manrope', sans-serif;\n  scroll-behavior: smooth;\n}\nhtml,body {\n  height: 100%;\n}\n//Common reset beggining"],"names":[],"mappings":"AACA;;;;;;;;;AAQA"}}]
+}
