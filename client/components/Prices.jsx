@@ -1,9 +1,31 @@
 import ArrowedCarousel from "./ArrowedCarousel";
 import ArrowedCarouselItem from "./ArrowedCarouselItem";
 import useScreenWidth from "../hooks/useScreenWidth.js";
+import { useState, useEffect } from "react";
 
 const Prices = () => {
   const screenWidth = useScreenWidth();
+  const [prices, setPrices] = useState({
+    designProject: '20 $ кв.м.',
+    technicalProject: '10 $ кв.м.',
+    authorSupervision: 'від 250$ в міс.'
+  });
+
+  useEffect(() => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+    fetch(`${API_URL}/api/prices`)
+      .then(res => res.json())
+      .then(data => {
+        if (data) {
+          setPrices({
+            designProject: data.designProject || '20 $ кв.м.',
+            technicalProject: data.technicalProject || '10 $ кв.м.',
+            authorSupervision: data.authorSupervision || 'від 250$ в міс.'
+          });
+        }
+      })
+      .catch(err => console.error('Error fetching prices:', err));
+  }, []);
 
   return (
     <div className='app__prices' id='prices'>
@@ -13,7 +35,7 @@ const Prices = () => {
         <div className='app__prices__designs-project'>
           <div className='app__prices__designs-project__description'>
             <h3 className='app__prices__designs-project__description__label'>
-              20 $ кв.м. Дизайн проєкт
+              {prices.designProject} Дизайн проєкт
             </h3>
 
             <p className='app__prices__designs-project__description-text'>
@@ -88,7 +110,7 @@ const Prices = () => {
         <div className='app__prices__technical-project'>
           <div className='app__prices__technical-project__description'>
             <h3 className='app__prices__technical-project__description__label'>
-              10 $ кв.м. Технічний проєкт
+              {prices.technicalProject} Технічний проєкт
             </h3>
 
             <p className='app__prices__technical-project__description-text'>
@@ -134,7 +156,7 @@ const Prices = () => {
 
             <div className='app__prices__author-supervision__description'>
               <h3 className='app__prices__author-supervision__description__label'>
-                від 250$ в міс. Авторський нагляд, м.Львів:
+                {prices.authorSupervision} Авторський нагляд, м.Львів:
               </h3>
 
               <p className='app__prices__author-supervision__description-text'>
