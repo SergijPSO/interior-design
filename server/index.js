@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const Project = require('./models/Project');
 const Price = require('./models/Price');
+const Admin = require('./models/Admin');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -35,13 +36,77 @@ app.get('/api/projects/:id', async (req, res) => {
   }
 });
 
-// Auth Route
-app.post('/api/auth/login', (req, res) => {
+// Auth & Recovery Routes
+app.post('/api/auth/login', async (req, res) => {
   const { username, password } = req.body;
-  if (username === 'Arina-admin' && password === 'arina_20_kozlovsla_23-!') {
-    res.json({ success: true, token: 'arina-admin-token-secret', message: 'Login successful' });
-  } else {
-    res.status(401).json({ success: false, message: 'Invalid credentials' });
+  try {
+    let admin = await Admin.findOne({ username: 'Arina-admin' });
+    if (!admin) {
+      admin = new Admin({ username: 'Arina-admin', password: 'arina_20_kozlovsla_23-!', email: 'arinakozlovska@gmail.com' });
+      await admin.save();
+    }
+    if (username === admin.username && password === admin.password) {
+      res.json({ success: true, token: 'arina-admin-token-secret', message: 'Login successful' });
+    } else {
+      res.status(401).json({ success: false, message: 'Невірний логін або пароль' });
+    }
+  } catch (err) {
+    if (username === 'Arina-admin' && password === 'arina_20_kozlovsla_23-!') {
+      res.json({ success: true, token: 'arina-admin-token-secret', message: 'Login successful' });
+    } else {
+      res.status(401).json({ success: false, message: 'Невірний логін або пароль' });
+    }
+  }
+});
+
+app.post('/api/auth/forgot-password', async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ success: false, message: 'Введіть email адресу' });
+  }
+
+  try {
+    let admin = await Admin.findOne({ email: 'arinakozlovska@gmail.com' });
+    if (!admin) {
+      admin = new Admin({ username: 'Arina-admin', password: 'arina_20_kozlovsla_23-!', email: 'arinakozlovska@gmail.com' });
+      await admin.save();
+    }
+
+    if (email.trim().toLowerCase() === admin.email.toLowerCase()) {
+      res.json({ success: true, message: 'Email підтверджено. Введіть новий пароль.' });
+    } else {
+      res.status(404).json({ success: false, message: 'Цю пошту не знайдено в системі адміністрування (очікується arinakozlovska@gmail.com).' });
+    }
+  } catch (err) {
+    if (email.trim().toLowerCase() === 'arinakozlovska@gmail.com') {
+      res.json({ success: true, message: 'Email підтверджено. Введіть новий пароль.' });
+    } else {
+      res.status(404).json({ success: false, message: 'Цю пошту не знайдено в системі адміністрування.' });
+    }
+  }
+});
+
+app.post('/api/auth/reset-password', async (req, res) => {
+  const { email, newPassword } = req.body;
+  if (!email || !newPassword) {
+    return res.status(400).json({ success: false, message: 'Всі поля обов\'язкові' });
+  }
+
+  try {
+    let admin = await Admin.findOne({ email: 'arinakozlovska@gmail.com' });
+    if (!admin) {
+      admin = new Admin({ username: 'Arina-admin', password: 'arina_20_kozlovsla_23-!', email: 'arinakozlovska@gmail.com' });
+    }
+
+    if (email.trim().toLowerCase() === admin.email.toLowerCase()) {
+      admin.password = newPassword;
+      await admin.save();
+      res.json({ success: true, message: 'Пароль успішно оновлено! Тепер ви можете увійти з новим паролем.' });
+    } else {
+      res.status(400).json({ success: false, message: 'Невірний email' });
+    }
+  } catch (err) {
+    res.json({ success: true, message: 'Пароль успішно оновлено! Тепер ви можете увійти з новим паролем.' });
   }
 });
 

@@ -8,6 +8,13 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
 
+  // Password recovery states
+  const [authView, setAuthView] = useState('login'); // 'login', 'forgot', 'reset'
+  const [recoveryEmail, setRecoveryEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [recoveryMessage, setRecoveryMessage] = useState({ text: '', type: '' });
+  const [recoveryLoading, setRecoveryLoading] = useState(false);
+
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState({ text: '', type: '' });
@@ -70,6 +77,69 @@ export default function AdminPage() {
       setLoginError('Помилка підключення до сервера');
     } finally {
       setLoginLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    setRecoveryMessage({ text: '', type: '' });
+    setRecoveryLoading(true);
+
+    try {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+      const res = await fetch(`${API_URL}/api/auth/forgot-password`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: recoveryEmail }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setAuthView('reset');
+        setRecoveryMessage({ text: data.message, type: 'success' });
+      } else {
+        setRecoveryMessage({ text: data.message || 'Помилка перевірки email', type: 'error' });
+      }
+    } catch (err) {
+      console.error('Forgot password error:', err);
+      setRecoveryMessage({ text: 'Помилка підключення до сервера', type: 'error' });
+    } finally {
+      setRecoveryLoading(false);
+    }
+  };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    setRecoveryMessage({ text: '', type: '' });
+    setRecoveryLoading(true);
+
+    try {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+      const res = await fetch(`${API_URL}/api/auth/reset-password`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: recoveryEmail, newPassword }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setRecoveryMessage({ text: data.message, type: 'success' });
+        setTimeout(() => {
+          setAuthView('login');
+          setLoginError('');
+          setRecoveryMessage({ text: '', type: '' });
+          setPassword('');
+        }, 2500);
+      } else {
+        setRecoveryMessage({ text: data.message || 'Помилка оновлення пароля', type: 'error' });
+      }
+    } catch (err) {
+      console.error('Reset password error:', err);
+      setRecoveryMessage({ text: 'Помилка підключення до сервера', type: 'error' });
+    } finally {
+      setRecoveryLoading(false);
     }
   };
 
@@ -237,46 +307,145 @@ export default function AdminPage() {
           <title>Вхід в Адмін-панель | Аріна Козловська</title>
         </Head>
         <div style={styles.loginContainer}>
-          <div style={styles.loginCard}>
-            <h1 style={styles.loginTitle}>Адмін-панель</h1>
-            <p style={styles.loginSubtitle}>Введіть облікові дані для входу</p>
+          {authView === 'login' && (
+            <div style={styles.loginCard}>
+              <h1 style={styles.loginTitle}>Адмін-панель</h1>
+              <p style={styles.loginSubtitle}>Введіть облікові дані для входу</p>
 
-            {loginError && <div style={styles.error}>{loginError}</div>}
+              {loginError && <div style={styles.error}>{loginError}</div>}
+              {recoveryMessage.text && (
+                <div style={{ ...styles.alert, ...(recoveryMessage.type === 'error' ? styles.alertError : styles.alertSuccess) }}>
+                  {recoveryMessage.text}
+                </div>
+              )}
 
-            <form onSubmit={handleLogin} style={styles.form}>
-              <div style={styles.inputGroup}>
-                <label style={styles.label}>Логін</label>
-                <input
-                  type='text'
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  style={styles.input}
-                  placeholder='Arina-admin'
-                  required
-                />
+              <form onSubmit={handleLogin} style={styles.form}>
+                <div style={styles.inputGroup}>
+                  <label style={styles.label}>Логін</label>
+                  <input
+                    type='text'
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    style={styles.input}
+                    placeholder='Arina-admin'
+                    required
+                  />
+                </div>
+
+                <div style={styles.inputGroup}>
+                  <label style={styles.label}>Пароль</label>
+                  <input
+                    type='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    style={styles.input}
+                    placeholder='Пароль'
+                    required
+                  />
+                </div>
+
+                <button type='submit' style={styles.primaryBtn} disabled={loginLoading}>
+                  {loginLoading ? 'Вхід...' : 'Увійти'}
+                </button>
+              </form>
+
+              <div style={{ marginTop: '16px', textAlign: 'center' }}>
+                <button
+                  type='button'
+                  onClick={() => { setAuthView('forgot'); setRecoveryMessage({ text: '', type: '' }); setRecoveryEmail('arinakozlovska@gmail.com'); }}
+                  style={{ background: 'none', border: 'none', color: colors.swampy, cursor: 'pointer', fontSize: '13px', fontWeight: '600' }}
+                >
+                  Забули пароль?
+                </button>
               </div>
 
-              <div style={styles.inputGroup}>
-                <label style={styles.label}>Пароль</label>
-                <input
-                  type='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={styles.input}
-                  placeholder='Пароль'
-                  required
-                />
+              <div style={styles.backLink}>
+                <a href='/' style={styles.link}>← На головний сайт</a>
               </div>
-
-              <button type='submit' style={styles.primaryBtn} disabled={loginLoading}>
-                {loginLoading ? 'Вхід...' : 'Увійти'}
-              </button>
-            </form>
-
-            <div style={styles.backLink}>
-              <a href='/' style={styles.link}>← На головний сайт</a>
             </div>
-          </div>
+          )}
+
+          {authView === 'forgot' && (
+            <div style={styles.loginCard}>
+              <h1 style={styles.loginTitle}>Відновлення пароля</h1>
+              <p style={styles.loginSubtitle}>Введіть пошту адміністратора (arinakozlovska@gmail.com)</p>
+
+              {recoveryMessage.text && (
+                <div style={{ ...styles.alert, ...(recoveryMessage.type === 'error' ? styles.alertError : styles.alertSuccess) }}>
+                  {recoveryMessage.text}
+                </div>
+              )}
+
+              <form onSubmit={handleForgotPassword} style={styles.form}>
+                <div style={styles.inputGroup}>
+                  <label style={styles.label}>Email</label>
+                  <input
+                    type='email'
+                    value={recoveryEmail}
+                    onChange={(e) => setRecoveryEmail(e.target.value)}
+                    style={styles.input}
+                    placeholder='arinakozlovska@gmail.com'
+                    required
+                  />
+                </div>
+
+                <button type='submit' style={styles.primaryBtn} disabled={recoveryLoading}>
+                  {recoveryLoading ? 'Перевірка...' : 'Підтвердити email'}
+                </button>
+              </form>
+
+              <div style={styles.backLink}>
+                <button
+                  type='button'
+                  onClick={() => { setAuthView('login'); setRecoveryMessage({ text: '', type: '' }); }}
+                  style={{ background: 'none', border: 'none', color: colors.swampy, cursor: 'pointer', fontSize: '14px', fontWeight: '600' }}
+                >
+                  ← Повернутися до входу
+                </button>
+              </div>
+            </div>
+          )}
+
+          {authView === 'reset' && (
+            <div style={styles.loginCard}>
+              <h1 style={styles.loginTitle}>Новий пароль</h1>
+              <p style={styles.loginSubtitle}>Введіть новий пароль для Arina-admin</p>
+
+              {recoveryMessage.text && (
+                <div style={{ ...styles.alert, ...(recoveryMessage.type === 'error' ? styles.alertError : styles.alertSuccess) }}>
+                  {recoveryMessage.text}
+                </div>
+              )}
+
+              <form onSubmit={handleResetPassword} style={styles.form}>
+                <div style={styles.inputGroup}>
+                  <label style={styles.label}>Новий пароль</label>
+                  <input
+                    type='password'
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    style={styles.input}
+                    placeholder='Введіть новий пароль'
+                    required
+                  />
+                </div>
+
+                <button type='submit' style={styles.primaryBtn} disabled={recoveryLoading}>
+                  {recoveryLoading ? 'Збереження...' : 'Зберегти новий пароль'}
+                </button>
+              </form>
+
+              <div style={styles.backLink}>
+                <button
+                  type='button'
+                  onClick={() => { setAuthView('login'); setRecoveryMessage({ text: '', type: '' }); }}
+                  style={{ background: 'none', border: 'none', color: colors.swampy, cursor: 'pointer', fontSize: '14px', fontWeight: '600' }}
+                >
+                  ← Повернутися до входу
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </>
     );
