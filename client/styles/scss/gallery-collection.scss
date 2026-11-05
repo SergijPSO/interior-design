@@ -16,7 +16,6 @@
       width: 30%;
       justify-content: space-evenly;
       margin-bottom: .5rem;
-      visibility: hidden; //Temporary hidden, remove when it will be needed
 
       &__item {
         display: block;
@@ -42,6 +41,19 @@
       }
 
       &__content {
+        .carousel .thumb {
+          border: 2px solid transparent;
+          cursor: pointer;
+          transition: border-color 0.2s ease, opacity 0.2s ease;
+          opacity: 0.6;
+
+          &.selected,
+          &:hover {
+            border: 2px solid $primary-brown;
+            opacity: 1;
+          }
+        }
+
         .carousel .thumb img {
           min-height: 5.938rem;
           max-height: 5.938rem;

@@ -6,7 +6,8 @@ const ProjectSchema = new mongoose.Schema({
   realization: [String],
   visualisation: [String],
   description: String,
-  area: String
+  area: String,
+  showRealization: { type: Boolean, default: true }
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

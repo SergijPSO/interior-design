@@ -29,6 +29,7 @@ export default function AdminPage() {
     area: '',
     visualisation: '',
     realization: '',
+    showRealization: true,
   });
 
   // Price form state
@@ -249,6 +250,7 @@ export default function AdminPage() {
       area: '',
       visualisation: '',
       realization: '',
+      showRealization: true,
     });
   };
 
@@ -262,6 +264,7 @@ export default function AdminPage() {
       area: project.area || '',
       visualisation: Array.isArray(project.visualisation) ? project.visualisation.join(', ') : '',
       realization: Array.isArray(project.realization) ? project.realization.join(', ') : '',
+      showRealization: project.showRealization !== undefined ? project.showRealization : true,
     });
   };
 
@@ -276,6 +279,7 @@ export default function AdminPage() {
       area: formData.area,
       visualisation: formData.visualisation.split(',').map(s => s.trim()).filter(Boolean),
       realization: formData.realization.split(',').map(s => s.trim()).filter(Boolean),
+      showRealization: formData.showRealization,
     };
 
     try {
@@ -590,6 +594,37 @@ export default function AdminPage() {
                 {isEditing ? `Редагувати проєкт: ${currentId}` : 'Додати новий проєкт'}
               </h2>
               <form onSubmit={handleSubmit} style={styles.form}>
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', backgroundColor: 'rgba(125, 143, 116, 0.1)', borderRadius: '6px', border: `1px solid ${colors.sandy}` }}>
+                  <label style={{ ...styles.label, marginBottom: 0, fontSize: '14px' }}>Показувати вкладку "Реалізація"</label>
+                  <div
+                    onClick={() => setFormData({ ...formData, showRealization: !formData.showRealization })}
+                    style={{
+                      width: '46px',
+                      height: '24px',
+                      backgroundColor: formData.showRealization ? colors.swampy : colors.gray,
+                      borderRadius: '12px',
+                      position: 'relative',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: '#fff',
+                        borderRadius: '50%',
+                        position: 'absolute',
+                        top: '2px',
+                        left: formData.showRealization ? '24px' : '2px',
+                        transition: 'left 0.2s',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                      }}
+                    />
+                  </div>
+                </div>
+
                 <div style={styles.inputGroup}>
                   <label style={styles.label}>ID проєкту (напр. project9)</label>
                   <input
@@ -687,6 +722,11 @@ export default function AdminPage() {
                           №{p.orderNumber ?? 0}
                         </span>
                         <strong style={{ color: '#271F18' }}>{p.id}</strong> — {p.description} ({p.area})
+                        {p.showRealization === false && (
+                          <span style={{ backgroundColor: '#e74c3c', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '10px', marginLeft: '8px', fontWeight: '600' }}>
+                            РЕАЛІЗАЦІЯ ПРИХОВАНА
+                          </span>
+                        )}
                       </div>
                       <div style={styles.itemActions}>
                         <button onClick={() => handleOpenEdit(p)} style={styles.editBtn}>Редагувати</button>
