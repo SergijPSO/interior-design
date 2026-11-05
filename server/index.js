@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // Routes
 app.get('/api/projects', async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().sort({ orderNumber: 1 });
     res.json({ projects });
   } catch (err) {
     res.status(500).json({ message: err.message });

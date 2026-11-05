@@ -24,6 +24,7 @@ export default function AdminPage() {
   const [currentId, setCurrentId] = useState('');
   const [formData, setFormData] = useState({
     id: '',
+    orderNumber: 0,
     description: '',
     area: '',
     visualisation: '',
@@ -37,6 +38,18 @@ export default function AdminPage() {
     authorSupervision: 'від 250$ в міс.',
   });
   const [priceMessage, setPriceMessage] = useState({ text: '', type: '' });
+
+  // Modal notification state
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    type: 'success', // 'success' or 'error'
+  });
+
+  const closeModal = () => {
+    setModalState({ isOpen: false, title: '', message: '', type: 'success' });
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('arina_admin_token');
@@ -201,13 +214,28 @@ export default function AdminPage() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        setPriceMessage({ text: 'Ціни успішно оновлено!', type: 'success' });
+        setModalState({
+          isOpen: true,
+          title: 'Успішно',
+          message: 'Зміни успішно збережено!',
+          type: 'success',
+        });
       } else {
-        setPriceMessage({ text: data.message || 'Помилка збереження цін', type: 'error' });
+        setModalState({
+          isOpen: true,
+          title: 'Помилка',
+          message: `Не вдалось зберегти зміни: ${data.message || 'Помилка оновлення цін'}`,
+          type: 'error',
+        });
       }
     } catch (err) {
       console.error('Price update error:', err);
-      setPriceMessage({ text: 'Помилка з\'єднання з сервером', type: 'error' });
+      setModalState({
+        isOpen: true,
+        title: 'Помилка',
+        message: `Не вдалось зберегти зміни: ${err.message || "Помилка з'єднання з сервером"}`,
+        type: 'error',
+      });
     }
   };
 
@@ -216,6 +244,7 @@ export default function AdminPage() {
     setCurrentId('');
     setFormData({
       id: `project${Date.now()}`,
+      orderNumber: projects.length,
       description: '',
       area: '',
       visualisation: '',
@@ -228,6 +257,7 @@ export default function AdminPage() {
     setCurrentId(project.id);
     setFormData({
       id: project.id,
+      orderNumber: project.orderNumber ?? 0,
       description: project.description || '',
       area: project.area || '',
       visualisation: Array.isArray(project.visualisation) ? project.visualisation.join(', ') : '',
@@ -241,6 +271,7 @@ export default function AdminPage() {
 
     const payload = {
       id: formData.id,
+      orderNumber: Number(formData.orderNumber) || 0,
       description: formData.description,
       area: formData.area,
       visualisation: formData.visualisation.split(',').map(s => s.trim()).filter(Boolean),
@@ -263,18 +294,30 @@ export default function AdminPage() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        setMessage({
-          text: isEditing ? 'Проєкт успішно оновлено!' : 'Проєкт успішно створено!',
+        setModalState({
+          isOpen: true,
+          title: 'Успіх',
+          message: 'Зміни успішно збережено!',
           type: 'success',
         });
         fetchProjects();
         if (!isEditing) handleOpenCreate();
       } else {
-        setMessage({ text: data.message || 'Помилка збереження', type: 'error' });
+        setModalState({
+          isOpen: true,
+          title: 'Помилка',
+          message: `Не вдалось зберегти зміни: ${data.message || 'Помилка збереження'}`,
+          type: 'error',
+        });
       }
     } catch (err) {
       console.error('Submit error:', err);
-      setMessage({ text: 'Помилка з\'єднання з сервером', type: 'error' });
+      setModalState({
+        isOpen: true,
+        title: 'Помилка',
+        message: `Не вдалось зберегти зміни: ${err.message || "Помилка з'єднання з сервером"}`,
+        type: 'error',
+      });
     }
   };
 
@@ -289,14 +332,29 @@ export default function AdminPage() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        setMessage({ text: 'Проєкт видалено', type: 'success' });
+        setModalState({
+          isOpen: true,
+          title: 'Успіх',
+          message: 'Зміни успішно збережено (проєкт видалено)!',
+          type: 'success',
+        });
         fetchProjects();
       } else {
-        setMessage({ text: data.message || 'Помилка видалення', type: 'error' });
+        setModalState({
+          isOpen: true,
+          title: 'Помилка',
+          message: `Не вдалось зберегти зміни: ${data.message || 'Помилка видалення'}`,
+          type: 'error',
+        });
       }
     } catch (err) {
       console.error('Delete error:', err);
-      setMessage({ text: 'Помилка з\'єднання з сервером', type: 'error' });
+      setModalState({
+        isOpen: true,
+        title: 'Помилка',
+        message: `Не вдалось зберегти зміни: ${err.message || "Помилка з'єднання з сервером"}`,
+        type: 'error',
+      });
     }
   };
 
@@ -545,6 +603,18 @@ export default function AdminPage() {
                 </div>
 
                 <div style={styles.inputGroup}>
+                  <label style={styles.label}>Порядковий номер (orderNumber)</label>
+                  <input
+                    type='number'
+                    value={formData.orderNumber}
+                    onChange={(e) => setFormData({ ...formData, orderNumber: e.target.value })}
+                    style={styles.input}
+                    placeholder='0, 1, 2...'
+                    required
+                  />
+                </div>
+
+                <div style={styles.inputGroup}>
                   <label style={styles.label}>Опис об'єкта</label>
                   <input
                     type='text'
@@ -613,6 +683,9 @@ export default function AdminPage() {
                   {projects.map((p) => (
                     <div key={p.id} style={styles.projectItem}>
                       <div>
+                        <span style={{ backgroundColor: colors.swampy, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '11px', marginRight: '8px', fontWeight: '600' }}>
+                          №{p.orderNumber ?? 0}
+                        </span>
                         <strong style={{ color: '#271F18' }}>{p.id}</strong> — {p.description} ({p.area})
                       </div>
                       <div style={styles.itemActions}>
@@ -626,6 +699,20 @@ export default function AdminPage() {
             </div>
           </div>
         </main>
+
+        {modalState.isOpen && (
+          <div style={styles.modalOverlay}>
+            <div style={styles.modalCard}>
+              <h3 style={{ ...styles.modalTitle, color: modalState.type === 'error' ? '#dc3545' : colors.swampy }}>
+                {modalState.title}
+              </h3>
+              <p style={styles.modalText}>{modalState.message}</p>
+              <button onClick={closeModal} style={styles.primaryBtn}>
+                OK
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
@@ -642,6 +729,39 @@ const colors = {
 };
 
 const styles = {
+  modalOverlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1000,
+  },
+  modalCard: {
+    backgroundColor: colors.white,
+    padding: '30px',
+    borderRadius: '12px',
+    boxShadow: '0 10px 40px rgba(39, 31, 24, 0.2)',
+    width: '100%',
+    maxWidth: '400px',
+    textAlign: 'center',
+    border: `1px solid ${colors.sandy}`,
+  },
+  modalTitle: {
+    fontSize: '20px',
+    fontWeight: '700',
+    marginBottom: '12px',
+  },
+  modalText: {
+    fontSize: '15px',
+    color: colors.brown,
+    marginBottom: '24px',
+    lineHeight: '1.5',
+  },
   loginContainer: {
     minHeight: '100vh',
     display: 'flex',
