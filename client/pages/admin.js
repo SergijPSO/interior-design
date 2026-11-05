@@ -1,5 +1,178 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
+
+// Image Manager Component
+const ImageManager = ({ label, images, onImagesChange, projectId, type }) => {
+  const fileInputRef = useRef(null);
+  const [uploading, setUploading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const safeImages = Array.isArray(images)
+    ? images
+    : (typeof images === 'string' ? images.split(',').map(s => s.trim()).filter(Boolean) : []);
+
+  const handleUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('projectId', projectId);
+    formData.append('type', type);
+    files.forEach(file => formData.append('images', file));
+
+    try {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+      const res = await fetch(`${API_URL}/api/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        onImagesChange([...safeImages, ...data.urls]);
+      } else {
+        alert('Помилка завантаження: ' + data.message);
+      }
+    } catch (err) {
+      console.error('Upload error:', err);
+      alert('Помилка з\'єднання при завантаженні');
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
+  const removeImage = (indexToRemove) => {
+    onImagesChange(safeImages.filter((_, index) => index !== indexToRemove));
+  };
+
+  const moveImage = (index, direction) => {
+    const newImages = [...safeImages];
+    const targetIndex = index + direction;
+    if (targetIndex < 0 || targetIndex >= newImages.length) return;
+    
+    const temp = newImages[index];
+    newImages[index] = newImages[targetIndex];
+    newImages[targetIndex] = temp;
+    onImagesChange(newImages);
+  };
+
+  return (
+    <div style={{ marginBottom: '20px', border: `1px solid ${colors.sandy}`, borderRadius: '8px', overflow: 'hidden', backgroundColor: '#fff' }}>
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '12px 16px',
+          backgroundColor: 'rgba(125, 143, 116, 0.08)',
+          cursor: 'pointer',
+          userSelect: 'none',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ ...styles.label, cursor: 'pointer', marginBottom: 0, fontWeight: '700' }}>{label}</span>
+          <span style={{ backgroundColor: colors.swampy, color: '#fff', padding: '2px 8px', borderRadius: '10px', fontSize: '11px', fontWeight: '600' }}>
+            {safeImages.length} фото
+          </span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ fontSize: '12px', fontWeight: '600', color: colors.swampy }}>
+            {isOpen ? 'Згорнути' : 'Розгорнути'}
+          </span>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+              transition: 'transform 0.3s ease',
+              color: colors.swampy,
+            }}
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <div
+        style={{
+          maxHeight: isOpen ? '2000px' : '0px',
+          opacity: isOpen ? 1 : 0,
+          overflow: 'hidden',
+          transition: 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease',
+          padding: isOpen ? '16px' : '0 16px',
+        }}
+      >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: '10px' }}>
+          {safeImages.map((url, index) => (
+            <div key={index} style={{ position: 'relative', aspectRatio: '1/1', border: `1px solid ${colors.sandy}`, borderRadius: '4px', overflow: 'hidden', backgroundColor: '#fff' }}>
+              <img src={url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <button
+                type="button"
+                onClick={() => removeImage(index)}
+                style={{ position: 'absolute', top: '4px', right: '4px', width: '28px', height: '28px', borderRadius: '50%', backgroundColor: 'rgba(125, 143, 116, 0.75)', color: '#fff', border: 'none', cursor: 'pointer', fontSize: '22px', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}
+              >
+                ×
+              </button>
+              <div style={{ position: 'absolute', bottom: '4px', left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: '6px', padding: '0 6px' }}>
+                <button
+                  type="button"
+                  onClick={() => moveImage(index, -1)}
+                  disabled={index === 0}
+                  style={{ backgroundColor: colors.swampy, color: '#fff', border: 'none', borderRadius: '3px', padding: '2px 8px', fontSize: '15px', lineHeight: 1, cursor: index === 0 ? 'default' : 'pointer', opacity: index === 0 ? 0.4 : 0.9, transition: 'opacity 0.2s' }}
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={() => moveImage(index, 1)}
+                  disabled={index === safeImages.length - 1}
+                  style={{ backgroundColor: colors.swampy, color: '#fff', border: 'none', borderRadius: '3px', padding: '2px 8px', fontSize: '15px', lineHeight: 1, cursor: index === safeImages.length - 1 ? 'default' : 'pointer', opacity: index === safeImages.length - 1 ? 0.4 : 0.9, transition: 'opacity 0.2s' }}
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          ))}
+          <div
+            onClick={() => !uploading && fileInputRef.current?.click()}
+            style={{
+              aspectRatio: '1/1',
+              border: `2px dashed ${colors.sandy}`,
+              borderRadius: '4px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: uploading ? 'default' : 'pointer',
+              backgroundColor: uploading ? '#f5f5f5' : 'transparent',
+              color: colors.swampy,
+              transition: 'background-color 0.2s',
+            }}
+          >
+            <span style={{ fontSize: '24px', fontWeight: 'bold' }}>{uploading ? '...' : '+'}</span>
+            <span style={{ fontSize: '10px' }}>{uploading ? 'Завантаження' : 'Додати'}</span>
+            <input
+              ref={fileInputRef}
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleUpload}
+              style={{ display: 'none' }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -248,8 +421,8 @@ export default function AdminPage() {
       orderNumber: projects.length,
       description: '',
       area: '',
-      visualisation: '',
-      realization: '',
+      visualisation: [],
+      realization: [],
       showRealization: true,
     });
   };
@@ -262,8 +435,8 @@ export default function AdminPage() {
       orderNumber: project.orderNumber ?? 0,
       description: project.description || '',
       area: project.area || '',
-      visualisation: Array.isArray(project.visualisation) ? project.visualisation.join(', ') : '',
-      realization: Array.isArray(project.realization) ? project.realization.join(', ') : '',
+      visualisation: Array.isArray(project.visualisation) ? project.visualisation : [],
+      realization: Array.isArray(project.realization) ? project.realization : [],
       showRealization: project.showRealization !== undefined ? project.showRealization : true,
     });
   };
@@ -277,8 +450,8 @@ export default function AdminPage() {
       orderNumber: Number(formData.orderNumber) || 0,
       description: formData.description,
       area: formData.area,
-      visualisation: formData.visualisation.split(',').map(s => s.trim()).filter(Boolean),
-      realization: formData.realization.split(',').map(s => s.trim()).filter(Boolean),
+      visualisation: formData.visualisation,
+      realization: formData.realization,
       showRealization: formData.showRealization,
     };
 
@@ -673,25 +846,21 @@ export default function AdminPage() {
                   />
                 </div>
 
-                <div style={styles.inputGroup}>
-                  <label style={styles.label}>Візуалізації (шляхи через кому)</label>
-                  <textarea
-                    value={formData.visualisation}
-                    onChange={(e) => setFormData({ ...formData, visualisation: e.target.value })}
-                    style={{ ...styles.input, height: '70px', resize: 'vertical' }}
-                    placeholder='/assets/images/designs/project1/visualisation/1.jpg, ...'
-                  />
-                </div>
+                <ImageManager
+                  label='Візуалізації'
+                  images={formData.visualisation}
+                  onImagesChange={(newVis) => setFormData({ ...formData, visualisation: newVis })}
+                  projectId={formData.id}
+                  type='visualisation'
+                />
 
-                <div style={styles.inputGroup}>
-                  <label style={styles.label}>Реалізація (шляхи через кому)</label>
-                  <textarea
-                    value={formData.realization}
-                    onChange={(e) => setFormData({ ...formData, realization: e.target.value })}
-                    style={{ ...styles.input, height: '70px', resize: 'vertical' }}
-                    placeholder='/assets/images/designs/project1/realization/1.jpg, ...'
-                  />
-                </div>
+                <ImageManager
+                  label='Реалізація'
+                  images={formData.realization}
+                  onImagesChange={(newReal) => setFormData({ ...formData, realization: newReal })}
+                  projectId={formData.id}
+                  type='realization'
+                />
 
                 <div style={styles.buttonRow}>
                   <button type='submit' style={styles.primaryBtn}>

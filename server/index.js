@@ -5,12 +5,54 @@ const cors = require('cors');
 const Project = require('./models/Project');
 const Price = require('./models/Price');
 const Admin = require('./models/Admin');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
+
+// Multer storage for image uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const { projectId, type } = req.body;
+    if (!projectId || !type) {
+      return cb(new Error('Missing projectId or type'), null);
+    }
+    const dir = path.join(__dirname, `../client/public/assets/images/designs/${projectId}/${type}`);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname) || '.jpg';
+    cb(null, `${uniqueSuffix}${ext}`);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+app.post('/api/upload', upload.array('images', 50), (req, res) => {
+  try {
+    const { projectId, type } = req.body;
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ success: false, message: 'No files uploaded' });
+    }
+
+    const fileUrls = req.files.map(file => {
+      return `/assets/images/designs/${projectId}/${type}/${file.filename}`;
+    });
+
+    res.json({ success: true, urls: fileUrls });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
