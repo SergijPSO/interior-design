@@ -5,6 +5,7 @@ const cors = require('cors');
 const Project = require('./models/Project');
 const Price = require('./models/Price');
 const Admin = require('./models/Admin');
+const Content = require('./models/Content');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -22,7 +23,16 @@ const storage = multer.diskStorage({
     if (!projectId || !type) {
       return cb(new Error('Missing projectId or type'), null);
     }
-    const dir = path.join(__dirname, `../client/public/assets/images/designs/${projectId}/${type}`);
+    let dir;
+    if (projectId === 'main-carousel') {
+      dir = path.join(__dirname, `../client/public/assets/images/main-carousel`);
+    } else if (projectId === 'prices-banner') {
+      dir = path.join(__dirname, `../client/public/assets/images/prices`);
+    } else if (projectId === 'about') {
+      dir = path.join(__dirname, `../client/public/assets/images/about`);
+    } else {
+      dir = path.join(__dirname, `../client/public/assets/images/designs/${projectId}/${type}`);
+    }
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -45,7 +55,15 @@ app.post('/api/upload', upload.array('images', 50), (req, res) => {
     }
 
     const fileUrls = req.files.map(file => {
-      return `/assets/images/designs/${projectId}/${type}/${file.filename}`;
+      if (projectId === 'main-carousel') {
+        return `/assets/images/main-carousel/${file.filename}`;
+      } else if (projectId === 'prices-banner') {
+        return `prices/${file.filename}`;
+      } else if (projectId === 'about') {
+        return `/assets/images/about/${file.filename}`;
+      } else {
+        return `/assets/images/designs/${projectId}/${type}/${file.filename}`;
+      }
     });
 
     res.json({ success: true, urls: fileUrls });
@@ -217,6 +235,29 @@ app.put('/api/prices', async (req, res) => {
     }
     await prices.save();
     res.json({ success: true, prices });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+});
+
+// Content Routes for Banners, About, Services
+app.get('/api/content/:key', async (req, res) => {
+  try {
+    const content = await Content.findOne({ key: req.params.key });
+    res.json(content ? content.data : {});
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+app.put('/api/content/:key', async (req, res) => {
+  try {
+    const updated = await Content.findOneAndUpdate(
+      { key: req.params.key },
+      { key: req.params.key, data: req.body },
+      { new: true, upsert: true }
+    );
+    res.json({ success: true, data: updated.data });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
   }

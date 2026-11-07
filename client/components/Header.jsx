@@ -1,6 +1,23 @@
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const Header = () => {
+  const [phone, setPhone] = useState('097 815 98 04');
+  const [phoneRaw, setPhoneRaw] = useState('+380978159804');
+
+  useEffect(() => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+    fetch(`${API_URL}/api/content/about`)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data && data.phone) {
+          setPhoneRaw(data.phone);
+          setPhone(data.phone);
+        }
+      })
+      .catch(err => console.error('Error fetching header phone:', err));
+  }, []);
+
   return (
     <header className='app__header'>
       <nav className='app__navigation'>
@@ -57,8 +74,8 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-        <a className='app__navigation__phone' href='tel:+380978159804'>
-          097 815 98 04
+        <a className='app__navigation__phone' href={`tel:${phoneRaw}`}>
+          {phone}
         </a>
       </nav>
     </header>

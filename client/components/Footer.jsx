@@ -1,4 +1,30 @@
+import { useState, useEffect } from 'react';
+
 const Footer = () => {
+  const [contacts, setContacts] = useState({
+    phone: '+380978159804',
+    viber: '+380978159804',
+    telegram: '+380978159804',
+    email: 'arinakozlovska@gmail.com',
+  });
+
+  useEffect(() => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+    fetch(`${API_URL}/api/content/about`)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data) {
+          setContacts({
+            phone: data.phone || '+380978159804',
+            viber: data.viber || '+380978159804',
+            telegram: data.telegram || '+380978159804',
+            email: data.email || 'arinakozlovska@gmail.com',
+          });
+        }
+      })
+      .catch(err => console.error('Error fetching footer contacts:', err));
+  }, []);
+
   return (
     <footer className='app__footer'>
       <div className='app__footer__wrapper' id='contacts'>
@@ -6,7 +32,7 @@ const Footer = () => {
           <div className='app__footer__messengers-list'>
             <span className='app__footer__messengers-list__item'>
               <a
-                href='tel:+380978159804'
+                href={`tel:${contacts.phone}`}
                 className='app__footer__messengers-list__item__link'
               >
                 <svg className='app__footer__messengers-list__icon app__footer__messengers-list__icon--phone'>
@@ -17,7 +43,7 @@ const Footer = () => {
 
             <span className='app__footer__messengers-list__item'>
               <a
-                href='https://t.me/+380978159804'
+                href={contacts.telegram.startsWith('http') ? contacts.telegram : `https://t.me/${contacts.telegram}`}
                 className='app__footer__messengers-list__item__link'
               >
                 <svg className='app__footer__messengers-list__icon app__footer__messengers-list__icon--telegram'>
@@ -28,7 +54,7 @@ const Footer = () => {
 
             <span className='app__footer__messengers-list__item'>
               <a
-                href='viber://chat?number=+380978159804'
+                href={`viber://chat?number=${contacts.viber}`}
                 className='app__footer__messengers-list__item__link'
               >
                 <svg className='app__footer__messengers-list__icon app__footer__messengers-list__icon--viber'>
@@ -39,37 +65,24 @@ const Footer = () => {
           </div>
 
           <a
-            href='tel:+380978159804'  
+            href={`tel:${contacts.phone}`}  
             className='app__footer__messengers__number'
           >
-            097 815 98 04
+            {contacts.phone}
           </a>
         </div>
 
         <div className='app__footer__email'>
           <a
             className='app__footer__email__link'
-            href='mailto:arinakozlovska@gmail.com'
+            href={`mailto:${contacts.email}`}
           >
             <svg className='app__footer__email__icon'>
               <use xlinkHref='./assets/sprite.svg#email'></use>
             </svg>
-            arinakozlovska@gmail.com
+            {contacts.email}
           </a>
         </div>
-
-        {/* <div className='app__footer__instagram'>
-          <a
-            className='app__footer__instagram__link'
-            href='https://www.instagram.com/arina_kozlovska/'
-            target='_blank'
-          >
-            <svg className='app__footer__instagram__icon'>
-              <use xlinkHref='./assets/sprite.svg#instagram'></use>
-            </svg>
-            instagram.com/arina_kozlovska
-          </a>
-        </div> */}
       </div>
       <div className="app__footer__copyright">
         <span className="app__footer__copyright__text">
