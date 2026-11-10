@@ -385,10 +385,28 @@ export default function AdminPage() {
   const [initialPriceData, setInitialPriceData] = useState(null);
 
   // Banners & Content states & snapshots
-  const [mainBannerImages, setMainBannerImages] = useState([]);
+  const [mainBannerImages, setMainBannerImages] = useState([
+    '/assets/images/main-carousel/04.jpg',
+    '/assets/images/main-carousel/01.jpg',
+    '/assets/images/main-carousel/03.jpg',
+    '/assets/images/main-carousel/02.jpg',
+    '/assets/images/main-carousel/05.jpg',
+    '/assets/images/main-carousel/06.jpg',
+    '/assets/images/main-carousel/07.jpg',
+    '/assets/images/main-carousel/08.jpg',
+    '/assets/images/main-carousel/09.jpg',
+    '/assets/images/main-carousel/10.jpg',
+    '/assets/images/main-carousel/11.jpg',
+    '/assets/images/main-carousel/12.jpg',
+  ]);
   const [initialMainBanner, setInitialMainBanner] = useState([]);
 
-  const [techBannerImages, setTechBannerImages] = useState([]);
+  const [techBannerImages, setTechBannerImages] = useState([
+    '/assets/images/prices/1.jpg',
+    '/assets/images/prices/2.jpg',
+    '/assets/images/prices/3.jpg',
+    '/assets/images/prices/4.jpg',
+  ]);
   const [initialTechBanner, setInitialTechBanner] = useState([]);
 
   const [aboutData, setAboutData] = useState({
@@ -400,7 +418,7 @@ export default function AdminPage() {
     phone: '+380978159804',
     viber: '+380978159804',
     telegram: '+380978159804',
-    email: 'arinakozlovsla@gmail.com',
+    email: 'arinakozlovska@gmail.com',
   });
   const [initialAboutData, setInitialAboutData] = useState(null);
 
@@ -481,14 +499,36 @@ export default function AdminPage() {
     await Promise.all([
       fetchProjects(),
       fetchPrices(),
-      fetchContent('mainBanner', setMainBannerImages, setInitialMainBanner, []),
-      fetchContent('techBanner', setTechBannerImages, setInitialTechBanner, []),
+      fetchContent('mainBanner', setMainBannerImages, setInitialMainBanner, [
+        '/assets/images/main-carousel/04.jpg',
+        '/assets/images/main-carousel/01.jpg',
+        '/assets/images/main-carousel/03.jpg',
+        '/assets/images/main-carousel/02.jpg',
+        '/assets/images/main-carousel/05.jpg',
+        '/assets/images/main-carousel/06.jpg',
+        '/assets/images/main-carousel/07.jpg',
+        '/assets/images/main-carousel/08.jpg',
+        '/assets/images/main-carousel/09.jpg',
+        '/assets/images/main-carousel/10.jpg',
+        '/assets/images/main-carousel/11.jpg',
+        '/assets/images/main-carousel/12.jpg',
+      ]),
+      fetchContent('techBanner', setTechBannerImages, setInitialTechBanner, [
+        '/assets/images/prices/1.jpg',
+        '/assets/images/prices/2.jpg',
+        '/assets/images/prices/3.jpg',
+        '/assets/images/prices/4.jpg',
+      ]),
       fetchContent('about', setAboutData, setInitialAboutData, {
         title: 'ПРО МЕНЕ:',
         text: 'Проєктування просторів для життя - захоплююча, надихаюча робота. Ціную кожен етап в процесі створення дизайн проєкту від планувальних креслень до реалізації ідей. Маю освіту дизайнера інтер’єру у Львівській національній академії мистецтв і два роки досвіду по професії.\n\nМоя мета - забезпечити клієнтам гармонійний простір, який відповідає їхнім потребам і стилю життя. Завжди прагну втілити ідеї та концепції, які створюють грамотні ергономічні рішення, використовую поєднання природних кольорів. Будь-який проєкт, незалежний від його розміру чи складності, розробляється з увагою до кожної деталі. Під час роботи завжди на зв’язку, щоб зробити процес створення максимально зручним та приємним для моїх клієнтів.',
         photo: '/assets/images/about/person.png',
         titleStyle: null,
         textStyle: null,
+        phone: '+380978159804',
+        viber: '+380978159804',
+        telegram: '+380978159804',
+        email: 'arinakozlovska@gmail.com',
       }),
       fetchContent('designProject', setDesignProjectData, setInitialDesignProjectData, {
         title: '20 $ кв.м. Дизайн проєкт',
@@ -564,6 +604,14 @@ export default function AdminPage() {
       }
     }
     if (key === 'about') {
+      val = {
+        ...defaultVal,
+        ...val,
+        phone: val.phone || defaultVal.phone,
+        viber: val.viber || defaultVal.viber,
+        telegram: val.telegram || defaultVal.telegram,
+        email: val.email || defaultVal.email,
+      };
       if (!val.text && (val.text1 || val.text2)) {
         val.text = [val.text1, val.text2].filter(Boolean).join('\n\n');
       }
@@ -578,6 +626,9 @@ export default function AdminPage() {
       if (!Array.isArray(val.steps) || val.steps.length === 0) {
         val.steps = defaultVal.steps;
       }
+    }
+    if ((key === 'mainBanner' || key === 'techBanner') && (!Array.isArray(val) || val.length === 0)) {
+      val = defaultVal;
     }
     setter(val);
     if (setInitialFn) setInitialFn(JSON.parse(JSON.stringify(val)));
@@ -1066,7 +1117,7 @@ export default function AdminPage() {
                                 <span style={{ backgroundColor: colors.swampy, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '11px', marginRight: '8px', fontWeight: '600' }}>
                                   №{p.orderNumber ?? 0}
                                 </span>
-                                <strong style={{ color: 'rgb(125, 143, 116)' }}>{p.id}</strong> — {p.description} ({p.area})
+                                {p.description} ({p.area})
                               </div>
                               <div style={styles.itemActions}>
                                 <button onClick={() => handleOpenEdit(p)} style={styles.editBtn}>Редагувати</button>
@@ -1243,7 +1294,7 @@ export default function AdminPage() {
                         value={aboutData.phone || ''}
                         onChange={(e) => setAboutData({ ...aboutData, phone: e.target.value })}
                         style={styles.input}
-                        placeholder="+380978159804"
+                        placeholder="Введіть номер телефону"
                         required
                       />
                     </div>
@@ -1255,7 +1306,7 @@ export default function AdminPage() {
                         value={aboutData.viber || ''}
                         onChange={(e) => setAboutData({ ...aboutData, viber: e.target.value })}
                         style={styles.input}
-                        placeholder="+380978159804"
+                        placeholder="Введіть номер телефону"
                         required
                       />
                     </div>
@@ -1267,7 +1318,7 @@ export default function AdminPage() {
                         value={aboutData.telegram || ''}
                         onChange={(e) => setAboutData({ ...aboutData, telegram: e.target.value })}
                         style={styles.input}
-                        placeholder="+380978159804 або t.me/..."
+                        placeholder="Введіть посилання"
                         required
                       />
                     </div>
@@ -1279,7 +1330,7 @@ export default function AdminPage() {
                         value={aboutData.email || ''}
                         onChange={(e) => setAboutData({ ...aboutData, email: e.target.value })}
                         style={styles.input}
-                        placeholder="arinakozlovska@gmail.com"
+                        placeholder="Введіть пошту"
                         required
                       />
                     </div>
