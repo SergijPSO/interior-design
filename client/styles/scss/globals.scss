@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=Manrope:wght@200;300;400;500;600;700&display=swap');
-@import './variables.module.scss';
+@import './variables.scss';
 @import './header.scss';
 @import './header-mobile.scss';
 @import './projects.scss';
@@ -11,6 +11,7 @@
 @import './prices.scss';
 @import './gallery-collection.scss';
 @import './sticky-contacts.scss';
+@import './admin.scss';
 
 //Global styles begins
 

@@ -1,10 +1,29 @@
+// Colors
 $primary-gray: #C2C2C2;
 $primary-beige: #ECEBE8;
 $primary-white: #EBEAE5;
 $primary-sandy: #D9D0BD;
 $primary-swampy: #7D8F74;
 $primary-brown: #271F18;
+$primary-white-pure: #fff;
+$color-danger: #dc3545;
+$color-light-gray: #f5f5f5;
 
-//Transparent colors
+// Transparent colors
 $transparent-swampy: rgba(73, 105, 72, .6);
-$transparent-biege: rgba(236, 235, 232, .8)
+$transparent-beige: rgba(236, 235, 232, .8);
+$transparent-biege: rgba(236, 235, 232, .8);
+
+// Fonts
+$font-family-main: 'Manrope', sans-serif;
+$font-family-display: 'Bigelow Rules', cursive;
+
+// Font Sizes
+$font-size-xs: 10px;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+$font-size-heading: 36px;

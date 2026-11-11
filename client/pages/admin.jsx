@@ -204,7 +204,7 @@ const ImageManager = ({ label, images, onImagesChange, projectId, type, maxImage
     const newImages = [...safeImages];
     const targetIndex = index + direction;
     if (targetIndex < 0 || targetIndex >= newImages.length) return;
-    
+
     const temp = newImages[index];
     newImages[index] = newImages[targetIndex];
     newImages[targetIndex] = temp;
@@ -212,27 +212,19 @@ const ImageManager = ({ label, images, onImagesChange, projectId, type, maxImage
   };
 
   return (
-    <div style={{ marginBottom: '20px', border: `1px solid ${colors.sandy}`, borderRadius: '8px', overflow: 'hidden', backgroundColor: '#fff' }}>
+    <div className="app__admin__image-manager">
       <div
         onClick={() => setIsOpen(!isOpen)}
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '12px 16px',
-          backgroundColor: 'rgba(125, 143, 116, 0.08)',
-          cursor: 'pointer',
-          userSelect: 'none',
-        }}
+        className="app__admin__image-manager-header"
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ ...styles.label, cursor: 'pointer', marginBottom: 0, fontWeight: '700', color: 'rgb(125, 143, 116)' }}>{label}</span>
-          <span style={{ backgroundColor: colors.swampy, color: '#fff', padding: '2px 8px', borderRadius: '10px', fontSize: '11px', fontWeight: '600' }}>
+        <div className="app__admin__image-manager-info">
+          <span className="app__admin__label">{label}</span>
+          <span className="app__admin__image-manager-count">
             {safeImages.length} зображення {maxImages === 1 ? '(макс. 1)' : ''}
           </span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ fontSize: '12px', fontWeight: '600', color: 'rgb(125, 143, 116)' }}>
+        <div className="app__admin__image-manager-controls">
+          <span>
             {isOpen ? 'Згорнути' : 'Розгорнути'}
           </span>
           <svg
@@ -247,7 +239,6 @@ const ImageManager = ({ label, images, onImagesChange, projectId, type, maxImage
             style={{
               transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
               transition: 'transform 0.3s ease',
-              color: 'rgb(125, 143, 116)',
             }}
           >
             <polyline points="6 9 12 15 18 9"></polyline>
@@ -256,32 +247,31 @@ const ImageManager = ({ label, images, onImagesChange, projectId, type, maxImage
       </div>
 
       <div
+        className="app__admin__image-manager-content"
         style={{
           maxHeight: isOpen ? '2000px' : '0px',
           opacity: isOpen ? 1 : 0,
-          overflow: 'hidden',
-          transition: 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease',
           padding: isOpen ? '16px' : '0 16px',
         }}
       >
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: '10px' }}>
+        <div className="app__admin__image-manager-grid">
           {safeImages.map((url, index) => (
-            <div key={index} style={{ position: 'relative', aspectRatio: '1/1', border: `1px solid ${colors.sandy}`, borderRadius: '4px', overflow: 'hidden', backgroundColor: '#fff' }}>
-              <img src={url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div key={index} className="app__admin__image-manager-item">
+              <img src={url} alt="" />
               <button
                 type="button"
                 onClick={() => removeImage(index)}
-                style={{ position: 'absolute', top: '4px', right: '4px', width: '28px', height: '28px', borderRadius: '50%', backgroundColor: 'rgba(125, 143, 116, 0.75)', color: '#fff', border: 'none', cursor: 'pointer', fontSize: '22px', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}
+                className="app__admin__image-manager-remove"
               >
                 ×
               </button>
               {maxImages !== 1 && (
-                <div style={{ position: 'absolute', bottom: '4px', left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: '6px', padding: '0 6px' }}>
+                <div className="app__admin__image-manager-move-row">
                   <button
                     type="button"
                     onClick={() => moveImage(index, -1)}
                     disabled={index === 0}
-                    style={{ backgroundColor: colors.swampy, color: '#fff', border: 'none', borderRadius: '3px', padding: '2px 8px', fontSize: '15px', lineHeight: 1, cursor: index === 0 ? 'default' : 'pointer', opacity: index === 0 ? 0.4 : 0.9 }}
+                    className="app__admin__image-manager-move-btn"
                   >
                     ←
                   </button>
@@ -289,7 +279,7 @@ const ImageManager = ({ label, images, onImagesChange, projectId, type, maxImage
                     type="button"
                     onClick={() => moveImage(index, 1)}
                     disabled={index === safeImages.length - 1}
-                    style={{ backgroundColor: colors.swampy, color: '#fff', border: 'none', borderRadius: '3px', padding: '2px 8px', fontSize: '15px', lineHeight: 1, cursor: index === safeImages.length - 1 ? 'default' : 'pointer', opacity: index === safeImages.length - 1 ? 0.4 : 0.9 }}
+                    className="app__admin__image-manager-move-btn"
                   >
                     →
                   </button>
@@ -300,21 +290,10 @@ const ImageManager = ({ label, images, onImagesChange, projectId, type, maxImage
           {safeImages.length < maxImages && (
             <div
               onClick={() => !uploading && fileInputRef.current?.click()}
-              style={{
-                aspectRatio: '1/1',
-                border: `2px dashed ${colors.sandy}`,
-                borderRadius: '4px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: uploading ? 'default' : 'pointer',
-                backgroundColor: uploading ? '#f5f5f5' : 'transparent',
-                color: colors.swampy,
-              }}
+              className={`app__admin__image-manager-upload ${uploading ? 'app__admin__image-manager-upload--uploading' : ''}`}
             >
-              <span style={{ fontSize: '24px', fontWeight: 'bold' }}>{uploading ? '...' : '+'}</span>
-              <span style={{ fontSize: '10px' }}>{uploading ? 'Завантаження' : 'Додати'}</span>
+              <span className="app__admin__image-manager-upload-icon">{uploading ? '...' : '+'}</span>
+              <span className="app__admin__image-manager-upload-text">{uploading ? 'Завантаження' : 'Додати'}</span>
               <input
                 ref={fileInputRef}
                 type='file'
@@ -335,8 +314,59 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [authMode, setAuthMode] = useState('login'); // 'login' | 'forgot' | 'reset'
+  const [resetEmail, setResetEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
+
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    setLoginError('');
+    setLoginLoading(true);
+
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+    const { ok, data } = await safeFetch(`${API_URL}/api/auth/forgot-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: resetEmail }),
+    });
+
+    setLoginLoading(false);
+
+    if (ok && data && data.success) {
+      setAuthMode('reset');
+    } else {
+      setLoginError((data && data.message) || 'Помилка перевірки email');
+    }
+  };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    setLoginError('');
+    setLoginLoading(true);
+
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+    const { ok, data } = await safeFetch(`${API_URL}/api/auth/reset-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: resetEmail, newPassword }),
+    });
+
+    setLoginLoading(false);
+
+    if (ok && data && data.success) {
+      alert(data.message || 'Пароль успішно оновлено!');
+      setAuthMode('login');
+      setPassword('');
+      setNewPassword('');
+      setResetEmail('');
+    } else {
+      setLoginError((data && data.message) || 'Помилка зміни паролю');
+    }
+  };
 
   const screenWidth = useScreenWidth();
 
@@ -792,45 +822,177 @@ export default function AdminPage() {
         <Head>
           <title>Вхід в Адмін-панель | Аріна Козловська</title>
         </Head>
-        <div style={styles.loginContainer}>
-          <div style={styles.loginCard}>
-            <h1 style={styles.loginTitle}>Адмін-панель</h1>
-            <p style={styles.loginSubtitle}>Введіть облікові дані для входу</p>
+        <div className="app__admin__login-container">
+          <div className="app__admin__login-card">
+            <h1 className="app__admin__login-title">
+              {authMode === 'login' && 'Адмін-панель'}
+              {authMode === 'forgot' && 'Відновлення пароля'}
+              {authMode === 'reset' && 'Новий пароль'}
+            </h1>
+            <p style={{ color: 'rgb(125, 143, 116)', fontSize: '14px', marginBottom: '24px', textAlign: 'center' }}>
+              {authMode === 'login' && 'Введіть облікові дані для входу'}
+              {authMode === 'forgot' && 'Введіть зареєстровану пошту (arinakozlovska@gmail.com)'}
+              {authMode === 'reset' && 'Введіть новий пароль для адміністратора'}
+            </p>
 
-            {loginError && <div style={styles.error}>{loginError}</div>}
+            {loginError && <div className="app__admin__error">{loginError}</div>}
 
-            <form onSubmit={handleLogin} style={styles.form}>
-              <div style={styles.inputGroup}>
-                <label style={styles.label}>Логін</label>
-                <input
-                  type='text'
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  style={styles.input}
-                  placeholder='Введіть логін'
-                  required
-                />
-              </div>
+            {authMode === 'login' && (
+              <form onSubmit={handleLogin} className="app__admin__form">
+                <div className="app__admin__input-group">
+                  <label className="app__admin__label">Логін</label>
+                  <input
+                    type='text'
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="app__admin__input"
+                    placeholder='Введіть логін'
+                    required
+                  />
+                </div>
 
-              <div style={styles.inputGroup}>
-                <label style={styles.label}>Пароль</label>
-                <input
-                  type='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={styles.input}
-                  placeholder='Введіть пароль'
-                  required
-                />
-              </div>
+                <div className="app__admin__input-group">
+                  <label className="app__admin__label">Пароль</label>
+                  <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="app__admin__input"
+                      placeholder='Введіть пароль'
+                      style={{ width: '100%', paddingRight: '40px' }}
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      title={showPassword ? "Приховати пароль" : "Показати пароль"}
+                      style={{
+                        position: 'absolute',
+                        right: '10px',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        padding: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        color: 'rgb(125, 143, 116)'
+                      }}
+                    >
+                      {showPassword ? (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                          <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                      ) : (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                </div>
 
-              <button type='submit' style={styles.primaryBtn} disabled={loginLoading}>
-                {loginLoading ? 'Вхід...' : 'Увійти'}
-              </button>
-            </form>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginTop: '10px' }}>
+                  <button type='submit' className="app__admin__btn app__admin__btn--primary" style={{ width: '100%' }} disabled={loginLoading}>
+                    {loginLoading ? 'Вхід...' : 'Увійти'}
+                  </button>
+                  <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', width: '100%' }}>
+                    <button type='button' onClick={() => { setAuthMode('forgot'); setLoginError(''); }} className="app__admin__btn app__admin__btn--cancel" style={{ flex: 1 }}>
+                      Змінити пароль
+                    </button>
+                    <button type='button' onClick={() => { setAuthMode('forgot'); setLoginError(''); }} className="app__admin__btn app__admin__btn--cancel" style={{ flex: 1 }}>
+                      Забули пароль
+                    </button>
+                  </div>
+                </div>
+              </form>
+            )}
 
-            <div style={styles.backLink}>
-              <a href='/' style={styles.link}>← На головний сайт</a>
+            {authMode === 'forgot' && (
+              <form onSubmit={handleForgotPassword} className="app__admin__form">
+                <div className="app__admin__input-group">
+                  <label className="app__admin__label">Email</label>
+                  <input
+                    type='email'
+                    value={resetEmail}
+                    onChange={(e) => setResetEmail(e.target.value)}
+                    className="app__admin__input"
+                    placeholder='arinakozlovska@gmail.com'
+                    required
+                  />
+                </div>
+
+                <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', width: '100%', marginTop: '10px' }}>
+                  <button type='submit' className="app__admin__btn app__admin__btn--primary" style={{ flex: 1 }} disabled={loginLoading}>
+                    {loginLoading ? 'Перевірка...' : 'Далі'}
+                  </button>
+                  <button type='button' onClick={() => { setAuthMode('login'); setLoginError(''); }} className="app__admin__btn app__admin__btn--cancel" style={{ flex: 1 }}>
+                    Назад
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {authMode === 'reset' && (
+              <form onSubmit={handleResetPassword} className="app__admin__form">
+                <div className="app__admin__input-group">
+                  <label className="app__admin__label">Новий пароль</label>
+                  <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                    <input
+                      type={showNewPassword ? 'text' : 'password'}
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      className="app__admin__input"
+                      placeholder='Введіть новий пароль'
+                      style={{ width: '100%', paddingRight: '40px' }}
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowNewPassword(!showNewPassword)}
+                      title={showNewPassword ? "Приховати пароль" : "Показати пароль"}
+                      style={{
+                        position: 'absolute',
+                        right: '10px',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        padding: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        color: 'rgb(125, 143, 116)'
+                      }}
+                    >
+                      {showNewPassword ? (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                          <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                      ) : (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', width: '100%', marginTop: '10px' }}>
+                  <button type='submit' className="app__admin__btn app__admin__btn--primary" style={{ flex: 1 }} disabled={loginLoading}>
+                    {loginLoading ? 'Збереження...' : 'Зберегти'}
+                  </button>
+                  <button type='button' onClick={() => { setAuthMode('login'); setLoginError(''); }} className="app__admin__btn app__admin__btn--cancel" style={{ flex: 1 }}>
+                    Назад
+                  </button>
+                </div>
+              </form>
+            )}
+
+            <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <a href='/' style={{ color: 'rgb(125, 143, 116)', textDecoration: 'none', fontSize: '14px', fontWeight: '600' }}>← На головний сайт</a>
             </div>
           </div>
         </div>
@@ -838,22 +1000,22 @@ export default function AdminPage() {
     );
   }
 
-  const drawerWidth = isCollapsed ? '88px' : '280px';
+  const drawerWidth = isCollapsed ? (isMobile ? '40px' : '88px') : '260px';
 
   return (
     <>
       <Head>
         <title>Адмін-панель | Аріна Козловська</title>
       </Head>
-      <div style={styles.layoutContainer}>
+      <div className="app__admin">
         {/* Drawer Sidebar */}
-        <aside style={{ ...styles.drawer, width: drawerWidth }}>
-          <div style={styles.drawerHeader}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-              {!isCollapsed && <h2 style={styles.drawerTitle}>Адмін-панель</h2>}
+        <aside className="app__admin__drawer" style={{ width: drawerWidth }}>
+          <div className={`app__admin__drawer-header ${isCollapsed ? 'app__admin__drawer-header--collapsed' : ''}`}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: isCollapsed ? 'center' : 'space-between', width: '100%' }}>
+              {!isCollapsed && <h2 className="app__admin__drawer-title">Адмін-панель</h2>}
               <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgb(125, 143, 116)', padding: '4px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className="app__admin__collapse-btn"
                 title={isCollapsed ? 'Розгорнути меню' : 'Згорнути меню'}
               >
                 <svg
@@ -868,209 +1030,192 @@ export default function AdminPage() {
                   style={{
                     transform: isCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
                     transition: 'transform 0.3s ease',
-                    color: 'rgb(125, 143, 116)',
                   }}
                 >
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
             </div>
-            {!isCollapsed && <span style={styles.userBadge}>Arina-admin</span>}
+            {!isCollapsed && <span className="app__admin__user-badge">Arina-admin</span>}
           </div>
 
-          <nav style={styles.drawerNav}>
+          <nav className="app__admin__drawer-nav">
             <button
-              onClick={() => setActiveTab('projects')}
-              style={{ ...styles.drawerItem, ...(activeTab === 'projects' ? styles.drawerItemActive : {}) }}
+              onClick={() => { setActiveTab('projects'); setIsCollapsed(true); }}
+              className={`app__admin__drawer-item ${activeTab === 'projects' ? 'app__admin__drawer-item--active' : ''} ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
               title="Проєкти"
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill={activeTab === 'projects' ? '#fff' : 'rgb(125, 143, 116)'} style={{ flexShrink: 0 }}>
-                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
               </svg>
-              {!isCollapsed && <span style={styles.drawerItemText}>Проєкти</span>}
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Проєкти</span>}
             </button>
             <button
-              onClick={() => setActiveTab('prices')}
-              style={{ ...styles.drawerItem, ...(activeTab === 'prices' ? styles.drawerItemActive : {}) }}
+              onClick={() => { setActiveTab('prices'); setIsCollapsed(true); }}
+              className={`app__admin__drawer-item ${activeTab === 'prices' ? 'app__admin__drawer-item--active' : ''} ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
               title="Ціни"
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill={activeTab === 'prices' ? '#fff' : 'rgb(125, 143, 116)'} style={{ flexShrink: 0 }}>
-                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
               </svg>
-              {!isCollapsed && <span style={styles.drawerItemText}>Ціни</span>}
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Ціни</span>}
             </button>
             <button
-              onClick={() => setActiveTab('mainBanner')}
-              style={{ ...styles.drawerItem, ...(activeTab === 'mainBanner' ? styles.drawerItemActive : {}) }}
+              onClick={() => { setActiveTab('mainBanner'); setIsCollapsed(true); }}
+              className={`app__admin__drawer-item ${activeTab === 'mainBanner' ? 'app__admin__drawer-item--active' : ''} ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
               title="Головний банер"
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill={activeTab === 'mainBanner' ? '#fff' : 'rgb(125, 143, 116)'} style={{ flexShrink: 0 }}>
-                <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
               </svg>
-              {!isCollapsed && <span style={styles.drawerItemText}>Головний банер</span>}
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Головний банер</span>}
             </button>
             <button
-              onClick={() => setActiveTab('techBanner')}
-              style={{ ...styles.drawerItem, ...(activeTab === 'techBanner' ? styles.drawerItemActive : {}) }}
+              onClick={() => { setActiveTab('techBanner'); setIsCollapsed(true); }}
+              className={`app__admin__drawer-item ${activeTab === 'techBanner' ? 'app__admin__drawer-item--active' : ''} ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
               title="Технічний банер"
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill={activeTab === 'techBanner' ? '#fff' : 'rgb(125, 143, 116)'} style={{ flexShrink: 0 }}>
-                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
               </svg>
-              {!isCollapsed && <span style={styles.drawerItemText}>Технічний банер</span>}
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Технічний банер</span>}
             </button>
             <button
-              onClick={() => setActiveTab('about')}
-              style={{ ...styles.drawerItem, ...(activeTab === 'about' ? styles.drawerItemActive : {}) }}
+              onClick={() => { setActiveTab('about'); setIsCollapsed(true); }}
+              className={`app__admin__drawer-item ${activeTab === 'about' ? 'app__admin__drawer-item--active' : ''} ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
               title="Про мене"
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill={activeTab === 'about' ? '#fff' : 'rgb(125, 143, 116)'} style={{ flexShrink: 0 }}>
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
               </svg>
-              {!isCollapsed && <span style={styles.drawerItemText}>Про мене</span>}
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Про мене</span>}
             </button>
             <button
-              onClick={() => setActiveTab('designProject')}
-              style={{ ...styles.drawerItem, ...(activeTab === 'designProject' ? styles.drawerItemActive : {}) }}
+              onClick={() => { setActiveTab('designProject'); setIsCollapsed(true); }}
+              className={`app__admin__drawer-item ${activeTab === 'designProject' ? 'app__admin__drawer-item--active' : ''} ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
               title="Дизайн проєкт"
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill={activeTab === 'designProject' ? '#fff' : 'rgb(125, 143, 116)'} style={{ flexShrink: 0 }}>
-                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
+                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z" />
               </svg>
-              {!isCollapsed && <span style={styles.drawerItemText}>Дизайн проєкт</span>}
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Дизайн проєкт</span>}
             </button>
             <button
-              onClick={() => setActiveTab('techProject')}
-              style={{ ...styles.drawerItem, ...(activeTab === 'techProject' ? styles.drawerItemActive : {}) }}
+              onClick={() => { setActiveTab('techProject'); setIsCollapsed(true); }}
+              className={`app__admin__drawer-item ${activeTab === 'techProject' ? 'app__admin__drawer-item--active' : ''} ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
               title="Технічний проєкт"
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill={activeTab === 'techProject' ? '#fff' : 'rgb(125, 143, 116)'} style={{ flexShrink: 0 }}>
-                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
               </svg>
-              {!isCollapsed && <span style={styles.drawerItemText}>Технічний проєкт</span>}
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Технічний проєкт</span>}
             </button>
             <button
-              onClick={() => setActiveTab('authorSupervision')}
-              style={{ ...styles.drawerItem, ...(activeTab === 'authorSupervision' ? styles.drawerItemActive : {}) }}
+              onClick={() => { setActiveTab('authorSupervision'); setIsCollapsed(true); }}
+              className={`app__admin__drawer-item ${activeTab === 'authorSupervision' ? 'app__admin__drawer-item--active' : ''} ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
               title="Дизайнерський нагляд"
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill={activeTab === 'authorSupervision' ? '#fff' : 'rgb(125, 143, 116)'} style={{ flexShrink: 0 }}>
-                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
               </svg>
-              {!isCollapsed && <span style={styles.drawerItemText}>Дизайнерський нагляд</span>}
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Дизайнерський нагляд</span>}
             </button>
 
             {!isCollapsed && (
               <a
                 href='/'
                 target='_blank'
-                style={{
-                  ...styles.siteLink,
-                  borderTop: `1px solid ${colors.sandy}`,
-                  paddingTop: '12px',
-                  marginTop: '4px',
-                }}
+                className="app__admin__site-link"
+                style={{ borderTop: `1px solid ${colors.sandy}`, paddingTop: '12px', marginTop: '4px' }}
               >
                 Переглянути сайт ↗
               </a>
             )}
-            <button onClick={handleLogout} style={styles.logoutBtn} title="Вийти">
-              {isCollapsed ? '⎋' : 'Вийти'}
+            <button
+              onClick={handleLogout}
+              className={`app__admin__drawer-item app__admin__drawer-item--logout ${isCollapsed ? 'app__admin__drawer-item--collapsed' : ''}`}
+              title="Вийти"
+            >
+              <svg width="32" height="32" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
+                <path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+              </svg>
+              {!isCollapsed && <span className="app__admin__drawer-item-text">Вийти</span>}
             </button>
           </nav>
         </aside>
 
         {/* Main Content Area */}
-        <main style={{ ...styles.mainContent, maxWidth: `calc(100vw - ${drawerWidth})` }}>
+        <main className="app__admin__main">
           {loading ? (
-            <p style={styles.loadingText}>Завантаження даних...</p>
+            <p className="app__admin__loading">Завантаження даних...</p>
           ) : (
             <>
               {/* 1. PROJECTS TAB */}
               {activeTab === 'projects' && (
                 <div>
-                  <h1 style={styles.sectionTitle}>Керування проєктами</h1>
-                  <div style={styles.grid}>
-                    <div style={styles.card}>
-                      <h2 style={styles.cardTitle}>
+                  <h1 className="app__admin__section-title">Керування проєктами</h1>
+                  <div className="app__admin__projects-grid">
+                    <div className="app__admin__card">
+                      <h2 className="app__admin__card-title">
                         {isEditing ? `Редагувати проєкт: ${currentId}` : 'Додати новий проєкт'}
                       </h2>
-                      <form onSubmit={handleProjectSubmit} style={styles.form}>
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', backgroundColor: 'rgba(125, 143, 116, 0.1)', borderRadius: '6px', border: `1px solid ${colors.sandy}` }}>
-                          <label style={{ ...styles.label, marginBottom: 0, fontSize: '14px' }}>Показувати вкладку "Реалізація"</label>
+                      <form onSubmit={handleProjectSubmit} className="app__admin__form">
+                        <div className="app__admin__toggle-wrapper">
+                          <label className="app__admin__toggle-label">Показувати вкладку "Реалізація"</label>
                           <div
                             onClick={() => setFormData({ ...formData, showRealization: !formData.showRealization })}
-                            style={{
-                              width: '46px',
-                              height: '24px',
-                              backgroundColor: formData.showRealization ? colors.swampy : colors.gray,
-                              borderRadius: '12px',
-                              position: 'relative',
-                              cursor: 'pointer',
-                              transition: 'background-color 0.2s',
-                              flexShrink: 0,
-                            }}
+                            className={`app__admin__toggle-track ${formData.showRealization ? 'app__admin__toggle-track--active' : 'app__admin__toggle-track--inactive'}`}
                           >
                             <div
-                              style={{
-                                width: '20px',
-                                height: '20px',
-                                backgroundColor: '#fff',
-                                borderRadius: '50%',
-                                position: 'absolute',
-                                top: '2px',
-                                left: formData.showRealization ? '24px' : '2px',
-                                transition: 'left 0.2s',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-                              }}
+                              className={`app__admin__toggle-thumb ${formData.showRealization ? 'app__admin__toggle-thumb--active' : 'app__admin__toggle-thumb--inactive'}`}
                             />
                           </div>
                         </div>
 
-                        <div style={styles.inputGroup}>
-                          <label style={styles.label}>ID проєкту (напр. project9)</label>
+                        <div className="app__admin__input-group">
+                          <label className="app__admin__label">ID проєкту (напр. project9)</label>
                           <input
                             type='text'
                             value={formData.id}
                             onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-                            style={styles.input}
+                            className="app__admin__input"
                             placeholder='Введіть унікальний ID (напр. project6)'
                             required
                             disabled={isEditing}
                           />
                         </div>
 
-                        <div style={styles.inputGroup}>
-                          <label style={styles.label}>Порядковий номер (orderNumber)</label>
+                        <div className="app__admin__input-group">
+                          <label className="app__admin__label">Порядковий номер (orderNumber)</label>
                           <input
                             type='number'
                             value={formData.orderNumber}
                             onChange={(e) => setFormData({ ...formData, orderNumber: e.target.value })}
-                            style={styles.input}
+                            className="app__admin__input"
                             placeholder='Введіть число (напр. 1)'
                             required
                           />
                         </div>
 
-                        <div style={styles.inputGroup}>
-                          <label style={styles.label}>Опис об'єкта</label>
+                        <div className="app__admin__input-group">
+                          <label className="app__admin__label">Опис об'єкта</label>
                           <input
                             type='text'
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                            style={styles.input}
+                            className="app__admin__input"
                             placeholder='Введіть опис об’єкта'
                             required
                           />
                         </div>
 
-                        <div style={styles.inputGroup}>
-                          <label style={styles.label}>Площа</label>
+                        <div className="app__admin__input-group">
+                          <label className="app__admin__label">Площа</label>
                           <input
                             type='text'
                             value={formData.area}
                             onChange={(e) => setFormData({ ...formData, area: e.target.value })}
-                            style={styles.input}
+                            className="app__admin__input"
                             placeholder='Введіть площу (напр. 120 м²)'
                             required
                           />
@@ -1094,34 +1239,34 @@ export default function AdminPage() {
                           defaultOpen={false}
                         />
 
-                        <div style={styles.buttonRow}>
-                          <button type='submit' style={styles.primaryBtn}>
+                        <div className="app__admin__button-row">
+                          <button type='submit' className="app__admin__btn app__admin__btn--primary">
                             Зберегти
                           </button>
-                          <button type='button' onClick={() => { handleOpenCreate(); handleCancel(fetchProjects); }} style={styles.cancelBtn}>
+                          <button type='button' onClick={() => { handleOpenCreate(); handleCancel(fetchProjects); }} className="app__admin__btn app__admin__btn--cancel">
                             Скасувати
                           </button>
                         </div>
                       </form>
                     </div>
 
-                    <div style={styles.card}>
-                      <h2 style={styles.cardTitle}>Список проєктів ({projects.length})</h2>
+                    <div className="app__admin__card">
+                      <h2 className="app__admin__card-title">Список проєктів ({projects.length})</h2>
                       {projects.length === 0 ? (
-                        <p style={styles.loadingText}>Проєктів поки немає.</p>
+                        <p className="app__admin__loading">Проєктів поки немає.</p>
                       ) : (
-                        <div style={styles.projectList}>
+                        <div className="app__admin__project-list">
                           {projects.map((p) => (
-                            <div key={p.id} style={styles.projectItem}>
+                            <div key={p.id} className="app__admin__project-item">
                               <div>
                                 <span style={{ backgroundColor: colors.swampy, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '11px', marginRight: '8px', fontWeight: '600' }}>
                                   №{p.orderNumber ?? 0}
                                 </span>
                                 {p.description} ({p.area})
                               </div>
-                              <div style={styles.itemActions}>
-                                <button onClick={() => handleOpenEdit(p)} style={styles.editBtn}>Редагувати</button>
-                                <button onClick={() => handleDeleteProject(p.id)} style={styles.deleteBtn}>Видалити</button>
+                              <div className="app__admin__item-actions">
+                                <button onClick={() => handleOpenEdit(p)} className="app__admin__btn app__admin__btn--edit">Редагувати</button>
+                                <button onClick={() => handleDeleteProject(p.id)} className="app__admin__btn app__admin__btn--delete">Видалити</button>
                               </div>
                             </div>
                           ))}
@@ -1134,11 +1279,11 @@ export default function AdminPage() {
 
               {/* 2. PRICES TAB */}
               {activeTab === 'prices' && (
-                <div style={styles.card}>
-                  <h1 style={styles.sectionTitle}>Керування цінами</h1>
-                  <form onSubmit={handlePriceSubmit} style={styles.form}>
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Дизайн проєкт (напр. 20 $ кв.м.)</label>
+                <div className="app__admin__card">
+                  <h1 className="app__admin__section-title">Керування цінами</h1>
+                  <form onSubmit={handlePriceSubmit} className="app__admin__form">
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Дизайн проєкт (напр. 20 $ кв.м.)</label>
                       <FontStyleEditor
                         styleConfig={priceData.designPriceStyle}
                         onChange={(style) => setPriceData({ ...priceData, designPriceStyle: style })}
@@ -1147,13 +1292,13 @@ export default function AdminPage() {
                         type='text'
                         value={priceData.designProject}
                         onChange={(e) => setPriceData({ ...priceData, designProject: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Технічний проєкт (напр. 10 $ кв.м.)</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Технічний проєкт (напр. 10 $ кв.м.)</label>
                       <FontStyleEditor
                         styleConfig={priceData.techPriceStyle}
                         onChange={(style) => setPriceData({ ...priceData, techPriceStyle: style })}
@@ -1162,13 +1307,13 @@ export default function AdminPage() {
                         type='text'
                         value={priceData.technicalProject}
                         onChange={(e) => setPriceData({ ...priceData, technicalProject: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Авторський нагляд (напр. від 250$ в міс.)</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Авторський нагляд (напр. від 250$ в міс.)</label>
                       <FontStyleEditor
                         styleConfig={priceData.authorPriceStyle}
                         onChange={(style) => setPriceData({ ...priceData, authorPriceStyle: style })}
@@ -1177,16 +1322,16 @@ export default function AdminPage() {
                         type='text'
                         value={priceData.authorSupervision}
                         onChange={(e) => setPriceData({ ...priceData, authorSupervision: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         required
                       />
                     </div>
 
-                    <div style={styles.buttonRow}>
-                      <button type='submit' style={styles.primaryBtn}>
+                    <div className="app__admin__button-row">
+                      <button type='submit' className="app__admin__btn app__admin__btn--primary">
                         Зберегти
                       </button>
-                      <button type='button' onClick={() => handleCancel(() => { if (initialPriceData) setPriceData({ ...initialPriceData }); })} style={styles.cancelBtn}>
+                      <button type='button' onClick={() => handleCancel(() => { if (initialPriceData) setPriceData({ ...initialPriceData }); })} className="app__admin__btn app__admin__btn--cancel">
                         Скасувати
                       </button>
                     </div>
@@ -1196,8 +1341,8 @@ export default function AdminPage() {
 
               {/* 3. MAIN BANNER TAB */}
               {activeTab === 'mainBanner' && (
-                <div style={styles.card}>
-                  <h1 style={styles.sectionTitle}>Керування головним банером (каруселлю)</h1>
+                <div className="app__admin__card">
+                  <h1 className="app__admin__section-title">Керування головним банером (каруселлю)</h1>
                   <p style={{ marginBottom: '20px', fontSize: '14px', color: 'rgb(125, 143, 116)' }}>
                     Додавайте, видаляйте або змінюйте порядок слайдів головного банера на сайті.
                   </p>
@@ -1208,11 +1353,11 @@ export default function AdminPage() {
                     projectId='main-carousel'
                     type='carousel'
                   />
-                  <div style={styles.buttonRow}>
-                    <button onClick={() => saveContent('mainBanner', mainBannerImages)} style={styles.primaryBtn}>
+                  <div className="app__admin__button-row">
+                    <button onClick={() => saveContent('mainBanner', mainBannerImages)} className="app__admin__btn app__admin__btn--primary">
                       Зберегти
                     </button>
-                    <button onClick={() => handleCancel(() => { if (initialMainBanner) setMainBannerImages([...initialMainBanner]); })} style={styles.cancelBtn}>
+                    <button onClick={() => handleCancel(() => { if (initialMainBanner) setMainBannerImages([...initialMainBanner]); })} className="app__admin__btn app__admin__btn--cancel">
                       Скасувати
                     </button>
                   </div>
@@ -1221,8 +1366,8 @@ export default function AdminPage() {
 
               {/* 4. TECH BANNER TAB */}
               {activeTab === 'techBanner' && (
-                <div style={styles.card}>
-                  <h1 style={styles.sectionTitle}>Керування технічним банером (каруселлю цін)</h1>
+                <div className="app__admin__card">
+                  <h1 className="app__admin__section-title">Керування технічним банером (каруселлю цін)</h1>
                   <p style={{ marginBottom: '20px', fontSize: '14px', color: 'rgb(125, 143, 116)' }}>
                     Керуйте зображеннями каруселі в секції цін та технічної документації.
                   </p>
@@ -1233,11 +1378,11 @@ export default function AdminPage() {
                     projectId='prices-banner'
                     type='carousel'
                   />
-                  <div style={styles.buttonRow}>
-                    <button onClick={() => saveContent('techBanner', techBannerImages)} style={styles.primaryBtn}>
+                  <div className="app__admin__button-row">
+                    <button onClick={() => saveContent('techBanner', techBannerImages)} className="app__admin__btn app__admin__btn--primary">
                       Зберегти
                     </button>
-                    <button onClick={() => handleCancel(() => { if (initialTechBanner) setTechBannerImages([...initialTechBanner]); })} style={styles.cancelBtn}>
+                    <button onClick={() => handleCancel(() => { if (initialTechBanner) setTechBannerImages([...initialTechBanner]); })} className="app__admin__btn app__admin__btn--cancel">
                       Скасувати
                     </button>
                   </div>
@@ -1246,11 +1391,11 @@ export default function AdminPage() {
 
               {/* 5. ABOUT TAB */}
               {activeTab === 'about' && (
-                <div style={styles.card}>
-                  <h1 style={styles.sectionTitle}>Керування розділом "Про мене"</h1>
-                  <form onSubmit={(e) => { e.preventDefault(); saveContent('about', aboutData); }} style={styles.form}>
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Заголовок розділу (напр. ПРО МЕНЕ:)</label>
+                <div className="app__admin__card">
+                  <h1 className="app__admin__section-title">Керування розділом "Про мене"</h1>
+                  <form onSubmit={(e) => { e.preventDefault(); saveContent('about', aboutData); }} className="app__admin__form">
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Заголовок розділу (напр. ПРО МЕНЕ:)</label>
                       <FontStyleEditor
                         styleConfig={aboutData.titleStyle}
                         onChange={(style) => setAboutData({ ...aboutData, titleStyle: style })}
@@ -1259,13 +1404,13 @@ export default function AdminPage() {
                         type='text'
                         value={aboutData.title}
                         onChange={(e) => setAboutData({ ...aboutData, title: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Текст (абзаци розділяйте порожнім рядком / Enter)</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Текст (абзаци розділяйте порожнім рядком / Enter)</label>
                       <FontStyleEditor
                         styleConfig={aboutData.textStyle}
                         onChange={(style) => setAboutData({ ...aboutData, textStyle: style })}
@@ -1273,7 +1418,8 @@ export default function AdminPage() {
                       <textarea
                         value={aboutData.text}
                         onChange={(e) => setAboutData({ ...aboutData, text: e.target.value })}
-                        style={{ ...styles.input, color: '#000', minHeight: '200px', resize: 'vertical' }}
+                        className="app__admin__input"
+                        style={{ minHeight: '200px', resize: 'vertical' }}
                         required
                       />
                     </div>
@@ -1287,59 +1433,59 @@ export default function AdminPage() {
                       maxImages={1}
                     />
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Номер телефону</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Номер телефону</label>
                       <input
                         type='text'
                         value={aboutData.phone || ''}
                         onChange={(e) => setAboutData({ ...aboutData, phone: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         placeholder="Введіть номер телефону"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Viber</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Viber</label>
                       <input
                         type='text'
                         value={aboutData.viber || ''}
                         onChange={(e) => setAboutData({ ...aboutData, viber: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         placeholder="Введіть номер телефону"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Telegram</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Telegram</label>
                       <input
                         type='text'
                         value={aboutData.telegram || ''}
                         onChange={(e) => setAboutData({ ...aboutData, telegram: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         placeholder="Введіть посилання"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Email</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Email</label>
                       <input
                         type='email'
                         value={aboutData.email || ''}
                         onChange={(e) => setAboutData({ ...aboutData, email: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         placeholder="Введіть пошту"
                         required
                       />
                     </div>
 
-                    <div style={styles.buttonRow}>
-                      <button type='submit' style={styles.primaryBtn}>
+                    <div className="app__admin__button-row">
+                      <button type='submit' className="app__admin__btn app__admin__btn--primary">
                         Зберегти
                       </button>
-                      <button type='button' onClick={() => handleCancel(() => { if (initialAboutData) setAboutData({ ...initialAboutData }); })} style={styles.cancelBtn}>
+                      <button type='button' onClick={() => handleCancel(() => { if (initialAboutData) setAboutData({ ...initialAboutData }); })} className="app__admin__btn app__admin__btn--cancel">
                         Скасувати
                       </button>
                     </div>
@@ -1349,11 +1495,11 @@ export default function AdminPage() {
 
               {/* 6. DESIGN PROJECT TAB */}
               {activeTab === 'designProject' && (
-                <div style={styles.card}>
-                  <h1 style={styles.sectionTitle}>Керування послугою "Дизайн проєкт"</h1>
-                  <form onSubmit={(e) => { e.preventDefault(); saveContent('designProject', designProjectData); }} style={styles.form}>
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Заголовок послуги</label>
+                <div className="app__admin__card">
+                  <h1 className="app__admin__section-title">Керування послугою "Дизайн проєкт"</h1>
+                  <form onSubmit={(e) => { e.preventDefault(); saveContent('designProject', designProjectData); }} className="app__admin__form">
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Заголовок послуги</label>
                       <FontStyleEditor
                         styleConfig={designProjectData.titleStyle}
                         onChange={(style) => setDesignProjectData({ ...designProjectData, titleStyle: style })}
@@ -1362,20 +1508,20 @@ export default function AdminPage() {
                         type='text'
                         value={designProjectData.title}
                         onChange={(e) => setDesignProjectData({ ...designProjectData, title: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Етапи проєкту</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Етапи проєкту</label>
                       <FontStyleEditor
                         styleConfig={designProjectData.stepStyle}
                         onChange={(style) => setDesignProjectData({ ...designProjectData, stepStyle: style })}
                       />
                       {designProjectData.steps.map((step, index) => (
-                        <div key={index} style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '8px' }}>
-                          <span style={{ fontWeight: '700', minWidth: '30px', color: colors.swampy }}>
+                        <div key={index} className="app__admin__step-item">
+                          <span className="app__admin__step-item-number">
                             {String(index + 1).padStart(2, '0')}
                           </span>
                           <textarea
@@ -1385,7 +1531,8 @@ export default function AdminPage() {
                               newSteps[index] = e.target.value;
                               setDesignProjectData({ ...designProjectData, steps: newSteps });
                             }}
-                            style={{ ...styles.input, color: '#000', minHeight: '60px', resize: 'vertical', flex: 1 }}
+                            className="app__admin__input"
+                            style={{ minHeight: '60px', resize: 'vertical', flex: 1 }}
                             required
                           />
                           <button
@@ -1394,7 +1541,7 @@ export default function AdminPage() {
                               const newSteps = designProjectData.steps.filter((_, i) => i !== index);
                               setDesignProjectData({ ...designProjectData, steps: newSteps });
                             }}
-                            style={{ background: 'none', border: 'none', color: 'rgb(125, 143, 116)', fontSize: '36px', cursor: 'pointer', fontWeight: 'bold', lineHeight: 1, padding: '0 8px' }}
+                            className="app__admin__btn--remove-step"
                           >
                             ×
                           </button>
@@ -1405,7 +1552,7 @@ export default function AdminPage() {
                         onClick={() => {
                           setDesignProjectData({ ...designProjectData, steps: [...designProjectData.steps, ''] });
                         }}
-                        style={{ backgroundColor: colors.swampy, color: '#fff', border: 'none', padding: '8px 14px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '13px', alignSelf: 'flex-start', marginTop: '6px' }}
+                        className="app__admin__btn app__admin__btn--add-step"
                       >
                         + Додати етап
                       </button>
@@ -1420,11 +1567,11 @@ export default function AdminPage() {
                       maxImages={1}
                     />
 
-                    <div style={styles.buttonRow}>
-                      <button type='submit' style={styles.primaryBtn}>
+                    <div className="app__admin__button-row">
+                      <button type='submit' className="app__admin__btn app__admin__btn--primary">
                         Зберегти
                       </button>
-                      <button type='button' onClick={() => handleCancel(() => { if (initialDesignProjectData) setDesignProjectData({ ...initialDesignProjectData }); })} style={styles.cancelBtn}>
+                      <button type='button' onClick={() => handleCancel(() => { if (initialDesignProjectData) setDesignProjectData({ ...initialDesignProjectData }); })} className="app__admin__btn app__admin__btn--cancel">
                         Скасувати
                       </button>
                     </div>
@@ -1434,11 +1581,11 @@ export default function AdminPage() {
 
               {/* 7. TECH PROJECT TAB */}
               {activeTab === 'techProject' && (
-                <div style={styles.card}>
-                  <h1 style={styles.sectionTitle}>Керування послугою "Технічний проєкт"</h1>
-                  <form onSubmit={(e) => { e.preventDefault(); saveContent('techProject', techProjectData); }} style={styles.form}>
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Заголовок послуги</label>
+                <div className="app__admin__card">
+                  <h1 className="app__admin__section-title">Керування послугою "Технічний проєкт"</h1>
+                  <form onSubmit={(e) => { e.preventDefault(); saveContent('techProject', techProjectData); }} className="app__admin__form">
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Заголовок послуги</label>
                       <FontStyleEditor
                         styleConfig={techProjectData.titleStyle}
                         onChange={(style) => setTechProjectData({ ...techProjectData, titleStyle: style })}
@@ -1447,20 +1594,20 @@ export default function AdminPage() {
                         type='text'
                         value={techProjectData.title}
                         onChange={(e) => setTechProjectData({ ...techProjectData, title: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Етапи проєкту</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Етапи проєкту</label>
                       <FontStyleEditor
                         styleConfig={techProjectData.stepStyle}
                         onChange={(style) => setTechProjectData({ ...techProjectData, stepStyle: style })}
                       />
                       {techProjectData.steps.map((step, index) => (
-                        <div key={index} style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '8px' }}>
-                          <span style={{ fontWeight: '700', minWidth: '30px', color: colors.swampy }}>
+                        <div key={index} className="app__admin__step-item">
+                          <span className="app__admin__step-item-number">
                             {String(index + 1).padStart(2, '0')}
                           </span>
                           <textarea
@@ -1470,7 +1617,8 @@ export default function AdminPage() {
                               newSteps[index] = e.target.value;
                               setTechProjectData({ ...techProjectData, steps: newSteps });
                             }}
-                            style={{ ...styles.input, color: '#000', minHeight: '60px', resize: 'vertical', flex: 1 }}
+                            className="app__admin__input"
+                            style={{ minHeight: '60px', resize: 'vertical', flex: 1 }}
                             required
                           />
                           <button
@@ -1479,7 +1627,7 @@ export default function AdminPage() {
                               const newSteps = techProjectData.steps.filter((_, i) => i !== index);
                               setTechProjectData({ ...techProjectData, steps: newSteps });
                             }}
-                            style={{ background: 'none', border: 'none', color: 'rgb(125, 143, 116)', fontSize: '36px', cursor: 'pointer', fontWeight: 'bold', lineHeight: 1, padding: '0 8px' }}
+                            className="app__admin__btn--remove-step"
                           >
                             ×
                           </button>
@@ -1490,7 +1638,7 @@ export default function AdminPage() {
                         onClick={() => {
                           setTechProjectData({ ...techProjectData, steps: [...techProjectData.steps, ''] });
                         }}
-                        style={{ backgroundColor: colors.swampy, color: '#fff', border: 'none', padding: '8px 14px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '13px', alignSelf: 'flex-start', marginTop: '6px' }}
+                        className="app__admin__btn app__admin__btn--add-step"
                       >
                         + Додати етап
                       </button>
@@ -1505,11 +1653,11 @@ export default function AdminPage() {
                       maxImages={1}
                     />
 
-                    <div style={styles.buttonRow}>
-                      <button type='submit' style={styles.primaryBtn}>
+                    <div className="app__admin__button-row">
+                      <button type='submit' className="app__admin__btn app__admin__btn--primary">
                         Зберегти
                       </button>
-                      <button type='button' onClick={() => handleCancel(() => { if (initialTechProjectData) setTechProjectData({ ...initialTechProjectData }); })} style={styles.cancelBtn}>
+                      <button type='button' onClick={() => handleCancel(() => { if (initialTechProjectData) setTechProjectData({ ...initialTechProjectData }); })} className="app__admin__btn app__admin__btn--cancel">
                         Скасувати
                       </button>
                     </div>
@@ -1519,11 +1667,11 @@ export default function AdminPage() {
 
               {/* 8. AUTHOR SUPERVISION TAB */}
               {activeTab === 'authorSupervision' && (
-                <div style={styles.card}>
-                  <h1 style={styles.sectionTitle}>Керування послугою "Дизайнерський нагляд"</h1>
-                  <form onSubmit={(e) => { e.preventDefault(); saveContent('authorSupervision', authorSupervisionData); }} style={styles.form}>
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Заголовок послуги</label>
+                <div className="app__admin__card">
+                  <h1 className="app__admin__section-title">Керування послугою "Дизайнерський нагляд"</h1>
+                  <form onSubmit={(e) => { e.preventDefault(); saveContent('authorSupervision', authorSupervisionData); }} className="app__admin__form">
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Заголовок послуги</label>
                       <FontStyleEditor
                         styleConfig={authorSupervisionData.titleStyle}
                         onChange={(style) => setAuthorSupervisionData({ ...authorSupervisionData, titleStyle: style })}
@@ -1532,13 +1680,13 @@ export default function AdminPage() {
                         type='text'
                         value={authorSupervisionData.title}
                         onChange={(e) => setAuthorSupervisionData({ ...authorSupervisionData, title: e.target.value })}
-                        style={styles.input}
+                        className="app__admin__input"
                         required
                       />
                     </div>
 
-                    <div style={styles.inputGroup}>
-                      <label style={styles.label}>Опис послуги</label>
+                    <div className="app__admin__input-group">
+                      <label className="app__admin__label">Опис послуги</label>
                       <FontStyleEditor
                         styleConfig={authorSupervisionData.descStyle}
                         onChange={(style) => setAuthorSupervisionData({ ...authorSupervisionData, descStyle: style })}
@@ -1546,16 +1694,17 @@ export default function AdminPage() {
                       <textarea
                         value={authorSupervisionData.description}
                         onChange={(e) => setAuthorSupervisionData({ ...authorSupervisionData, description: e.target.value })}
-                        style={{ ...styles.input, color: '#000', minHeight: '100px' }}
+                        className="app__admin__input"
+                        style={{ minHeight: '100px' }}
                         required
                       />
                     </div>
 
-                    <div style={styles.buttonRow}>
-                      <button type='submit' style={styles.primaryBtn}>
+                    <div className="app__admin__button-row">
+                      <button type='submit' className="app__admin__btn app__admin__btn--primary">
                         Зберегти
                       </button>
-                      <button type='button' onClick={() => handleCancel(() => { if (initialAuthorSupervisionData) setAuthorSupervisionData({ ...initialAuthorSupervisionData }); })} style={styles.cancelBtn}>
+                      <button type='button' onClick={() => handleCancel(() => { if (initialAuthorSupervisionData) setAuthorSupervisionData({ ...initialAuthorSupervisionData }); })} className="app__admin__btn app__admin__btn--cancel">
                         Скасувати
                       </button>
                     </div>
@@ -1567,13 +1716,13 @@ export default function AdminPage() {
         </main>
 
         {modalState.isOpen && (
-          <div style={styles.modalOverlay}>
-            <div style={styles.modalCard}>
-              <h3 style={{ ...styles.modalTitle, color: modalState.type === 'error' ? '#dc3545' : colors.swampy }}>
+          <div className="app__admin__modal-overlay">
+            <div className="app__admin__modal-card">
+              <h3 className="app__admin__modal-title" style={{ color: modalState.type === 'error' ? '#dc3545' : undefined }}>
                 {modalState.title}
               </h3>
-              <p style={styles.modalText}>{modalState.message}</p>
-              <button onClick={closeModal} style={styles.primaryBtn}>
+              <p className="app__admin__modal-text">{modalState.message}</p>
+              <button onClick={closeModal} className="app__admin__btn app__admin__btn--primary">
                 OK
               </button>
             </div>
@@ -1584,334 +1733,4 @@ export default function AdminPage() {
   );
 }
 
-// Colors & Styles
-const colors = {
-  beige: '#ECEBE8',
-  white: '#EBEAE5',
-  sandy: '#D9D0BD',
-  swampy: '#7D8F74',
-  brown: 'rgb(125, 143, 116)',
-  gray: '#C2C2C2',
-};
 
-const styles = {
-  layoutContainer: {
-    display: 'flex',
-    minHeight: '100vh',
-    backgroundColor: colors.beige,
-    fontFamily: 'Manrope, sans-serif',
-    color: 'rgb(125, 143, 116)',
-  },
-  drawer: {
-    backgroundColor: colors.white,
-    borderRight: `1px solid ${colors.sandy}`,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    position: 'sticky',
-    top: 0,
-    height: '100vh',
-    overflowY: 'hidden',
-    flexShrink: 0,
-    transition: 'width 0.3s ease',
-  },
-  drawerHeader: {
-    padding: '24px 20px',
-    borderBottom: `1px solid ${colors.sandy}`,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-  },
-  drawerTitle: {
-    fontSize: '20px',
-    fontWeight: '700',
-    margin: 0,
-    color: 'rgb(125, 143, 116)',
-  },
-  userBadge: {
-    backgroundColor: colors.sandy,
-    color: 'rgb(125, 143, 116)',
-    padding: '3px 8px',
-    borderRadius: '4px',
-    fontSize: '12px',
-    fontWeight: '600',
-    alignSelf: 'flex-start',
-  },
-  drawerNav: {
-    padding: '20px 12px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px',
-    flex: 1,
-    overflowY: 'auto',
-    overflowX: 'hidden',
-  },
-  drawerItem: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '16px',
-    padding: '12px 16px',
-    backgroundColor: 'transparent',
-    border: 'none',
-    borderRadius: '8px',
-    color: 'rgb(125, 143, 116)',
-    fontSize: '14px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    textAlign: 'left',
-    transition: 'background-color 0.2s, color 0.2s',
-    whiteSpace: 'nowrap',
-    width: '100%',
-  },
-  drawerItemText: {
-    color: 'inherit',
-  },
-  drawerItemActive: {
-    backgroundColor: colors.swampy,
-    color: '#fff',
-  },
-  drawerFooter: {
-    padding: '0',
-    borderTop: 'none',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-  },
-  siteLink: {
-    color: 'rgb(125, 143, 116)',
-    textDecoration: 'none',
-    fontSize: '14px',
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  logoutBtn: {
-    backgroundColor: 'rgb(125, 143, 116)',
-    color: '#fff',
-    border: 'none',
-    padding: '10px 16px',
-    borderRadius: '6px',
-    cursor: 'pointer',
-    fontSize: '14px',
-    fontWeight: '600',
-    width: '100%',
-    textAlign: 'center',
-  },
-  mainContent: {
-    flex: 1,
-    padding: '40px',
-    overflowY: 'auto',
-    transition: 'max-width 0.3s ease',
-  },
-  sectionTitle: {
-    fontSize: '24px',
-    fontWeight: '700',
-    marginBottom: '24px',
-    color: 'rgb(125, 143, 116)',
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: '1.2fr 1fr',
-    gap: '30px',
-  },
-  card: {
-    backgroundColor: colors.white,
-    padding: '30px',
-    borderRadius: '12px',
-    border: `1px solid ${colors.sandy}`,
-    boxShadow: '0 4px 20px rgba(39, 31, 24, 0.05)',
-    marginBottom: '30px',
-  },
-  cardTitle: {
-    fontSize: '18px',
-    fontWeight: '700',
-    marginBottom: '20px',
-    color: 'rgb(125, 143, 116)',
-    borderBottom: `1px solid ${colors.sandy}`,
-    paddingBottom: '10px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-  },
-  inputGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '6px',
-  },
-  label: {
-    fontSize: '13px',
-    color: 'rgb(125, 143, 116)',
-    fontWeight: '600',
-  },
-  input: {
-    padding: '10px 14px',
-    borderRadius: '6px',
-    border: `1px solid ${colors.sandy}`,
-    backgroundColor: '#fff',
-    color: 'rgb(125, 143, 116)',
-    fontSize: '14px',
-    outline: 'none',
-  },
-  buttonRow: {
-    display: 'flex',
-    gap: '10px',
-    marginTop: '10px',
-  },
-  primaryBtn: {
-    backgroundColor: colors.swampy,
-    color: '#fff',
-    border: 'none',
-    padding: '12px 20px',
-    borderRadius: '6px',
-    cursor: 'pointer',
-    fontWeight: '600',
-    fontSize: '14px',
-    transition: 'opacity 0.2s',
-  },
-  cancelBtn: {
-    backgroundColor: colors.sandy,
-    color: 'rgb(125, 143, 116)',
-    border: 'none',
-    padding: '12px 20px',
-    borderRadius: '6px',
-    cursor: 'pointer',
-    fontWeight: '600',
-    fontSize: '14px',
-  },
-  projectList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px',
-    maxHeight: '600px',
-    overflowY: 'auto',
-  },
-  projectItem: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'rgba(125, 143, 116, 0.1)',
-    padding: '12px 16px',
-    borderRadius: '8px',
-    border: `1px solid rgba(125, 143, 116, 0.2)`,
-  },
-  itemActions: {
-    display: 'flex',
-    gap: '8px',
-  },
-  editBtn: {
-    backgroundColor: colors.swampy,
-    color: '#fff',
-    border: 'none',
-    padding: '6px 10px',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '12px',
-    fontWeight: '600',
-  },
-  deleteBtn: {
-    backgroundColor: 'rgb(217, 208, 189)',
-    color: 'rgb(125, 143, 116)',
-    border: 'none',
-    padding: '6px 10px',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '12px',
-    fontWeight: '600',
-  },
-  error: {
-    backgroundColor: 'rgba(220, 53, 69, 0.15)',
-    color: '#dc3545',
-    padding: '10px 14px',
-    borderRadius: '6px',
-    fontSize: '14px',
-    marginBottom: '16px',
-    border: '1px solid rgba(220, 53, 69, 0.3)',
-    textAlign: 'center',
-  },
-  loadingText: {
-    color: 'rgb(125, 143, 116)',
-    textAlign: 'center',
-    padding: '40px',
-    fontSize: '16px',
-  },
-  modalOverlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1000,
-  },
-  modalCard: {
-    backgroundColor: colors.white,
-    padding: '30px',
-    borderRadius: '12px',
-    boxShadow: '0 10px 40px rgba(39, 31, 24, 0.2)',
-    width: '100%',
-    maxWidth: '400px',
-    textAlign: 'center',
-    border: `1px solid ${colors.sandy}`,
-  },
-  modalTitle: {
-    fontSize: '20px',
-    fontWeight: '700',
-    marginBottom: '12px',
-    color: 'rgb(125, 143, 116)',
-  },
-  modalText: {
-    fontSize: '15px',
-    color: 'rgb(125, 143, 116)',
-    marginBottom: '24px',
-    lineHeight: '1.5',
-  },
-  loginContainer: {
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.beige,
-    fontFamily: 'Manrope, sans-serif',
-    padding: '20px',
-  },
-  loginCard: {
-    backgroundColor: colors.white,
-    padding: '40px',
-    borderRadius: '12px',
-    boxShadow: '0 8px 30px rgba(39, 31, 24, 0.1)',
-    width: '100%',
-    maxWidth: '420px',
-    border: `1px solid ${colors.sandy}`,
-  },
-  loginTitle: {
-    color: 'rgb(125, 143, 116)',
-    fontSize: '26px',
-    marginBottom: '8px',
-    textAlign: 'center',
-    fontWeight: '700',
-  },
-  loginSubtitle: {
-    color: 'rgb(125, 143, 116)',
-    fontSize: '14px',
-    marginBottom: '24px',
-    textAlign: 'center',
-  },
-  backLink: {
-    marginTop: '20px',
-    textAlign: 'center',
-  },
-  link: {
-    color: colors.swampy,
-    textDecoration: 'none',
-    fontSize: '14px',
-    fontWeight: '600',
-  },
-};
