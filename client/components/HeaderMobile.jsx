@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const HeaderMobile = () => {
+  const router = useRouter();
   const [isActive, setActive] = useState(false);
 
   const navToggle = () => {
@@ -11,11 +13,36 @@ const HeaderMobile = () => {
     setActive(false);
   };
 
+  const handleAnchorClick = (e, targetId) => {
+    e.preventDefault();
+    closeNav();
+    if (router.pathname === '/') {
+      if (targetId === 'top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.pushState(null, '', '/');
+      } else {
+        window.history.pushState(null, '', `/#${targetId}`);
+        const scrollToElement = (retries = 20) => {
+          const el = document.getElementById(targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          } else if (retries > 0) {
+            setTimeout(() => scrollToElement(retries - 1), 150);
+          }
+        };
+        scrollToElement();
+      }
+    } else {
+      sessionStorage.setItem('scrollTarget', targetId);
+      router.push('/');
+    }
+  };
+
   return (
     <div className='app__mobile'>
       <header className='app__mobile-header'>
         <div className='app__mobile-header__logo'>
-          <a href='/' className='app__mobile-header__logo-link' onClick={closeNav}>
+          <a href='/' className='app__mobile-header__logo-link' onClick={(e) => handleAnchorClick(e, 'top')}>
             <span className='app__mobile-header__logo-name'>
               Аріна Козловська
             </span>
@@ -38,35 +65,35 @@ const HeaderMobile = () => {
         <a
           className='app__mobile-navigation__item'
           href='/'
-          onClick={closeNav}
+          onClick={(e) => handleAnchorClick(e, 'top')}
         >
           ГОЛОВНА
         </a>
         <a
           className='app__mobile-navigation__item'
           href='/#projects'
-          onClick={closeNav}
+          onClick={(e) => handleAnchorClick(e, 'projects')}
         >
           ПРОЄКТИ
         </a>
         <a
           className='app__mobile-navigation__item'
           href='/#prices'
-          onClick={closeNav}
+          onClick={(e) => handleAnchorClick(e, 'prices')}
         >
           ВАРТІСТЬ
         </a>
         <a
           className='app__mobile-navigation__item'
           href='/#about'
-          onClick={closeNav}
+          onClick={(e) => handleAnchorClick(e, 'about')}
         >
           ПРО МЕНЕ
         </a>
         <a
           className='app__mobile-navigation__item'
           href='/#contacts'
-          onClick={closeNav}
+          onClick={(e) => handleAnchorClick(e, 'contacts')}
         >
           КОНТАКТИ
         </a>
