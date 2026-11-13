@@ -11,7 +11,7 @@
     z-index: 9;
 
     &-header {
-      padding: 1rem 2rem;
+      padding: 1rem 1rem;
       position: relative;
       display: flex;
       justify-content: space-between;
@@ -23,10 +23,11 @@
 
       &__logo {
         text-align: center;
+
         &-link {
           color: $primary-brown;
         }
-        
+
         &-name {
           font-weight: 600;
           font-size: 1.125rem;
@@ -91,6 +92,9 @@
       }
 
       &--active {
+        top: 0;
+        left: 0;
+        z-index: 99;
         display: flex;
         position: fixed;
         flex-direction: column;

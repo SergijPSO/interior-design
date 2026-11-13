@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Link from "next/link";
 
 const HeaderMobile = () => {
   const [isActive, setActive] = useState(false);
@@ -16,12 +15,12 @@ const HeaderMobile = () => {
     <div className='app__mobile'>
       <header className='app__mobile-header'>
         <div className='app__mobile-header__logo'>
-          <Link href='/' className='app__mobile-header__logo-link'>
+          <a href='/' className='app__mobile-header__logo-link' onClick={closeNav}>
             <span className='app__mobile-header__logo-name'>
               Аріна Козловська
             </span>
             <span className='app__mobile-header__logo-position'>{`дизайнер інтер'єру`}</span>
-          </Link>
+          </a>
         </div>
 
         <div onClick={navToggle} className='app__mobile-header__burger'>
@@ -36,45 +35,41 @@ const HeaderMobile = () => {
           isActive ? "app__mobile-navigation--active" : "app__mobile-navigation"
         }
       >
-        <Link
+        <a
           className='app__mobile-navigation__item'
           href='/'
-          scroll={false}
           onClick={closeNav}
         >
           ГОЛОВНА
-        </Link>
-        <Link
+        </a>
+        <a
           className='app__mobile-navigation__item'
           href='/#projects'
-          scroll={false}
           onClick={closeNav}
         >
           ПРОЄКТИ
-        </Link>
-        <Link
+        </a>
+        <a
           className='app__mobile-navigation__item'
           href='/#prices'
-          scroll={false}
           onClick={closeNav}
         >
           ВАРТІСТЬ
-        </Link>
-        <Link
+        </a>
+        <a
           className='app__mobile-navigation__item'
           href='/#about'
-          scroll={false}
           onClick={closeNav}
         >
           ПРО МЕНЕ
-        </Link>
-        <Link
+        </a>
+        <a
           className='app__mobile-navigation__item'
           href='/#contacts'
           onClick={closeNav}
         >
           КОНТАКТИ
-        </Link>
+        </a>
         <a
           className='app__mobile-navigation__item'
           href='tel:+380978159804'
@@ -83,6 +78,12 @@ const HeaderMobile = () => {
           097 815 98 04
         </a>
       </nav>
+      {isActive && (
+        <div 
+          style={{ position: 'fixed', inset: 0, zIndex: 98, background: 'transparent' }} 
+          onClick={closeNav}
+        />
+      )}
     </div>
   );
 };

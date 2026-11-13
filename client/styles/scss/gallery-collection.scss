@@ -28,7 +28,7 @@
         font-weight: 300;
         line-height: 100%;
         border: .063rem solid transparent;
-        cursor: pointer; 
+        cursor: pointer;
         border-left: 0;
         border-right: 0;
         border-top: 0;
@@ -42,14 +42,14 @@
 
       &__content {
         .carousel .thumb {
-          border: 2px solid transparent;
+          border: 4px solid transparent;
           cursor: pointer;
           transition: border-color 0.2s ease, opacity 0.2s ease;
           opacity: 0.6;
 
           &.selected,
           &:hover {
-            border: 2px solid $primary-brown;
+            border: 4px solid $primary-brown;
             opacity: 1;
           }
         }
@@ -60,10 +60,27 @@
           object-fit: cover;
           object-position: center center;
         }
+
+        .carousel .thumbs-wrapper {
+          .control-arrow {
+            &.control-prev {
+              &:before {
+                border-right: 8px solid $primary-brown;
+              }
+            }
+
+            &.control-next {
+              &:before {
+                border-left: 8px solid $primary-brown;
+              }
+            }
+          }
+        }
       }
     }
 
     .slide {
+
       .app__collection-tabs__realization-image,
       .app__collection-tabs__visualisation-image {
         height: auto;
@@ -81,8 +98,10 @@
     &__collection {
       padding: 0 .625rem;
       padding: 0;
+
       &-tabs {
         width: 100%;
+
         &__item {
           font-size: .875rem;
         }
@@ -90,9 +109,9 @@
 
       &-tabs__content {
         display: flex;
-        min-height: calc(100vh - 130px);
         height: 100%;
         align-items: center;
+
         .carousel-root.app__arrowed-carousel.app__arrowed-carousel--dark {
           &.app__collection-tabs {
 
@@ -109,12 +128,53 @@
       }
 
       .slide {
+
         .app__collection-tabs__realization-image,
         .app__collection-tabs__visualisation-image {
           height: auto;
           width: 100%;
         }
       }
+    }
+  }
+}
+
+.app {
+  &__breadcrumbs {
+    padding: 0 3rem .625rem 2.5rem;
+    max-width: 87.5rem;
+    font-family: $font-family-main;
+
+    @media all and (max-width: 760) {
+      padding: 0 .5rem;
+    }
+
+    &__inner {
+      display: flex;
+      align-items: center;
+      gap: .625rem;
+      font-size: .938rem;
+      flex-wrap: wrap;
+    }
+
+    &__link {
+      color: $primary-swampy;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &__separator {
+      color: $primary-gray;
+    }
+
+    &__current {
+      color: $primary-brown;
+      font-weight: 600;
     }
   }
 }

@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const router = useRouter();
   const [phone, setPhone] = useState('097 815 98 04');
   const [phoneRaw, setPhoneRaw] = useState('+380978159804');
 
@@ -18,60 +19,84 @@ const Header = () => {
       .catch(err => console.error('Error fetching header phone:', err));
   }, []);
 
+  const handleAnchorClick = (e, targetId) => {
+    e.preventDefault();
+    if (router.pathname === '/') {
+      if (targetId === 'top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.pushState(null, '', '/');
+      } else {
+        window.history.pushState(null, '', `/#${targetId}`);
+        const scrollToElement = (retries = 20) => {
+          const el = document.getElementById(targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          } else if (retries > 0) {
+            setTimeout(() => scrollToElement(retries - 1), 150);
+          }
+        };
+        scrollToElement();
+      }
+    } else {
+      sessionStorage.setItem('scrollTarget', targetId);
+      router.push('/');
+    }
+  };
+
   return (
     <header className='app__header'>
       <nav className='app__navigation'>
         <div className='app__navigation__logo'>
-          <Link className='app__navigation__logo-link' href='/'>
+          <a className='app__navigation__logo-link' href='/' onClick={(e) => handleAnchorClick(e, 'top')}>
             <span className='app__navigation__logo-name'>Аріна Козловська</span>
             <span className='app__navigation__logo-position'>{`дизайнер інтер'єру`}</span>
-          </Link>
+          </a>
         </div>
         <ul className='app__navigation__list'>
           <li className='app__navigation__item'>
-            <Link
+            <a
               className='app__navigation__item-link'
               href='/'
-              scroll={false}
+              onClick={(e) => handleAnchorClick(e, 'top')}
             >
               ГОЛОВНА
-            </Link>
+            </a>
           </li>
           <li className='app__navigation__item'>
-            <Link
+            <a
               className='app__navigation__item-link'
               href='/#projects'
-              scroll={false}
+              onClick={(e) => handleAnchorClick(e, 'projects')}
             >
               ПРОЄКТИ
-            </Link>
+            </a>
           </li>
           <li className='app__navigation__item'>
-            <Link
+            <a
               className='app__navigation__item-link'
               href='/#prices'
-              scroll={false}
+              onClick={(e) => handleAnchorClick(e, 'prices')}
             >
               ВАРТІСТЬ
-            </Link>
+            </a>
           </li>
           <li className='app__navigation__item'>
-            <Link
+            <a
               className='app__navigation__item-link'
               href='/#about'
-              scroll={false}
+              onClick={(e) => handleAnchorClick(e, 'about')}
             >
               ПРО МЕНЕ
-            </Link>
+            </a>
           </li>
           <li className='app__navigation__item'>
-            <Link
+            <a
               className='app__navigation__item-link'
               href='/#contacts'
-              scroll={false}
+              onClick={(e) => handleAnchorClick(e, 'contacts')}
             >
               КОНТАКТИ
-            </Link>
+            </a>
           </li>
         </ul>
         <a className='app__navigation__phone' href={`tel:${phoneRaw}`}>

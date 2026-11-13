@@ -15,11 +15,19 @@
 
 //Global styles begins
 
+html {
+  scroll-behavior: smooth;
+}
+
 .app__content-mobile__background {
   width: 100%;
   height: 100vh;
   overflow: hidden;
   object-fit: cover;  
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
