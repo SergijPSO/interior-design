@@ -1,4 +1,4 @@
-import ProjectsItem from "./ProjectsItem";
+import ProjectsItem from "@/components/ProjectsItem/ProjectsItem";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 

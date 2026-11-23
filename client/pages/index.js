@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/Header/Header.jsx";
+import Footer from "@/components/Footer/Footer.jsx";
 import Main from "@/components/Main";
-import HeaderMobile from "@/components/HeaderMobile";
+import HeaderMobile from "@/components/HeaderMobile/HeaderMobile.jsx";
 import useScreenWidth from "../hooks/useScreenWidth.js";
 import { useRouter } from "next/router";
 

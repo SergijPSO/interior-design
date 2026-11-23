@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=Manrope:wght@200;300;400;500;600;700&display=swap');
 @import './variables.scss';
-@import './header.scss';
-@import './header-mobile.scss';
-@import './projects.scss';
-@import './projects-item.scss';
-@import './footer.scss';
-@import './main-carousel.scss';
-@import './arrowed-carousel.scss';
-@import './about.scss';
-@import './prices.scss';
-@import './gallery-collection.scss';
-@import './sticky-contacts.scss';
+@import '../../components/Header/header.scss';
+@import '../../components/HeaderMobile/header-mobile.scss';
+@import '../../components/Projects/projects.scss';
+@import '../../components/ProjectsItem/projects-item.scss';
+@import '../../components/Footer/footer.scss';
+@import '../../components/MainCarousel/main-carousel.scss';
+@import '../../components/ArrowedCarousel/arrowed-carousel.scss';
+@import '../../components/About/about.scss';
+@import '../../components/Prices/prices.scss';
+@import '../../components/GalleryTabs/gallery-collection.scss';
+@import '../../components/StickyContacts/sticky-contacts.scss';
 @import './admin.scss';
 
 //Global styles begins

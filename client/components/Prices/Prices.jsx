@@ -1,6 +1,6 @@
-import ArrowedCarousel from "./ArrowedCarousel";
-import ArrowedCarouselItem from "./ArrowedCarouselItem";
-import useScreenWidth from "../hooks/useScreenWidth.js";
+import ArrowedCarousel from "@/components/ArrowedCarousel/ArrowedCarousel";
+import ArrowedCarouselItem from "@/components/ArrowedCarouselItem/ArrowedCarouselItem";
+import useScreenWidth from "@/hooks/useScreenWidth";
 import { useState, useEffect } from "react";
 
 const getTextStyle = (cfg) => {

@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
-import Header from "@/components/Header";
-import HeaderMobile from "@/components/HeaderMobile";
+import Header from "@/components/Header/Header";
+import HeaderMobile from "@/components/HeaderMobile/HeaderMobile";
 import GalleryTabs from "@/components/GalleryTabs";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";

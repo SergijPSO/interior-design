@@ -1,8 +1,8 @@
 import { Tab } from "@headlessui/react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import ArrowedCarousel from "./ArrowedCarousel";
-import useScreenWidth from "../hooks/useScreenWidth.js";
+import ArrowedCarousel from "@/components/ArrowedCarousel/ArrowedCarousel";
+import useScreenWidth from "@/hooks/useScreenWidth";
 import { useState, useEffect } from "react";
 
 const GalleryTabs = ({ project }) => {
