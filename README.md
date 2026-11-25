@@ -1,38 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Interior Design Studio Web Application
 
-## Getting Started
+A modern, full-stack web application for an Interior Design studio built with **Next.js**, **React**, **Node.js (Express)**, and **MongoDB**.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+- **Responsive Frontend**: Built with Next.js (Pages router) and styled with SCSS and Tailwind/CSS.
+- **Interactive Carousels**: Showcasing projects, design visualizations, and realizations using `react-responsive-carousel`.
+- **Admin Panel**: Secure dashboard (`/admin`) for managing projects, contents, prices, and admin credentials.
+- **RESTful API Backend**: Express.js server interacting with MongoDB via Mongoose.
+- **Image Management**: Local/cloud upload handling via Multer for project visualisations and realisations.
+
+---
+
+## Project Structure
+
+```text
+interior-design/
+├── client/                 # Next.js frontend application
+│   ├── components/         # Modular components (Header, Footer, Main, About, etc.)
+│   ├── hooks/              # Custom React hooks (useScreenWidth)
+│   ├── pages/              # Next.js pages (index, admin, gallery/[id])
+│   ├── public/             # Static assets and images
+│   └── styles/             # SCSS stylesheets & variables
+├── server/                 # Express.js backend API
+│   ├── models/             # Mongoose schemas (Admin, Content, Price, Project)
+│   ├── index.js            # Express app entry point
+│   └── .env                # Environment variables
+└── mongo_backup/           # MongoDB BSON database dumps
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Getting Started & Installation
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Prerequisites
+- **Node.js** (v18 or higher recommended)
+- **MongoDB** / MongoDB Atlas account
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd interior-design
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 2. Configure Backend (`server/.env`)
+Create or update `server/.env` with your MongoDB connection string:
+```env
+PORT=5001
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/interior-design?retryWrites=true&w=majority
+```
 
-## Learn More
+### 3. Restore Database (Optional)
+If you have a MongoDB dump in `mongo_backup/`, you can restore it using `mongorestore`:
+```bash
+mongorestore --uri="mongodb+srv://<username>:<password>@<cluster-url>" --nsInclude="interior-design.*" mongo_backup
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Install Dependencies & Run
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Run the Backend Server:
+```bash
+cd server
+npm install
+npm run dev
+```
+*(Server will start on `http://localhost:5001`)*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Run the Frontend Client:
+Open a new terminal window:
+```bash
+cd client
+npm install
+npm run dev
+```
+*(Client will start on `http://localhost:3000`)*
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Build & Production Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Build Frontend:
+```bash
+cd client
+npm run build
+npm start
+```
+
+### Deployment (e.g., Vercel / Render / VPS)
+- **Frontend**: Deploy the `client/` folder to **Vercel** or **Netlify**. Set environment variable `NEXT_PUBLIC_API_URL` pointing to your backend production URL.
+- **Backend**: Deploy the `server/` folder to **Render**, **Railway**, or a VPS (Node.js + MongoDB Atlas).

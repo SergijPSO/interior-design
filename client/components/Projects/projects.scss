@@ -1,0 +1,14 @@
+//TODO in the end move necessary styles to general
+@import "../../styles/scss/variables.scss";
+
+.app {
+  &__projects {
+    scroll-margin: 5rem;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: .125rem;
+  }
+}

@@ -1,0 +1,73 @@
+@import "../../styles/scss/variables.scss";
+
+.app {
+  &__header {
+    display: flex;
+    padding: 0 4.375rem;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    background-color: $primary-beige;
+  }
+
+  &__navigation {
+    display: inherit;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+
+    &__logo {
+      display: block;
+      width: 100%;
+      max-width: 11.938rem;
+      &-link {
+        color: $primary-brown;
+      }
+
+      &-name,
+      &-position {
+        display: block;
+        text-align: center;
+      }
+
+      &-name {
+        font-size: 1.38rem;
+        line-height: 1.938rem;
+      }
+
+      &-position {
+        font-size: .875rem;
+        line-height: 1.188rem;
+      }
+    }
+
+    &__list {
+      display: inherit;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &__item {
+      box-sizing: border-box;
+      &-link {
+        padding: 1.795rem 1rem;
+        display: block;
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.375rem;
+        color: $primary-brown;
+        border: .031rem solid transparent;
+        border-top: 0;
+
+        &:hover  {
+          border-color: $primary-brown;;
+        }
+      }
+    }
+
+    &__phone {
+      color: $primary-brown;
+    }
+  }
+}

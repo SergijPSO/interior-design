@@ -1,0 +1,44 @@
+@import "../../styles/scss/variables.scss";
+
+.app {
+  &__main {
+    &-carousel {
+      padding-bottom: .625rem;
+      &__item {
+        position: relative;
+        height: 100%;
+        &-image {
+          height: 100%;
+     
+          object-fit: cover;
+          object-position: center;
+        }
+        &-message {
+          display: block;
+          position: absolute;
+          bottom: 1.438rem;
+          right: 1.438rem;
+          padding: .438rem 1.375rem .188rem;
+          border-radius: 1.375rem;
+          background-color: $primary-gray;
+          z-index: 2;
+          cursor: pointer;
+          svg {
+            width: 1.125rem;
+          }
+          &__icon {
+            width: 1.375rem;
+            height: 1.375rem;
+          }
+        }
+      }
+      
+    }
+  }
+}
+
+.carousel-root.app__main-carousel {
+  .carousel .slider-wrapper.axis-horizontal .slider .slide {
+    max-height: 52rem;
+  }
+}

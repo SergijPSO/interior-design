@@ -1,0 +1,141 @@
+@import "../../styles/scss/variables.scss";
+
+.app {
+  &__projects {
+    &__item {
+      position: relative;
+      width: 100%;
+      flex-basis: 49.9%;
+      flex-grow: 9999;
+      object-fit: cover;
+      height:26.25rem;
+      &-link {
+        display: block;
+        height: 100%;
+      }
+
+      &-label {
+        display: none;
+        position: absolute;
+        padding: .125rem .75rem;
+        bottom: 0;
+        left: 0;
+        background-color: $primary-swampy;
+        z-index: 2;
+        &__name,
+        &__area {
+          display: block;
+          font-size: .875rem;
+          color: $primary-white;
+        }
+        &__area {
+          font-weight: bold;
+        }
+        &__name {
+          font-weight: 500;
+        }
+      }
+
+      &:hover {
+        .app__projects__item__overlay  {
+          visibility: visible;
+          cursor: pointer;
+        }
+      }
+
+      &-disabled-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background-color: $color-danger;
+        color: $primary-white-pure;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        z-index: 3;
+        font-family: $font-family-main;
+      }
+
+      &-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &__overlay { 
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        backdrop-filter: blur(.25rem);
+        background-color: $transparent-swampy;
+        
+        &-inner {
+          width: 95%;
+          height: 92%; 
+          box-sizing: border-box;
+          border: .063rem solid $primary-white;
+          display: flex;
+          align-items: center;
+        }
+
+        &-info {
+          padding: .625rem .876rem;
+          display: block;
+          box-sizing: border-box;
+          border: .063rem solid $primary-white;
+          border-left: 0;
+          text-align: left;
+
+          &__object,
+          &__meters {
+            display: block;
+            color: $primary-white;
+            font-size: .938rem;
+          }
+
+          &__object {
+            font-weight: 300;
+          }
+
+          &__meters {
+            font-weight: 500;
+          }
+
+        }
+      }
+      
+    }
+  }
+}
+@media all and (max-width: 64rem) {
+  .app {
+    &__projects {
+      &__item {
+        &__overlay {
+          display: none;
+        }
+        &-label {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 64rem) {
+  .app {
+    &__projects {
+      &__item {
+        height: 22.75rem;
+      }
+    }
+  }
+}

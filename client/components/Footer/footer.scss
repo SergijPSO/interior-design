@@ -1,0 +1,135 @@
+//TODO in the end move necessary styles to general
+@import "../../styles/scss/variables.scss";
+
+.app {
+  &__footer {
+    &__wrapper {
+      padding: 4.25rem 0;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      width: 100%;
+      // max-width: 53.5rem; uncoment and remove line under when it will be necessary
+      max-width: 30.5rem;
+    }
+
+    &__messengers {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      max-width: 15rem;
+      min-width: 15rem;
+
+      &__number {
+        color: $primary-brown;
+      }
+    }
+
+    &__messengers-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      &__icon {
+        &--phone,
+        &--telegram,
+        &--viber {
+          fill: $primary-brown;
+        }
+
+        &--phone {
+          width:  2.625rem;
+          height: 2.625rem;
+        }
+
+        &--telegram {
+          width:  2.625rem;
+          height: 2.625rem;
+          margin-right: .25rem;
+        }
+
+        &--viber {
+          width:  2.625rem;
+          height: 2.625rem;
+        }
+      }
+    }
+
+    &__email {
+      display: flex;
+      align-items: center;
+
+      &__icon {
+        width: 2.594rem;
+        height: 2.375rem;
+        fill: $primary-brown;
+      }
+
+      &__link {
+        display: flex;
+        align-items: center;
+        color: $primary-brown;
+        font-size: 1rem;
+      }
+    }
+
+    &__instagram__link,
+    &__email__link {
+      flex-direction: column;
+    }
+
+    &__instagram {
+      display: flex;
+      align-items: center;
+
+      &__icon {
+        fill: $primary-brown;
+        width: 2.625rem;
+        height: 2.625rem;
+      }
+
+      &__link {
+        display: flex;
+        align-items: center;
+        color: $primary-brown;
+        font-size: 1rem;
+      }
+    }
+
+    &__copyright {
+      background-color: $primary-brown;
+      text-align: center;
+      &__text {
+        color: $primary-beige;
+        font-size: .813rem;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 64rem) {
+  .app {
+    &__footer {
+      &__wrapper {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1.25rem;
+      }
+
+      &__messengers,
+      &__email,
+      &__instagram {
+        max-width: unset;
+      }
+      &__messengers { 
+        &__number {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
