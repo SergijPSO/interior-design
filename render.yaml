@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: interior-design-api
+    env: node
+    region: frankfurt
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false # You will need to add this manually in Render Dashboard
+      - key: PORT
+        value: 5001
