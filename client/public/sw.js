@@ -1,7 +1,7 @@
 const CACHE_NAME = 'arina-design-v1';
 const urlsToCache = [
   '/',
-  '/favicon.ico'
+  '/favicon.jpg'
 ];
 
 self.addEventListener('install', (event) => {
